@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: net.sf.marineapi:marineapi:0.9.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sf.marineapi/marineapi/0.9.0/da1e1e9ef58f618be30b59a0906b306253a42b65/marineapi-0.9.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sf.marineapi/marineapi/0.9.0/d1e1b92409160c4d36b36832bdf02b3f2dbf4c0f/marineapi-0.9.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
