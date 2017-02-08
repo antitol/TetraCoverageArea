@@ -63,7 +63,7 @@ set CMD_LINE_ARGS=%*
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\serialtest-1.0-SNAPSHOT.jar;%APP_HOME%\lib\slf4j-api-1.7.21.jar;%APP_HOME%\lib\saaj-impl-1.3.jar;%APP_HOME%\lib\miglayout-3.7.4.jar;%APP_HOME%\lib\jssc-2.8.0.jar;%APP_HOME%\lib\jdbi-2.78.jar;%APP_HOME%\lib\mysql-connector-java-5.1.38.jar;%APP_HOME%\lib\marineapi-0.9.0.jar;%APP_HOME%\lib\postgresql-9.4.1212.jre7.jar;%APP_HOME%\lib\saaj-api-1.3.jar;%APP_HOME%\lib\activation-1.0.2.jar
+set CLASSPATH=%APP_HOME%\lib\serialtest-1.0-SNAPSHOT.jar;%APP_HOME%\lib\slf4j-api-1.7.21.jar;%APP_HOME%\lib\saaj-impl-1.3.jar;%APP_HOME%\lib\miglayout-3.7.4.jar;%APP_HOME%\lib\jssc-2.8.0.jar;%APP_HOME%\lib\jdbi-2.78.jar;%APP_HOME%\lib\mysql-connector-java-5.1.38.jar;%APP_HOME%\lib\marineapi-0.9.0.jar;%APP_HOME%\lib\postgresql-9.4.1212.jre7.jar;%APP_HOME%\lib\commons-math3-3.6.1.jar;%APP_HOME%\lib\saaj-api-1.3.jar;%APP_HOME%\lib\activation-1.0.2.jar
 
 @rem Execute serialtest
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %SERIALTEST_OPTS%  -classpath "%CLASSPATH%" Main %CMD_LINE_ARGS%

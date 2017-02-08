@@ -55,10 +55,21 @@ public class SerialTestDao {
 
         System.err.println(point.getLatitude() + " " + point.getLongitude());
 
-        gpsQuery.add(
+        gpsQuery.addWithRssi(
                 point.getLatitude(),
                 point.getLongitude(),
                 ((Double) (30 + Math.random()*30)).intValue()
+        );
+    }
+
+    public void addGpsWithRssiPoint(GpsPoint point, Rssi rssi) {
+
+        System.err.println(point.getLatitude() + " " + point.getLongitude());
+
+        gpsQuery.addWithRssi(
+                point.getLatitude(),
+                point.getLongitude(),
+                rssi.getRssi()
         );
     }
 
@@ -67,5 +78,9 @@ public class SerialTestDao {
         rssiQuery.add(
                 rssi.getRssi()
         );
+    }
+
+    public void clearGpsTable() {
+        gpsQuery.clear();
     }
 }

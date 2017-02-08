@@ -27,9 +27,21 @@ public interface GpsQuery {
     @SqlUpdate("INSERT INTO gpsPoint (geom, time, rssi) " +
             "VALUES (ST_SetSRID(ST_MakePoint(:lon, :lat), 4326), now(), :rssi)")
     @GetGeneratedKeys
+    int addWithRssi(
+            @Bind("lat") double lat,
+            @Bind("lon") double lon,
+            @Bind("rssi") int rssi
+    );
+
+    @SqlUpdate("INSERT INTO gpsPoint (geom, time) " +
+            "VALUES (ST_SetSRID(ST_MakePoint(:lon, :lat), 4326), now())")
+    @GetGeneratedKeys
     int add(
             @Bind("lat") double lat,
             @Bind("lon") double lon,
             @Bind("rssi") int rssi
     );
+
+    @SqlUpdate("DELETE FROM gpsPoint")
+    void clear();
 }
