@@ -23,6 +23,8 @@ public class MainFrame extends JFrame {
     private JTextField sdFieldLat;
     private JTextField sdFieldLong;
     private JTextField amountPointsLat;
+    private JSlider minSlider;
+    private JSlider fadeSlider;
     private JButton fillRandomButton;
     private JButton addPointsButton;
     private JButton clearTableButton;
@@ -30,7 +32,6 @@ public class MainFrame extends JFrame {
     public MainFrame() {
 
         super("ComTest");
-
 
         connectButton = new JToggleButton("Connect");
         connectButton.addActionListener(e -> {
@@ -54,11 +55,17 @@ public class MainFrame extends JFrame {
                 }
         );
 
-        meanFieldLat = new JTextField("54.977");
+        meanFieldLat = new JTextField("54.93");
         meanFieldLong = new JTextField("73.433");
         sdFieldLat = new JTextField("0.05");
         sdFieldLong = new JTextField("0.08");
         amountPointsLat = new JTextField("1000");
+        minSlider = new JSlider(SwingConstants.HORIZONTAL, 0, 100, 30);
+        minSlider.setPaintLabels(true);
+        minSlider.setMajorTickSpacing(20);
+        fadeSlider = new JSlider(SwingConstants.HORIZONTAL, 0 , 150, 50);
+        fadeSlider.setPaintLabels(true);
+        fadeSlider.setMajorTickSpacing(25);
 
         addPointsButton = new JButton("Add points");
         addPointsButton.addActionListener(e ->
@@ -80,7 +87,7 @@ public class MainFrame extends JFrame {
                     GpsPoint point =  points.get(i);
 
                     Rssi rssi = new Rssi(Optional.of(
-                            (int) (30 + 50 * (
+                            (int) (minSlider.getValue() + fadeSlider.getValue() * (
                                     Math.pow(Math.abs(centerLat - point.getLatitude()), 2)/GpsTest.getNormalLat().getStandardDeviation() +
                                     Math.pow(Math.abs(centerLong - point.getLongitude()), 2)/GpsTest.getNormalLong().getStandardDeviation()
                     ))));
@@ -102,6 +109,8 @@ public class MainFrame extends JFrame {
             sdFieldLat.setText(String.format(String.valueOf(1*Math.random()), "%.5d"));
             sdFieldLong.setText(String.format(String.valueOf(1*Math.random()), "%.5d"));
             amountPointsLat.setText(String.valueOf((int) (10000*Math.random())));
+            minSlider.setValue((int) (100*Math.random()));
+            fadeSlider.setValue((int) (150*Math.random()));
             }
         );
 
@@ -122,11 +131,11 @@ public class MainFrame extends JFrame {
         add(sdFieldLat, "w 100% ,wrap");
         add(sdFieldLong, "w 100% ,wrap");
         add(amountPointsLat, "w 100% ,wrap");
+        add(minSlider, "w 100% ,wrap");
+        add(fadeSlider, "w 100% ,wrap");
         add(fillRandomButton, "w 100% ,wrap");
         add(addPointsButton, "w 100% ,wrap");
         add(clearTableButton, "w 100% ,wrap");
         setVisible(true);
     }
-
-
 }
