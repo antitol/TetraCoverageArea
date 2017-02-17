@@ -1,9 +1,15 @@
 package serialDao;
 
-import entities.GpsPoint;
-import entities.Rssi;
+import common.entities.serialPart.GpsPoint;
+import common.entities.serialPart.Rssi;
+import common.entities.visualPart.TriangleMarkerRssi;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
+import serialDao.gps.GpsQuery;
+import serialDao.polygon.TriangleQuery;
+import serialDao.rssi.RssiQuery;
+
+import java.util.List;
 
 /**
  * Created by anatoliy on 17.01.17.
@@ -18,6 +24,7 @@ public class SerialTestDao {
 
     private final GpsQuery gpsQuery;
     private final RssiQuery rssiQuery;
+    private final TriangleQuery triangleQuery;
 
     private static final SerialTestDao instance = new SerialTestDao();
 
@@ -30,6 +37,7 @@ public class SerialTestDao {
 
         gpsQuery = h.attach(GpsQuery.class);
         rssiQuery = h.attach(RssiQuery.class);
+        triangleQuery = h.attach(TriangleQuery.class);
     }
 
     private void createConnection() {
@@ -78,6 +86,10 @@ public class SerialTestDao {
         rssiQuery.add(
                 rssi.getRssi()
         );
+    }
+
+    public List<TriangleMarkerRssi> getTriangles() {
+        return triangleQuery.getAll();
     }
 
     public void clearGpsTable() {
