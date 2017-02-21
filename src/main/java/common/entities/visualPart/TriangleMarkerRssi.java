@@ -1,76 +1,57 @@
 package common.entities.visualPart;
 
 import de.fhpotsdam.unfolding.geo.Location;
-import de.fhpotsdam.unfolding.marker.SimplePolygonMarker;
+import de.fhpotsdam.unfolding.utils.GeoUtils;
 import de.fhpotsdam.unfolding.utils.MapPosition;
+import gui.applet.CoverageMap;
 import processing.core.PConstants;
 import processing.core.PGraphics;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by anatoliy on 17.02.17.
  */
-public class TriangleMarkerRssi extends SimplePolygonMarker {
-
-    private static int maxRssi;
-    private static int minRssi;
+public class TriangleMarkerRssi extends PolygonMarkerRssi {
 
     private PointMarkerRssi pointA;
     private PointMarkerRssi pointB;
     private PointMarkerRssi pointC;
 
-    private int id;
-
-    public TriangleMarkerRssi(List<PointMarkerRssi> points) {
-
-        /* Загружаем в simplepolygon координаты всех точек */
-        super(
-                points.stream()
-                        .map(p -> p.getLocation())
-                        .collect(Collectors.toList())
-        );
-
-        this.pointA = points.get(0);
-        this.pointB = points.get(1);
-        this.pointC = points.get(2);
-    }
+    List<Float> rssiValues;
 
     public TriangleMarkerRssi(PointMarkerRssi pointA, PointMarkerRssi pointB, PointMarkerRssi pointC) {
 
-        super(Arrays.asList(pointA.getLocation(), pointB.getLocation(), pointC.getLocation()));
+        super();
 
         this.pointA = pointA;
         this.pointB = pointB;
         this.pointC = pointC;
+
+        setLocations(
+                Arrays.asList(
+                        pointA.getLocation(),
+                        pointB.getLocation(),
+                        pointC.getLocation(),
+                        pointA.getLocation()
+                )
+        );
+
+        rssiValues = Arrays.asList(pointA.getRssi(), pointB.getRssi(), pointC.getRssi(), pointA.getRssi());
+
+        System.out.println(GeoUtils.getArea(this));
     }
 
     public TriangleMarkerRssi(Location p1, Location p2, Location p3, int rssi1, int rssi2, int rssi3) {
 
-        super(Arrays.asList(p1, p2, p3, p1));
+        super(Arrays.asList(p1, p2, p3, p1), (rssi1 + rssi2 + rssi3)/3);
 
         this.pointA = new PointMarkerRssi(p1, rssi1);
         this.pointB = new PointMarkerRssi(p2, rssi2);
         this.pointC = new PointMarkerRssi(p3, rssi3);
     }
 
-    public static int getMaxRssi() {
-        return maxRssi;
-    }
-
-    public static int getMinRssi() {
-        return minRssi;
-    }
-
-    public static void setMaxRssi(int maxRssi) {
-        TriangleMarkerRssi.maxRssi = maxRssi;
-    }
-
-    public static void setMinRssi(int minRssi) {
-        TriangleMarkerRssi.minRssi = minRssi;
-    }
 
     public float getAvgRssi() {
         return (pointA.getRssi() + pointB.getRssi() + pointC.getRssi())/3;
@@ -78,18 +59,17 @@ public class TriangleMarkerRssi extends SimplePolygonMarker {
 
     public List<TriangleMarkerRssi> centropolate() {
 
-        float centLat = 0;
-        float centLong = 0;
-        int size = getLocations().size();
+        float sumLat = 0;
+        float sumLong = 0;
+        int size = getLocations().size() - 1;
 
-        for (Location l : getLocations()) {
-            centLat += l.getLat();
-            centLong += l.getLon();
+        for (int i = 0; i < size; i++) {
+            sumLat += getLocation(i).getLat();
+            sumLong += getLocation(i).getLon();
         }
 
-        centLat /= size;
-        centLong /= size;
-
+        float centLat = sumLat / size;
+        float centLong = sumLong / size;
 
         PointMarkerRssi centerPoint = new PointMarkerRssi(
                 new Location(centLat, centLong), getAvgRssi());
@@ -101,28 +81,39 @@ public class TriangleMarkerRssi extends SimplePolygonMarker {
         );
     }
 
+
     public void draw(PGraphics pg, List<MapPosition> mapPositions) {
 
-        float rssi = getAvgRssi() > 80 ? 1 : (getAvgRssi() - 20)/60;
+        int min = CoverageMap.getMinRssi();
+        int max = CoverageMap.getMaxRssi();
 
         if (mapPositions.isEmpty() || isHidden())
             return;
 
         pg.pushStyle();
-        pg.strokeWeight(strokeWeight);
-        if (isSelected()) {
-            pg.fill(highlightColor);
-            pg.stroke(highlightStrokeColor);
-        } else {
-            pg.fill(255*rssi, 255 - 255*rssi, 0,90);
-            pg.stroke(strokeColor);
-        }
+        pg.colorMode(PConstants.RGB, 1);
 
-
+        // Без рамки
+        pg.noStroke();
         pg.beginShape();
-        for (MapPosition pos : mapPositions) {
-            pg.vertex(pos.x, pos.y);
+
+        for (int i = 0; i < mapPositions.size(); i++) {
+
+            // Определяем вес точки по уровню сигнала
+            float rssi = rssiValues.get(i) > max ? 1 : (rssiValues.get(i) - min)/(max - min);
+
+                if (rssi < 0.5) {
+                    pg.fill(2 * rssi, 1, 0, 0.5f);
+                } else {
+                    pg.fill(1, (float) (1 - 2 * (rssi - 0.5)), 0, 0.5f);
+                }
+
+            pg.vertex(mapPositions.get(i).x, mapPositions.get(i).y);
+
+                // Заполняем цветом
+
         }
+
         pg.endShape(PConstants.CLOSE);
         pg.popStyle();
     }

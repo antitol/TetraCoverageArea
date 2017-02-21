@@ -2,11 +2,15 @@ package serialDao;
 
 import common.entities.serialPart.GpsPoint;
 import common.entities.serialPart.Rssi;
+import common.entities.visualPart.PolygonMarkerRssi;
 import common.entities.visualPart.TriangleMarkerRssi;
+import de.fhpotsdam.unfolding.geo.Location;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
+import org.skife.jdbi.v2.util.FloatColumnMapper;
 import serialDao.gps.GpsQuery;
 import serialDao.polygon.TriangleQuery;
+import serialDao.polygon.VoronoiQuery;
 import serialDao.rssi.RssiQuery;
 
 import java.util.List;
@@ -25,6 +29,7 @@ public class SerialTestDao {
     private final GpsQuery gpsQuery;
     private final RssiQuery rssiQuery;
     private final TriangleQuery triangleQuery;
+    private final VoronoiQuery voronoiQuery;
 
     private static final SerialTestDao instance = new SerialTestDao();
 
@@ -38,6 +43,7 @@ public class SerialTestDao {
         gpsQuery = h.attach(GpsQuery.class);
         rssiQuery = h.attach(RssiQuery.class);
         triangleQuery = h.attach(TriangleQuery.class);
+        voronoiQuery = h.attach(VoronoiQuery.class);
     }
 
     private void createConnection() {
@@ -88,7 +94,29 @@ public class SerialTestDao {
         );
     }
 
-    public List<TriangleMarkerRssi> getTriangles() {
+    public List<PolygonMarkerRssi> getVoronoiPolygons() {
+         return voronoiQuery.getAll();
+    }
+
+    public float getArea(TriangleMarkerRssi triangleMarkerRssi) {
+
+        String queryString = "";
+
+        for (Location location : triangleMarkerRssi.getLocations()) {
+            queryString += location.getLon() + " " + location.getLat() + ",";
+        }
+
+        queryString = queryString.substring(0, queryString.length() - 1);
+        queryString = "POLYGON((" + queryString + "))";
+
+        Float response = h.createQuery("SELECT st_area(st_transform(geom, 2100)) / 1000000 " +
+                "FROM st_geomfromtext(:q, 4326) AS geom;")
+                .bind("q", queryString).map(FloatColumnMapper.PRIMITIVE).first();
+
+        return response;
+    }
+
+    public List<TriangleMarkerRssi> getDelauneyTriangles() {
         return triangleQuery.getAll();
     }
 

@@ -2,6 +2,7 @@ package serialDao.polygon;
 
 import common.entities.visualPart.TriangleMarkerRssi;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
+import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 
 import java.util.List;
@@ -32,4 +33,14 @@ public interface TriangleQuery {
             "AND st_intersects(l_delauney_shape.geom, gpspoint.geom) " +
             "GROUP BY l_delauney_shape.geom) AS foo")
     List<TriangleMarkerRssi> getAll();
+
+    @SqlUpdate("TRUNCATE TABLE l_delauney_shape;" +
+    "INSERT INTO l_delauney_shape (geom) " +
+            "  SELECT (ST_Dump(geom)).geom " +
+            "  FROM (SELECT st_delaunaytriangles(ST_Collect(geom)) AS geom " +
+            "        FROM gpspoint) AS triangles;")
+    int generateTriangles();
+
+    @SqlUpdate("TRUNCATE TABLE l_delauney_shape;")
+    int truncateTriangles();
 }

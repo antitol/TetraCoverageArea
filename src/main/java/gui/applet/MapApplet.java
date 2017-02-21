@@ -1,18 +1,12 @@
 package gui.applet;
 
-import de.fhpotsdam.unfolding.UnfoldingMap;
 import de.fhpotsdam.unfolding.geo.Location;
-import de.fhpotsdam.unfolding.marker.SimplePolygonMarker;
+import de.fhpotsdam.unfolding.marker.Marker;
 import de.fhpotsdam.unfolding.providers.OpenStreetMap;
-import de.fhpotsdam.unfolding.utils.MapPosition;
+import de.fhpotsdam.unfolding.utils.DebugDisplay;
+import de.fhpotsdam.unfolding.utils.GeoUtils;
 import de.fhpotsdam.unfolding.utils.MapUtils;
 import processing.core.PApplet;
-import processing.core.PConstants;
-import processing.core.PGraphics;
-import serialDao.SerialTestDao;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  *
@@ -21,77 +15,53 @@ import java.util.List;
  */
 public class MapApplet extends PApplet{
 
-    UnfoldingMap map;
-    SimplePolygonMarker marker1;
+    private static CoverageMap map;
+    private DebugDisplay debugDisplay;
 
     public void setup() {
 
         size(800, 600, OPENGL);
         smooth();
 
-        map = new UnfoldingMap(this, new OpenStreetMap.OpenStreetMapProvider());
+        map = new CoverageMap(this, new OpenStreetMap.OpenStreetMapProvider());
 
         MapUtils.createDefaultEventDispatcher(this, map);
+        debugDisplay = new DebugDisplay(this, map);
 
-        SerialTestDao.getInstance().getTriangles().forEach(p -> map.addMarkers(p));
-
-        map.addMarker(new SimplePolygonMarker(
-                Arrays.asList(new Location(20, 30),
-                        new Location(30, 40),
-                        new Location(30, 30),
-                        new Location(20, 30))
-        ));
     }
 
     public void draw() {
-        background(160);
-        map.draw();
+        background(color(0,0,0));
+
+            map.draw();
+
+            debugDisplay.draw();
     }
 
+    public void mouseClicked() {
+        Marker marker = map.getFirstHitMarker(mouseX, mouseY);
+        if (marker != null) {
+            map.zoomAndPanToFit(GeoUtils.getLocations(marker));
+        } else {
+            map.zoomAndPanTo(2, new Location(0, 0));
+        }
+    }
+
+    // Проверить что это делает по нажатию пробела
     public void keyPressed() {
         if (key == ' ') {
             map.getDefaultMarkerManager().toggleDrawing();
         }
     }
 
-    public static void main(String[] args) {
-        PApplet.main(new String[] {MapApplet.class.getName()});
+    public void setMap(CoverageMap map) {
+        this.map = map;
     }
 
-    public class JsonPolygonMarker extends SimplePolygonMarker {
+    public static CoverageMap getMap() {
 
-        private Float rssi;
-
-        JsonPolygonMarker(SimplePolygonMarker marker, Float rssi) {
-            super(marker.getLocations());
-
-            this.rssi = rssi;
-        }
-
-        @Override
-        public void draw(PGraphics pg, List<MapPosition> mapPositions) {
-            if (mapPositions.isEmpty() || isHidden())
-                return;
-
-            pg.pushStyle();
-            pg.strokeWeight(strokeWeight);
-            if (isSelected()) {
-                pg.fill(highlightColor);
-                pg.stroke(highlightStrokeColor);
-            } else {
-                pg.fill(255*rssi, 255 - 255*rssi, 50,90);
-                pg.stroke(strokeColor);
-            }
-
-
-            pg.beginShape();
-            for (MapPosition pos : mapPositions) {
-                pg.vertex(pos.x, pos.y);
-            }
-
-            pg.textAlign(PConstants.CENTER);
-            pg.endShape(PConstants.CLOSE);
-            pg.popStyle();
-        }
+        return map;
     }
+
+
 }
