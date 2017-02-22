@@ -1,4 +1,4 @@
-package serialDao.rssi;
+package serialDao.serialQueries.rssi;
 
 import common.entities.serialPart.Rssi;
 import org.skife.jdbi.v2.StatementContext;

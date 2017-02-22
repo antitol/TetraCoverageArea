@@ -1,4 +1,4 @@
-package serialDao.rssi;
+package serialDao.serialQueries.rssi;
 
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;

@@ -1,4 +1,4 @@
-package serialDao.gps;
+package serialDao.serialQueries.gps;
 
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;

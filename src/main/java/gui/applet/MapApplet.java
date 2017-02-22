@@ -1,15 +1,13 @@
 package gui.applet;
 
-import de.fhpotsdam.unfolding.geo.Location;
-import de.fhpotsdam.unfolding.marker.Marker;
+import de.fhpotsdam.unfolding.events.MapEvent;
+import de.fhpotsdam.unfolding.events.ZoomMapEvent;
 import de.fhpotsdam.unfolding.providers.OpenStreetMap;
 import de.fhpotsdam.unfolding.utils.DebugDisplay;
-import de.fhpotsdam.unfolding.utils.GeoUtils;
 import de.fhpotsdam.unfolding.utils.MapUtils;
 import processing.core.PApplet;
 
 /**
- *
  *
  * Главный класс processing апплета
  */
@@ -17,6 +15,8 @@ public class MapApplet extends PApplet{
 
     private static CoverageMap map;
     private DebugDisplay debugDisplay;
+
+    private int stampFrameCount = 0;
 
     public void setup() {
 
@@ -26,8 +26,8 @@ public class MapApplet extends PApplet{
         map = new CoverageMap(this, new OpenStreetMap.OpenStreetMapProvider());
 
         MapUtils.createDefaultEventDispatcher(this, map);
-        debugDisplay = new DebugDisplay(this, map);
-
+        // Устанавливает FPS
+        frameRate(30);
     }
 
     public void draw() {
@@ -35,33 +35,45 @@ public class MapApplet extends PApplet{
 
             map.draw();
 
-            debugDisplay.draw();
-    }
-
-    public void mouseClicked() {
-        Marker marker = map.getFirstHitMarker(mouseX, mouseY);
-        if (marker != null) {
-            map.zoomAndPanToFit(GeoUtils.getLocations(marker));
-        } else {
-            map.zoomAndPanTo(2, new Location(0, 0));
+        // Останавливает перерисовку
+        if (looping && frameCount - stampFrameCount > 30) {
+            noLoop();
         }
     }
 
-    // Проверить что это делает по нажатию пробела
+    /**
+     * Аналог KeyEventListener
+     */
     public void keyPressed() {
         if (key == ' ') {
             map.getDefaultMarkerManager().toggleDrawing();
         }
     }
 
-    public void setMap(CoverageMap map) {
-        this.map = map;
+    /**
+     * Метод вызывается при возникновении события MapEvent
+     * Аналог реализации MapEventListener
+     * TODO: вызывать тоже самое по добавлению / удалению маркеров
+     * @param mapEvent
+     */
+    public void mapChanged(MapEvent mapEvent) {
+
+        // При изменении масштаба тайлы не успевают прогрузиться за одну отрисовку, выделяется 30 кадров
+        if (mapEvent.getType().equals(ZoomMapEvent.TYPE_ZOOM)) {
+
+            loop();
+        }
+
+        redraw();
+        stampFrameCount = frameCount;
     }
 
     public static CoverageMap getMap() {
 
         return map;
     }
+
+
 
 
 }

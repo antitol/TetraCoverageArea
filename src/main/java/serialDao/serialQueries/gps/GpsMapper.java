@@ -1,4 +1,4 @@
-package serialDao.gps;
+package serialDao.serialQueries.gps;
 
 import common.entities.serialPart.GpsPoint;
 import org.skife.jdbi.v2.StatementContext;

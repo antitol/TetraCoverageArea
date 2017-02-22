@@ -2,16 +2,19 @@ package serialDao;
 
 import common.entities.serialPart.GpsPoint;
 import common.entities.serialPart.Rssi;
+import common.entities.visualPart.PointMarkerRssi;
 import common.entities.visualPart.PolygonMarkerRssi;
 import common.entities.visualPart.TriangleMarkerRssi;
 import de.fhpotsdam.unfolding.geo.Location;
+import de.fhpotsdam.unfolding.marker.SimplePolygonMarker;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 import org.skife.jdbi.v2.util.FloatColumnMapper;
-import serialDao.gps.GpsQuery;
-import serialDao.polygon.TriangleQuery;
-import serialDao.polygon.VoronoiQuery;
-import serialDao.rssi.RssiQuery;
+import serialDao.processingQueries.point.PointQuery;
+import serialDao.serialQueries.gps.GpsQuery;
+import serialDao.processingQueries.TriangleQuery;
+import serialDao.processingQueries.VoronoiQuery;
+import serialDao.serialQueries.rssi.RssiQuery;
 
 import java.util.List;
 
@@ -28,6 +31,7 @@ public class SerialTestDao {
 
     private final GpsQuery gpsQuery;
     private final RssiQuery rssiQuery;
+    private final PointQuery pointQuery;
     private final TriangleQuery triangleQuery;
     private final VoronoiQuery voronoiQuery;
 
@@ -42,10 +46,14 @@ public class SerialTestDao {
 
         gpsQuery = h.attach(GpsQuery.class);
         rssiQuery = h.attach(RssiQuery.class);
+        pointQuery = h.attach(PointQuery.class);
         triangleQuery = h.attach(TriangleQuery.class);
         voronoiQuery = h.attach(VoronoiQuery.class);
     }
 
+    /**
+     * Установка соединения с драйвером
+     */
     private void createConnection() {
 
         try {
@@ -54,8 +62,7 @@ public class SerialTestDao {
 
         } catch (ClassNotFoundException e) {
 
-            System.out.println("Where is your PostgreSQL JDBC Driver? "
-                    + "Include in your library path!");
+            System.out.println("Ошибка PostgreSQL JDBC драйвера");
             e.printStackTrace();
             return;
 
@@ -65,6 +72,10 @@ public class SerialTestDao {
         h = dbi.open();
     }
 
+    /**
+     * Добавляет точку в таблицу
+     * @param point
+     */
     public void addGpsPoint(GpsPoint point) {
 
         System.err.println(point.getLatitude() + " " + point.getLongitude());
@@ -76,6 +87,11 @@ public class SerialTestDao {
         );
     }
 
+    /**
+     * Добавляет точку с значением уровня сигнала
+     * @param point
+     * @param rssi
+     */
     public void addGpsWithRssiPoint(GpsPoint point, Rssi rssi) {
 
         System.err.println(point.getLatitude() + " " + point.getLongitude());
@@ -87,6 +103,10 @@ public class SerialTestDao {
         );
     }
 
+    /**
+     * Добавляет значение уровня сигнала
+     * @param rssi
+     */
     public void addRssi(Rssi rssi) {
         System.out.println(rssi.getTime());
         rssiQuery.add(
@@ -94,15 +114,25 @@ public class SerialTestDao {
         );
     }
 
+    /**
+     * Получает полигоны Вороного из таблицы
+     * @return
+     */
     public List<PolygonMarkerRssi> getVoronoiPolygons() {
          return voronoiQuery.getAll();
     }
 
-    public float getArea(TriangleMarkerRssi triangleMarkerRssi) {
+    /**
+     * Запрашивает площадь полигона в кв.км
+     *
+     * @param polygonMarker
+     * @return
+     */
+    public float getArea(SimplePolygonMarker polygonMarker) {
 
         String queryString = "";
 
-        for (Location location : triangleMarkerRssi.getLocations()) {
+        for (Location location : polygonMarker.getLocations()) {
             queryString += location.getLon() + " " + location.getLat() + ",";
         }
 
@@ -116,6 +146,14 @@ public class SerialTestDao {
         return response;
     }
 
+    public List<PointMarkerRssi> getPoints() {
+        return pointQuery.getAll();
+    }
+
+    /**
+     * Получает треугольники Делоне из таблицы
+     * @return
+     */
     public List<TriangleMarkerRssi> getDelauneyTriangles() {
         return triangleQuery.getAll();
     }

@@ -1,4 +1,4 @@
-package serialDao.polygon;
+package serialDao.processingQueries;
 
 import de.fhpotsdam.unfolding.geo.Location;
 import common.entities.visualPart.PointMarkerRssi;

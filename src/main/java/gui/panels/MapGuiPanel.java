@@ -29,11 +29,12 @@ public class MapGuiPanel extends JPanel {
         enablePoints.addActionListener(
                 e -> {
                     if (enablePoints.isSelected()) {
-                        enablePoints.setText("Points: OFF");
-                        // Сброс точек на CoverageMap
-                    } else {
                         enablePoints.setText("Points: ON");
-                        // Установка точек на CoverageMap
+                        MapApplet.getMap().setPoints(SerialTestDao.getInstance().getPoints());
+                        MapApplet.getMap().enablePoints(true);
+                    } else {
+                        enablePoints.setText("Points: OFF");
+                        MapApplet.getMap().enablePoints(false);
                     }
                 }
         );
@@ -69,9 +70,7 @@ public class MapGuiPanel extends JPanel {
                     List<TriangleMarkerRssi> list = SerialTestDao.getInstance().getDelauneyTriangles();
                     MapApplet.getMap().setDelauneyTriangles(list);
 
-                    MapApplet.getMap().startInterpolationDelaunay(
-                            Double.parseDouble(interpolationAreaField.getText())
-                    );
+                    MapApplet.getMap().enableDelaunayTriangles(true);
                 }
         );
 

@@ -70,21 +70,12 @@ public class CoverageMap extends UnfoldingMap {
     }
 
     /**
-     * Показывать триангуляцию Делоне
+     * Подгружает, выгружает триангуляцию Делоне на карту
      *
      * @param show
      */
-    public void enabelDelaunayTriangles(boolean show) {
+    public void enableDelaunayTriangles(boolean show) {
         enableMarkers(show, delauneyTriangles);
-    }
-
-    /**
-     * Показывать полигоны Вороного
-     *
-     * @param show
-     */
-    public void enabelVoronoiPolygons(boolean show) {
-        enableMarkers(show, voronoiPolygons);
     }
 
     /**
@@ -105,6 +96,10 @@ public class CoverageMap extends UnfoldingMap {
         }
     }
 
+    /**
+     * Интерполирует и выводит интерполированные треугольники Делоне
+     * @param area - площадь в кв.км
+     */
     public void startInterpolationDelaunay(double area) {
 
         enableMarkers(false, interpolateDelaunayTriangles);

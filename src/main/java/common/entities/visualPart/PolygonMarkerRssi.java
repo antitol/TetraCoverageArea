@@ -14,6 +14,12 @@ public class PolygonMarkerRssi extends SimplePolygonMarker {
 
     private float rssi;
 
+    private List<Location> innerLocations;
+
+    public List<Location> getInnerLocations() {
+        return innerLocations;
+    }
+
     public PolygonMarkerRssi() {
         super();
     }
@@ -30,6 +36,12 @@ public class PolygonMarkerRssi extends SimplePolygonMarker {
 
     public void setRssi(float rssi) {
         this.rssi = rssi;
+    }
+
+    public PolygonMarkerRssi(List<Location> outerLocations, List<Location> innerLocations) {
+
+        super(outerLocations);
+        this.innerLocations = innerLocations;
     }
 
     // TODO: скооперировать данный класс с TriangleMarkerRssi, сделать его наследником этого класса

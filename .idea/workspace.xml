@@ -2,21 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec8cf0d4-4d4d-4cca-ba58-667df663fe24" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/serialDao/polygon/VoronoiMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/serialDao/polygon/VoronoiQuery.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/serialDao/SerialTestDao.class" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/serialDao/processingQueries/point/PointMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/serialDao/processingQueries/point/PointQuery.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/serialDao/gps/GpsMapper.java" afterPath="$PROJECT_DIR$/src/main/java/serialDao/serialQueries/gps/GpsMapper.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/serialDao/gps/GpsQuery.java" afterPath="$PROJECT_DIR$/src/main/java/serialDao/serialQueries/gps/GpsQuery.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/serialDao/polygon/TriangleMapper.java" afterPath="$PROJECT_DIR$/src/main/java/serialDao/processingQueries/TriangleMapper.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/serialDao/polygon/TriangleQuery.java" afterPath="$PROJECT_DIR$/src/main/java/serialDao/processingQueries/TriangleQuery.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/serialDao/polygon/VoronoiMapper.java" afterPath="$PROJECT_DIR$/src/main/java/serialDao/processingQueries/VoronoiMapper.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/serialDao/polygon/VoronoiQuery.java" afterPath="$PROJECT_DIR$/src/main/java/serialDao/processingQueries/VoronoiQuery.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/serialDao/rssi/RssiMapper.java" afterPath="$PROJECT_DIR$/src/main/java/serialDao/serialQueries/rssi/RssiMapper.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/serialDao/rssi/RssiQuery.java" afterPath="$PROJECT_DIR$/src/main/java/serialDao/serialQueries/rssi/RssiQuery.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/common/entities/visualPart/PointMarkerRssi.java" afterPath="$PROJECT_DIR$/src/main/java/common/entities/visualPart/PointMarkerRssi.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/common/entities/visualPart/PolygonMarkerRssi.java" afterPath="$PROJECT_DIR$/src/main/java/common/entities/visualPart/PolygonMarkerRssi.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/common/entities/visualPart/TriangleMarkerRssi.java" afterPath="$PROJECT_DIR$/src/main/java/common/entities/visualPart/TriangleMarkerRssi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/gui/MainFrame.java" afterPath="$PROJECT_DIR$/src/main/java/gui/MainFrame.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/gui/applet/CoverageMap.java" afterPath="$PROJECT_DIR$/src/main/java/gui/applet/CoverageMap.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/gui/applet/MapApplet.java" afterPath="$PROJECT_DIR$/src/main/java/gui/applet/MapApplet.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/gui/panels/MapGuiPanel.java" afterPath="$PROJECT_DIR$/src/main/java/gui/panels/MapGuiPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/gui/panels/SerialGuiPanel.java" afterPath="$PROJECT_DIR$/src/main/java/gui/panels/SerialGuiPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/gui/panels/TableGuiPanel.java" afterPath="$PROJECT_DIR$/src/main/java/gui/panels/TableGuiPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/gui/panels/TestDataInputPanel.java" afterPath="$PROJECT_DIR$/src/main/java/gui/panels/TestDataInputPanel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serialDao/SerialTestDao.java" afterPath="$PROJECT_DIR$/src/main/java/serialDao/SerialTestDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serialDao/polygon/TriangleQuery.java" afterPath="$PROJECT_DIR$/src/main/java/serialDao/polygon/TriangleQuery.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -29,7 +32,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CreatePatchCommitExecutor">
-    <option name="PATCH_PATH" value="" />
+    <option name="PATCH_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="GROUP_SCHEMA" value="true" />
@@ -70,20 +73,6 @@
       <PATH_ELEMENT>
         <option name="myItemId" value="postgis@localhost" />
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="postgis@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$GroupNode" />
       </PATH_ELEMENT>
     </PATH>
     <PATH>
@@ -185,29 +174,92 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CoverageMap.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/gui/applet/CoverageMap.java">
+      <file leaf-file-name="PointQuery.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/processingQueries/point/PointQuery.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="50" column="40" lean-forward="false" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
+            <state relative-caret-position="361">
+              <caret line="15" column="35" lean-forward="false" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#706#707#0" expanded="true" />
-                <element signature="e#751#752#0" expanded="true" />
-                <element signature="e#801#802#0" expanded="true" />
-                <element signature="e#846#847#0" expanded="true" />
-                <element signature="e#953#954#0" expanded="true" />
-                <element signature="e#983#984#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MapApplet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/gui/applet/MapApplet.java">
+      <file leaf-file-name="TriangleMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/processingQueries/TriangleMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+            <state relative-caret-position="226">
+              <caret line="18" column="8" lean-forward="false" selection-start-line="18" selection-start-column="8" selection-end-line="22" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PointMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/processingQueries/point/PointMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MapGuiPanel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/gui/panels/MapGuiPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="457">
+              <caret line="36" column="61" lean-forward="false" selection-start-line="36" selection-start-column="61" selection-end-line="36" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CoverageMap.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/gui/applet/CoverageMap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="197">
+              <caret line="139" column="49" lean-forward="true" selection-start-line="139" selection-start-column="49" selection-end-line="139" selection-end-column="49" />
+              <folding>
+                <element signature="e#4134#4135#0" expanded="true" />
+                <element signature="e#4170#4171#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MarkerManager.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/lib/unfolding.0.9.6.jar!/de/fhpotsdam/unfolding/marker/MarkerManager.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="156">
+              <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SerialTestDao.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/SerialTestDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="607">
+              <caret line="150" column="5" lean-forward="false" selection-start-line="150" selection-start-column="5" selection-end-line="150" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4102#4103#0" expanded="true" />
+                <element signature="e#4144#4145#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GpsMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/serialQueries/gps/GpsMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -216,82 +268,18 @@
       <file leaf-file-name="PointMarkerRssi.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/common/entities/visualPart/PointMarkerRssi.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="12" column="23" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="23" />
+            <state relative-caret-position="332">
+              <caret line="59" column="23" lean-forward="false" selection-start-line="59" selection-start-column="23" selection-end-line="59" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UnfoldingMap.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/lib/unfolding.0.9.6.jar!/de/fhpotsdam/unfolding/UnfoldingMap.class">
+      <file leaf-file-name="MapApplet.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/gui/applet/MapApplet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="79" column="16" lean-forward="false" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TriangleMarkerRssi.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/common/entities/visualPart/TriangleMarkerRssi.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="84" column="68" lean-forward="false" selection-start-line="84" selection-start-column="68" selection-end-line="84" selection-end-column="68" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1596#1597#0" expanded="true" />
-                <element signature="e#1677#1678#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TriangleQuery.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/polygon/TriangleQuery.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="32" column="69" lean-forward="false" selection-start-line="32" selection-start-column="69" selection-end-line="32" selection-end-column="69" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbstractShapeMarker.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/lib/unfolding.0.9.6.jar!/de/fhpotsdam/unfolding/marker/AbstractShapeMarker.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="37" column="72" lean-forward="false" selection-start-line="37" selection-start-column="72" selection-end-line="37" selection-end-column="72" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MarkerManager.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/lib/unfolding.0.9.6.jar!/de/fhpotsdam/unfolding/marker/MarkerManager.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="696">
-              <caret line="49" column="24" lean-forward="false" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/ac4aed1f-e5d7-4132-b422-482c65ffb924/console.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="170" column="97" lean-forward="false" selection-start-line="170" selection-start-column="97" selection-end-line="170" selection-end-column="97" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PolygonMarkerRssi.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/common/entities/visualPart/PolygonMarkerRssi.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="55" column="111" lean-forward="false" selection-start-line="55" selection-start-column="111" selection-end-line="55" selection-end-column="111" />
+            <state relative-caret-position="104">
+              <caret line="9" column="3" lean-forward="false" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -302,8 +290,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -329,6 +317,7 @@
       <find>st_are</find>
       <find>l_delauney_shape3</find>
       <find>gpspoint3</find>
+      <find>51</find>
     </findStrings>
     <replaceStrings>
       <replace>l_delauney_shape3</replace>
@@ -340,6 +329,8 @@
       <replace>guiPanel.add(</replace>
       <replace>l_delauney_shape</replace>
       <replace>gpspoint</replace>
+      <replace>54</replace>
+      <replace>55</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -758,14 +749,20 @@
         <option value="$PROJECT_DIR$/src/main/java/gui/MainFrame.java" />
         <option value="$PROJECT_DIR$/src/main/java/serialDao/polygon/VoronoiQuery.java" />
         <option value="$PROJECT_DIR$/src/main/java/serialDao/polygon/VoronoiMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/serialDao/SerialTestDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/gui/panels/MapGuiPanel.java" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/ac4aed1f-e5d7-4132-b422-482c65ffb924/console.sql" />
         <option value="$PROJECT_DIR$/src/main/java/serialDao/polygon/TriangleQuery.java" />
-        <option value="$PROJECT_DIR$/src/main/java/gui/applet/CoverageMap.java" />
         <option value="$PROJECT_DIR$/src/main/java/common/entities/visualPart/TriangleMarkerRssi.java" />
-        <option value="$PROJECT_DIR$/src/main/java/gui/applet/MapApplet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/gui/applet/CoverageMap.java" />
         <option value="$PROJECT_DIR$/src/main/java/common/entities/visualPart/PolygonMarkerRssi.java" />
+        <option value="$PROJECT_DIR$/src/main/java/serialDao/processingQuries/VoronoiQuery.java" />
+        <option value="$PROJECT_DIR$/src/main/java/serialDao/processingQueries/VoronoiQuery.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/ac4aed1f-e5d7-4132-b422-482c65ffb924/console.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/serialDao/processingQueries/point/PointQuery.java" />
+        <option value="$PROJECT_DIR$/src/main/java/serialDao/SerialTestDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/serialDao/processingQueries/point/PointMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/gui/panels/MapGuiPanel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/serialDao/serialQueries/gps/GpsMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/common/entities/visualPart/PointMarkerRssi.java" />
+        <option value="$PROJECT_DIR$/src/main/java/gui/applet/MapApplet.java" />
       </list>
     </option>
   </component>
@@ -795,7 +792,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -858,99 +855,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serialtest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serialtest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="entities" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="visualPart" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serialtest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="entities" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -963,7 +870,7 @@
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="SearchEverywhereHistoryKey" value="Tr&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/common/entities/visualPart/TriangleMarkerRssi.java&#10;Appl&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/gui/applet/MapApplet.java&#10;Tri&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/serialDao/polygon/TriangleQuery.java&#10;Covera&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/gui/applet/CoverageMap.java&#10;Abstra&#9;FILE&#9;jar:///home/anatoliy/tetracoveragearea/lib/unfolding.0.9.6.jar!/de/fhpotsdam/unfolding/marker/AbstractShapeMarker.class&#10;MapG&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/gui/panels/MapGuiPanel.java&#10;Сщму&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/gui/applet/CoverageMap.java&#10;Simple&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/unfolding/SimpleMapApp.java&#10;AbstractSha&#9;PSI&#9;JAVA://de.fhpotsdam.unfolding.marker.AbstractShapeMarker&#10;SimplePo&#9;PSI&#9;JAVA://de.fhpotsdam.unfolding.marker.SimplePolygonMarker&#10;Abstrac&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/fhpotsdam/unfolding/mapdisplay/AbstractMapDisplay.java" />
+    <property name="SearchEverywhereHistoryKey" value="Cover&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/gui/applet/CoverageMap.java&#10;MapA&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/gui/applet/MapApplet.java&#10;Poin&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/common/entities/visualPart/PointMarkerRssi.java&#10;ЬфзП&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/gui/panels/MapGuiPanel.java&#10;Voro&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/serialDao/polygon/VoronoiQuery.java&#10;MapG&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/gui/panels/MapGuiPanel.java&#10;App&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/gui/applet/MapApplet.java&#10;MapGU&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/gui/panels/MapGuiPanel.java&#10;Vorono&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/serialDao/polygon/VoronoiQuery.java&#10;Tr&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/common/entities/visualPart/TriangleMarkerRssi.java&#10;Appl&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/gui/applet/MapApplet.java&#10;Tri&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/serialDao/polygon/TriangleQuery.java&#10;Covera&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/gui/applet/CoverageMap.java&#10;Abstra&#9;FILE&#9;jar:///home/anatoliy/tetracoveragearea/lib/unfolding.0.9.6.jar!/de/fhpotsdam/unfolding/marker/AbstractShapeMarker.class&#10;Сщму&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/gui/applet/CoverageMap.java&#10;Simple&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/unfolding/SimpleMapApp.java&#10;AbstractSha&#9;PSI&#9;JAVA://de.fhpotsdam.unfolding.marker.AbstractShapeMarker&#10;SimplePo&#9;PSI&#9;JAVA://de.fhpotsdam.unfolding.marker.SimplePolygonMarker&#10;Abstrac&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/fhpotsdam/unfolding/mapdisplay/AbstractMapDisplay.java" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -1451,7 +1358,9 @@
       <workItem from="1487308047938" duration="20929000" />
       <workItem from="1487334518065" duration="4586000" />
       <workItem from="1487566761279" duration="27333000" />
-      <workItem from="1487650454658" duration="19017000" />
+      <workItem from="1487650454658" duration="19126000" />
+      <workItem from="1487740434981" duration="12009000" />
+      <workItem from="1487758731740" duration="3006000" />
     </task>
     <task id="LOCAL-00001" summary="Добавлены методы для генерации точек распределенных в пространстве по закону Гаусса. Добавлен пользовательский ввод для генерации точек в базу">
       <created>1486553677316</created>
@@ -1474,11 +1383,18 @@
       <option name="project" value="LOCAL" />
       <updated>1487338882565</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Получена адекватная картинка карты покрытия. Необходима оптимизация алгоритмов отрисовки (переработать логику, подключить растеризацию)">
+      <created>1487679372798</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1487679372798</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141543000" />
+    <option name="totallyTimeSpent" value="156667000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1497,14 +1413,13 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.495829" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31452456" sideWeight="0.5354536" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31452456" sideWeight="0.5354536" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31452456" sideWeight="0.4645464" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3222698" sideWeight="0.4645464" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33124346" sideWeight="0.48331594" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24869657" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25480768" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32690302" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32898852" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973932" sideWeight="0.49392098" order="1" side_tool="false" content_ui="tabs" />
@@ -1517,8 +1432,36 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33124346" sideWeight="0.48331594" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31452456" sideWeight="0.5354536" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32690302" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973932" sideWeight="0.49392098" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39916405" sideWeight="0.48123044" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.495829" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31452456" sideWeight="0.4645464" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33124346" sideWeight="0.48331594" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24869657" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32898852" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973932" sideWeight="0.506079" order="4" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
@@ -1538,46 +1481,35 @@
     <MESSAGE value="Добавлены методы для генерации точек распределенных в пространстве по закону Гаусса. Добавлен пользовательский ввод для генерации точек в базу" />
     <MESSAGE value="Добавлены библиотеки processing и unfolding для работы с картами" />
     <MESSAGE value="Налажена дружба карты со swing'ом, намечена большая работа" />
-    <option name="LAST_COMMIT_MESSAGE" value="Налажена дружба карты со swing'ом, намечена большая работа" />
+    <MESSAGE value="Получена адекватная картинка карты покрытия. Необходима оптимизация алгоритмов отрисовки (переработать логику, подключить растеризацию)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Получена адекватная картинка карты покрытия. Необходима оптимизация алгоритмов отрисовки (переработать логику, подключить растеризацию)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/serialDao/SerialTestDao.java</url>
-          <line>119</line>
+          <line>157</line>
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/gui/applet/MapApplet.java</url>
-          <line>56</line>
-          <properties />
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/serialDao/SerialTestDao.java</url>
-          <line>104</line>
+          <line>134</line>
           <properties />
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/common/entities/visualPart/TriangleMarkerRssi.java</url>
-          <line>86</line>
+          <line>87</line>
           <properties />
           <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/common/entities/visualPart/TriangleMarkerRssi.java</url>
-          <line>105</line>
-          <properties />
-          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="28" />
+      <option name="time" value="29" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1586,43 +1518,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="dbDummy://dbtable:/531ca986/ac4aed1f-e5d7-4132-b422-482c65ffb924/postgis.public.l_delauney_shape2">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-          <column-attributes>
-            <column name="ctid" enabled="false" />
-          </column-attributes>
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/testValues/GpsTestVelues.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/unfolding.0.9.6.jar!/de/fhpotsdam/unfolding/mapdisplay/Java2DMapDisplay.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="83" column="24" lean-forward="false" selection-start-line="83" selection-start-column="24" selection-end-line="83" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.processing/core/3.2.3/8f7ce4dd9d89f29a6a6c6b60410263bf28c6a5ca/core-3.2.3-sources.jar!/processing/core/PApplet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="2452" column="0" lean-forward="false" selection-start-line="2452" selection-start-column="0" selection-end-line="2452" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.processing/core/3.2.3/8f7ce4dd9d89f29a6a6c6b60410263bf28c6a5ca/core-3.2.3-sources.jar!/processing/awt/PSurfaceAWT.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -1648,7 +1543,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="502">
           <caret line="48" column="8" lean-forward="true" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1670,35 +1564,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/jogl-all.jar!/jogamp/opengl/GLDrawableHelper.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="114" column="173" lean-forward="false" selection-start-line="114" selection-start-column="173" selection-end-line="114" selection-end-column="173" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/common.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/rssi/RssiMapper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/serialQueries/rssi/RssiMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
           <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/rssi/RssiQuery.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/serialQueries/rssi/RssiQuery.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/gps/GpsMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1706,7 +1583,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
           <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1714,9 +1590,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-104">
           <caret line="8" column="59" lean-forward="false" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1746,9 +1619,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="633">
           <caret line="45" column="12" lean-forward="false" selection-start-line="45" selection-start-column="12" selection-end-line="45" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1783,10 +1653,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="28" column="16" lean-forward="false" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
-          <folding>
-            <element signature="e#2796#2797#0" expanded="false" />
-            <element signature="e#2836#2837#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1808,27 +1674,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="238" column="0" lean-forward="false" selection-start-line="238" selection-start-column="0" selection-end-line="238" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/polygon/VoronoiQuery.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="16" column="42" lean-forward="false" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/polygon/VoronoiMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="30" column="51" lean-forward="false" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1836,24 +1681,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#1929#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#1136#1137#0" expanded="false" />
-            <element signature="e#1159#1160#0" expanded="false" />
-            <element signature="e#1377#1378#0" expanded="false" />
-            <element signature="e#1405#1406#0" expanded="false" />
-            <element signature="e#1614#1615#0" expanded="false" />
-            <element signature="e#1641#1642#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/gps/GpsQuery.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="28" column="4" lean-forward="false" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1865,43 +1692,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/SerialTestDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="104" column="0" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3394#3395#0" expanded="true" />
-            <element signature="e#3439#3440#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jdbi/jdbi/2.78/66327c2942900da8d6dbf9ea79f212a634ae809c/jdbi-2.78-sources.jar!/org/skife/jdbi/v2/util/DoubleColumnMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
           <caret line="21" column="52" lean-forward="false" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/polygon/TriangleMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-166">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/gui/panels/MapGuiPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="81" column="8" lean-forward="false" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1917,7 +1712,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1925,7 +1719,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
           <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1933,7 +1726,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5382">
           <caret line="235" column="53" lean-forward="true" selection-start-line="235" selection-start-column="53" selection-end-line="235" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1941,98 +1733,190 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="353">
           <caret line="127" column="51" lean-forward="true" selection-start-line="127" selection-start-column="51" selection-end-line="127" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/ac4aed1f-e5d7-4132-b422-482c65ffb924/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="170" column="97" lean-forward="false" selection-start-line="170" selection-start-column="97" selection-end-line="170" selection-end-column="97" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/unfolding.0.9.6.jar!/de/fhpotsdam/unfolding/marker/AbstractShapeMarker.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="37" column="72" lean-forward="false" selection-start-line="37" selection-start-column="72" selection-end-line="37" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/unfolding.0.9.6.jar!/de/fhpotsdam/unfolding/marker/MarkerManager.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="696">
-          <caret line="49" column="24" lean-forward="false" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/polygon/TriangleQuery.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="32" column="69" lean-forward="false" selection-start-line="32" selection-start-column="69" selection-end-line="32" selection-end-column="69" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/unfolding.0.9.6.jar!/de/fhpotsdam/unfolding/UnfoldingMap.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
+        <state relative-caret-position="2028">
           <caret line="79" column="16" lean-forward="false" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/processingQueries/VoronoiMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="25" column="54" lean-forward="true" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/unfolding.0.9.6.jar!/de/fhpotsdam/unfolding/utils/MapPosition.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/jogl-all.jar!/jogamp/opengl/GLDrawableHelper.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="565">
+          <caret line="118" column="178" lean-forward="false" selection-start-line="118" selection-start-column="178" selection-end-line="118" selection-end-column="178" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/unfolding.0.9.6.jar!/de/fhpotsdam/unfolding/marker/SimplePointMarker.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/common/entities/visualPart/PolygonMarkerRssi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="51" column="8" lean-forward="false" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/unfolding.0.9.6.jar!/de/fhpotsdam/unfolding/marker/AbstractShapeMarker.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="37" column="72" lean-forward="false" selection-start-line="37" selection-start-column="72" selection-end-line="37" selection-end-column="72" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/common/entities/visualPart/TriangleMarkerRssi.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="84" column="68" lean-forward="false" selection-start-line="84" selection-start-column="68" selection-end-line="84" selection-end-column="68" />
+        <state relative-caret-position="145">
+          <caret line="87" column="8" lean-forward="true" selection-start-line="87" selection-start-column="8" selection-end-line="88" selection-end-column="43" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1596#1597#0" expanded="true" />
-            <element signature="e#1677#1678#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/gui/applet/CoverageMap.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/processingQueries/VoronoiQuery.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="50" column="40" lean-forward="false" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
+        <state relative-caret-position="0">
+          <caret line="0" column="21" lean-forward="false" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/ac4aed1f-e5d7-4132-b422-482c65ffb924/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7254">
+          <caret line="279" column="0" lean-forward="false" selection-start-line="279" selection-start-column="0" selection-end-line="279" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/processingQueries/TriangleQuery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="32" column="69" lean-forward="false" selection-start-line="32" selection-start-column="69" selection-end-line="32" selection-end-column="69" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#706#707#0" expanded="true" />
-            <element signature="e#751#752#0" expanded="true" />
-            <element signature="e#801#802#0" expanded="true" />
-            <element signature="e#846#847#0" expanded="true" />
-            <element signature="e#953#954#0" expanded="true" />
-            <element signature="e#983#984#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/gui/applet/MapApplet.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/serialQueries/gps/GpsQuery.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state relative-caret-position="650">
+          <caret line="28" column="4" lean-forward="false" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/processingQueries/TriangleMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="18" column="8" lean-forward="false" selection-start-line="18" selection-start-column="8" selection-end-line="22" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/gui/panels/MapGuiPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="36" column="61" lean-forward="false" selection-start-line="36" selection-start-column="61" selection-end-line="36" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/serialQueries/gps/GpsMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/common/entities/visualPart/PointMarkerRssi.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="12" column="23" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="23" />
+        <state relative-caret-position="332">
+          <caret line="59" column="23" lean-forward="false" selection-start-line="59" selection-start-column="23" selection-end-line="59" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/common/entities/visualPart/PolygonMarkerRssi.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/processingQueries/point/PointQuery.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="55" column="111" lean-forward="false" selection-start-line="55" selection-start-column="111" selection-end-line="55" selection-end-column="111" />
+        <state relative-caret-position="361">
+          <caret line="15" column="35" lean-forward="false" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/gui/applet/CoverageMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="139" column="49" lean-forward="true" selection-start-line="139" selection-start-column="49" selection-end-line="139" selection-end-column="49" />
+          <folding>
+            <element signature="e#4134#4135#0" expanded="true" />
+            <element signature="e#4170#4171#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/unfolding.0.9.6.jar!/de/fhpotsdam/unfolding/marker/MarkerManager.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/processingQueries/point/PointMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/serialDao/SerialTestDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="607">
+          <caret line="150" column="5" lean-forward="false" selection-start-line="150" selection-start-column="5" selection-end-line="150" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4102#4103#0" expanded="true" />
+            <element signature="e#4144#4145#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/gui/applet/MapApplet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="9" column="3" lean-forward="false" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
           <folding />
         </state>
       </provider>

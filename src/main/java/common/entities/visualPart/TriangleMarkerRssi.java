@@ -7,6 +7,7 @@ import gui.applet.CoverageMap;
 import processing.core.PConstants;
 import processing.core.PGraphics;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -81,7 +82,7 @@ public class TriangleMarkerRssi extends PolygonMarkerRssi {
         );
     }
 
-
+    @Override
     public void draw(PGraphics pg, List<MapPosition> mapPositions) {
 
         int min = CoverageMap.getMinRssi();
@@ -102,15 +103,20 @@ public class TriangleMarkerRssi extends PolygonMarkerRssi {
             // Определяем вес точки по уровню сигнала
             float rssi = rssiValues.get(i) > max ? 1 : (rssiValues.get(i) - min)/(max - min);
 
-                if (rssi < 0.5) {
-                    pg.fill(2 * rssi, 1, 0, 0.5f);
-                } else {
-                    pg.fill(1, (float) (1 - 2 * (rssi - 0.5)), 0, 0.5f);
-                }
+
+            if (rssi < 0.5) {
+
+                setColor(pg.lerpColor(Color.GREEN.getRGB(), Color.YELLOW.getRGB(), rssi*2));
+            } else {
+                setColor(pg.lerpColor(Color.YELLOW.getRGB(), Color.RED.getRGB(), (rssi - 0.5f)*2));
+            }
+
+            pg.fill(color, 0.5f);
 
             pg.vertex(mapPositions.get(i).x, mapPositions.get(i).y);
 
                 // Заполняем цветом
+
 
         }
 
