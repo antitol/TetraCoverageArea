@@ -1,9 +1,8 @@
 package common.entities.visualPart;
 
 import de.fhpotsdam.unfolding.geo.Location;
-import de.fhpotsdam.unfolding.utils.GeoUtils;
 import de.fhpotsdam.unfolding.utils.MapPosition;
-import gui.applet.CoverageMap;
+import gui.applet.map.CoverageMap;
 import processing.core.PConstants;
 import processing.core.PGraphics;
 
@@ -40,8 +39,6 @@ public class TriangleMarkerRssi extends PolygonMarkerRssi {
         );
 
         rssiValues = Arrays.asList(pointA.getRssi(), pointB.getRssi(), pointC.getRssi(), pointA.getRssi());
-
-        System.out.println(GeoUtils.getArea(this));
     }
 
     public TriangleMarkerRssi(Location p1, Location p2, Location p3, int rssi1, int rssi2, int rssi3) {

@@ -5,6 +5,10 @@ import org.apache.commons.math3.distribution.NormalDistribution;
 
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.OptionalDouble;
+
+import static common.entities.serialPart.GpsPoint.LatitudeSign.NORTH;
+import static common.entities.serialPart.GpsPoint.LongitudeSign.EAST;
 
 /**
  * Created by anatoliy on 08.02.17.
@@ -31,10 +35,10 @@ public class GpsTestVelues {
         double randomLon = normalLong.sample();
 
         return new GpsPoint(
-              Optional.of(randomLat),
-                Optional.of(randomLon),
+              OptionalDouble.of(randomLat),
+                OptionalDouble.of(randomLon),
                 Optional.empty(), Optional.empty(),
-                Optional.empty(), Optional.empty()
+                OptionalDouble.empty(), OptionalDouble.empty()
         );
     }
 
@@ -48,10 +52,10 @@ public class GpsTestVelues {
         for (int i = 0; i < amount; i++) {
 
             GpsPoint point = new GpsPoint(
-                    Optional.of(normalLat.sample()),
-                    Optional.of(normalLong.sample()),
-                    Optional.empty(), Optional.empty(),
-                    Optional.empty(), Optional.empty()
+                    OptionalDouble.of(normalLat.sample()),
+                    OptionalDouble.of(normalLong.sample()),
+                    Optional.of(NORTH), Optional.of(EAST),
+                    OptionalDouble.empty(), OptionalDouble.empty()
             );
 
             gpsPoints.add(i, point);

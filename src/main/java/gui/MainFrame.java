@@ -6,15 +6,17 @@ import gui.panels.SerialGuiPanel;
 import gui.panels.TableGuiPanel;
 import gui.panels.TestDataInputPanel;
 import net.miginfocom.swing.MigLayout;
+import org.apache.log4j.Logger;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.List;
 
 /**
  * Created by anatoliy on 16.01.17.
  */
 public class MainFrame extends JFrame {
+
+    public static final Logger log = Logger.getLogger(MainFrame.class);
 
     private final MapApplet mapApplet = new MapApplet();
 
@@ -25,36 +27,40 @@ public class MainFrame extends JFrame {
 
 
     public MainFrame() {
-
         super("ComTest");
+        log.info("Я живой");
 
-        JPanel appletPanel = new JPanel(new MigLayout());
-        appletPanel.setSize(800, 600);
+        setLayout(new MigLayout("debug"));
+        setSize(1100, 650);
+
+        JPanel appletPanel = new JPanel();
 
         mapApplet.init();
-        mapApplet.setSize(800,600);
 
         appletPanel.add(mapApplet);
+        appletPanel.setSize(820,620);
+        mapApplet.setSize(800,600);
 
 
-
-        LayoutManager layout = new MigLayout();
-        setLayout(layout);
-        setSize(1100, 650);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        add(appletPanel);
+        add(appletPanel, "span 1 3");
 
 
-        add(mapGuiPanel);
+        add(mapGuiPanel, "wrap");
+        add(serialGuiPanel, "wrap");
+        add(testDataInputPanel);
 
         setVisible(true);
+        mapApplet.setSize(800,600);
+
+        log.info("Я закончил");
     }
 
     private JPanel packGuiPanel(List<JComponent> components) {
 
         JPanel guiPanel = new JPanel(new MigLayout());
 
-        components.forEach(c -> guiPanel.add(c, "w 100% ,wrap"));
+        components.forEach(c -> guiPanel.add(c, "w 100%, wrap"));
         return guiPanel;
     }
 }

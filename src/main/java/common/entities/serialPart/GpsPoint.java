@@ -3,6 +3,7 @@ package common.entities.serialPart;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
+import java.util.OptionalDouble;
 
 /**
  * Класс GPS-точки
@@ -12,69 +13,71 @@ import java.util.Optional;
  */
 public class GpsPoint {
 
-    private double latitude;
-    private double longitude;
-    private boolean latitudeNorth;
-    private boolean longitudeEast;
-
-    private final Date date;
-    private int speed;
-    private int course;
-
-    public GpsPoint(Optional latitude,Optional longitude,Optional latitudeNorth, Optional longitudeEast, Optional speed, Optional course) {
-
-        if (latitude.isPresent()) {
-            this.latitude = Double.parseDouble(latitude.get().toString());
-        } else {
-            this.latitude = 0.0;
-        }
-
-        if (longitude.isPresent()) {
-            this.longitude = Double.parseDouble(longitude.get().toString());
-        } else {
-            this.longitude = 0.0;
-        }
-
-        this.latitudeNorth = latitudeNorth.isPresent() ? (Boolean) latitudeNorth.get() : true;
-
-        this.longitudeEast = longitudeEast.isPresent() ? (Boolean) longitudeEast.get() : true;
-
-        this.date = new Date();
-
-        if (speed.isPresent()) {
-            this.course = ((Double) Double.parseDouble(speed.get().toString())).intValue();
-        } else {
-            this.speed = 0;
-        }
-
-        if (course.isPresent()) {
-            this.course = ((Double) Double.parseDouble(course.get().toString())).intValue();
-        } else {
-            this.course = 0;
-        }
+    public enum LatitudeSign {
+        NORTH, SOUTH
     }
 
-    public double getLatitude() {
+    public enum LongitudeSign {
+        WEST, EAST
+    }
+
+    private OptionalDouble latitude;
+    private OptionalDouble longitude;
+    private LatitudeSign latitudeSign;
+    private LongitudeSign longitudeSign;
+
+    private Date date;
+    private OptionalDouble speed;
+    private OptionalDouble course;
+
+    /**
+     *
+     * @param latitude - Широта в градусах от 0 до 90
+     * @param longitude - Долгота в градусах от 0 до 180
+     * @param latitudeSign - Северное / южное полушарие
+     * @param longitudeSign - Восточная / Западное полушарие
+     * @param speed - скорость в ...
+     * @param course - указание курса в градусах (0 -север, по часовой)
+     */
+    public GpsPoint(OptionalDouble latitude, OptionalDouble longitude, Optional<LatitudeSign> latitudeSign, Optional<LongitudeSign> longitudeSign, OptionalDouble speed, OptionalDouble course) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.latitudeSign = latitudeSign.isPresent() ? latitudeSign.get() : LatitudeSign.NORTH;
+        this.longitudeSign = longitudeSign.isPresent() ? longitudeSign.get() : LongitudeSign.EAST;
+        this.date = new Date();
+        this.speed = speed;
+        this.course = course;
+    }
+
+    public GpsPoint() {
+        this(
+                OptionalDouble.empty(), OptionalDouble.empty(),
+                Optional.empty(), Optional.empty(),
+                OptionalDouble.empty(), OptionalDouble.empty()
+        );
+    }
+
+    public OptionalDouble getLatitude() {
         return latitude;
     }
 
-    public double getLongitude() {
+    public OptionalDouble getLongitude() {
         return longitude;
     }
 
-    public boolean isLatitudeNorth() {
-        return latitudeNorth;
+    public double getSignificantLatitude() {
+        return latitudeSign == LatitudeSign.NORTH ? latitude.getAsDouble() : -latitude.getAsDouble();
     }
 
-    public boolean isLongitudeEast() {
-        return longitudeEast;
+    public double getSignificantLongitude() {
+        return longitudeSign == LongitudeSign.EAST ? longitude.getAsDouble() : -longitude.getAsDouble();
     }
 
-    public int getSpeed() {
+    public OptionalDouble getSpeed() {
         return speed;
     }
 
-    public int getCourse() {
+    public OptionalDouble getCourse() {
         return course;
     }
 

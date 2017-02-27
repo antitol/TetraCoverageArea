@@ -1,11 +1,13 @@
 package gui.panels;
 
-import common.entities.visualPart.TriangleMarkerRssi;
 import gui.applet.MapApplet;
 import net.miginfocom.swing.MigLayout;
+import org.apache.log4j.Logger;
 import serialDao.SerialTestDao;
 
 import javax.swing.*;
+import javax.swing.plaf.metal.MetalToggleButtonUI;
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,68 +18,75 @@ import java.util.List;
  */
 public class MapGuiPanel extends JPanel {
 
+    public static final Logger log = Logger.getLogger(SerialTestDao.class);
+
     private JToggleButton enablePoints;
-    private JComboBox enablePolygons;
+    private JToggleButton enablePolygons;
+
     private JLabel interpolationLabel;
     private JTextField interpolationAreaField;
-    private JButton interpolate;
+    private JButton updatePolygons;
+
+    private MetalToggleButtonUI greenSelectedUI = new MetalToggleButtonUI() {
+        @Override
+        protected Color getSelectColor() {
+            return Color.green;
+        }
+    };
 
     public MapGuiPanel() {
+        log.info("Я живой");
+
         setLayout(new MigLayout());
 
-        enablePoints = new JToggleButton("Points: OFF");
+        enablePoints = new JToggleButton("Точки покрытия");
+        enablePoints.setUI(greenSelectedUI);
         enablePoints.addActionListener(
                 e -> {
                     if (enablePoints.isSelected()) {
-                        enablePoints.setText("Points: ON");
                         MapApplet.getMap().setPoints(SerialTestDao.getInstance().getPoints());
                         MapApplet.getMap().enablePoints(true);
                     } else {
-                        enablePoints.setText("Points: OFF");
                         MapApplet.getMap().enablePoints(false);
                     }
                 }
         );
 
-        enablePolygons = new JComboBox(new String[] {"OFF", "Delaunay", "Voronoi"});
-        enablePoints.addChangeListener(
+        enablePolygons = new JToggleButton("Карта покрытия");
+        enablePolygons.setUI(greenSelectedUI);
+        enablePolygons.addActionListener(
+
                 e -> {
-                    switch (enablePolygons.getSelectedIndex()) {
-                        case 0:
-                            // Удалить и полигоны и треугольники
-                            break;
-                        case 1:
-                            // Включить треугольники, удалить полигоны
-                            break;
-                        case 2:
-                            // Включить полигоны, удалить треугольники
-                            break;
-                        default:
-                            // Do nothing
-                            break;
+
+                    if (enablePolygons.isSelected()) {
+                        try {
+                            MapApplet.getMap().getDelauneyTriangles();
+                            log.info(MapApplet.getMap().getDelauneyTriangles().size());
+                        } catch (Exception ex) {
+                            MapApplet.getMap().setDelauneyTriangles(SerialTestDao.getInstance().getDelauneyTriangles());
+                        }
+                        MapApplet.getMap().enableDelaunayTriangles(true);
+                    } else {
+                        MapApplet.getMap().enableDelaunayTriangles(false);
                     }
                 }
         );
 
-        interpolationLabel = new JLabel("Enter interpolation area in km2");
-
-        interpolationAreaField = new JTextField("1");
-
-        interpolate = new JButton("Interpolate");
-        interpolate.addActionListener(
-                e -> {
-
-                    List<TriangleMarkerRssi> list = SerialTestDao.getInstance().getDelauneyTriangles();
-                    MapApplet.getMap().setDelauneyTriangles(list);
-
-                    MapApplet.getMap().enableDelaunayTriangles(true);
+        updatePolygons = new JButton("Обновить карту покрытия");
+        updatePolygons.addActionListener(e -> {
+                    MapApplet.getMap().enableDelaunayTriangles(false);
+                    MapApplet.getMap().setDelauneyTriangles(
+                        SerialTestDao.getInstance().getDelauneyTriangles());
                 }
         );
 
+
         List<JComponent> components = Arrays.asList(
-                enablePoints, enablePolygons, interpolationLabel, interpolationAreaField, interpolate
+                enablePoints, enablePolygons, updatePolygons
         );
 
         components.forEach(c -> add(c, "w 100%, wrap"));
+
+        log.info("Я закончил");
     }
 }

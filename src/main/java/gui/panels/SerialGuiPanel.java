@@ -14,6 +14,7 @@ import javax.swing.*;
  */
 public class SerialGuiPanel extends JPanel {
 
+    private JLabel portStateLabel = new JLabel("Устройство не подключено");
     private JComboBox portBox = new JComboBox(SerialPortList.getPortNames());
     private JToggleButton connectButton;
 
@@ -26,16 +27,18 @@ public class SerialGuiPanel extends JPanel {
 
                     if (connectButton.isSelected()) {
 
-                        SerialTest.initPort(portBox.getSelectedItem().toString());
-                        SerialTest.startTimers(3100, 3100);
+                        if (SerialTest.getInstance().initPort(portBox.getSelectedItem().toString())) {
+                            portStateLabel.setText("Устройство ");
+                        }
+                        SerialTest.getInstance().startTimers(5000, 5000, 5000);
 
                         connectButton.setText("Disconnect");
 
                     } else {
                         connectButton.setText("Connect");
                         try {
-                            SerialTest.stopTimers();
-                            SerialTest.getSerialPort().closePort();
+                            SerialTest.getInstance().stopTimers();
+                            SerialTest.getInstance().getSerialPort().closePort();
                         } catch (SerialPortException e1) {
                             e1.printStackTrace();
                         }
@@ -43,6 +46,14 @@ public class SerialGuiPanel extends JPanel {
                 }
         );
 
+        portBox.addActionListener(e -> {
+                    Object selected = portBox.getSelectedItem();
+                    portBox.setModel(new DefaultComboBoxModel(SerialPortList.getPortNames()));
+                    portBox.setSelectedItem(selected);
+                }
+        );
+
+        add(portStateLabel, "w 100%, wrap");
         add(portBox, "w 100%, wrap");
         add(connectButton, "w 100%, wrap");
     }

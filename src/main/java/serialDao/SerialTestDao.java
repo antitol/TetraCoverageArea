@@ -1,27 +1,29 @@
 package serialDao;
 
 import common.entities.serialPart.GpsPoint;
-import common.entities.serialPart.Rssi;
 import common.entities.visualPart.PointMarkerRssi;
 import common.entities.visualPart.PolygonMarkerRssi;
 import common.entities.visualPart.TriangleMarkerRssi;
 import de.fhpotsdam.unfolding.geo.Location;
 import de.fhpotsdam.unfolding.marker.SimplePolygonMarker;
+import org.apache.log4j.Logger;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 import org.skife.jdbi.v2.util.FloatColumnMapper;
-import serialDao.processingQueries.point.PointQuery;
-import serialDao.serialQueries.gps.GpsQuery;
 import serialDao.processingQueries.TriangleQuery;
 import serialDao.processingQueries.VoronoiQuery;
-import serialDao.serialQueries.rssi.RssiQuery;
+import serialDao.processingQueries.point.PointQuery;
+import serialDao.serialQueries.gps.GpsQuery;
 
 import java.util.List;
+import java.util.OptionalInt;
 
 /**
  * Created by anatoliy on 17.01.17.
  */
 public class SerialTestDao {
+
+    public static final Logger log = Logger.getLogger(SerialTestDao.class);
 
     private String url = "jdbc:postgresql://127.0.0.1:5432/postgis";
     private String login = "postgis";
@@ -30,7 +32,6 @@ public class SerialTestDao {
     private DBI dbi;
 
     private final GpsQuery gpsQuery;
-    private final RssiQuery rssiQuery;
     private final PointQuery pointQuery;
     private final TriangleQuery triangleQuery;
     private final VoronoiQuery voronoiQuery;
@@ -42,10 +43,10 @@ public class SerialTestDao {
     }
 
     private SerialTestDao() {
+        log.info("Я живой");
         createConnection();
 
         gpsQuery = h.attach(GpsQuery.class);
-        rssiQuery = h.attach(RssiQuery.class);
         pointQuery = h.attach(PointQuery.class);
         triangleQuery = h.attach(TriangleQuery.class);
         voronoiQuery = h.attach(VoronoiQuery.class);
@@ -62,7 +63,7 @@ public class SerialTestDao {
 
         } catch (ClassNotFoundException e) {
 
-            System.out.println("Ошибка PostgreSQL JDBC драйвера");
+            log.warn("Ошибка PostgreSQL JDBC драйвера");
             e.printStackTrace();
             return;
 
@@ -78,13 +79,12 @@ public class SerialTestDao {
      */
     public void addGpsPoint(GpsPoint point) {
 
-        System.err.println(point.getLatitude() + " " + point.getLongitude());
-
-        gpsQuery.addWithRssi(
-                point.getLatitude(),
-                point.getLongitude(),
-                ((Double) (30 + Math.random()*30)).intValue()
+        gpsQuery.add(
+                point.getSignificantLatitude(),
+                point.getSignificantLongitude()
         );
+
+        log.info("Добавлена точка: " + point.getSignificantLatitude() + " " + point.getSignificantLongitude());
     }
 
     /**
@@ -92,26 +92,26 @@ public class SerialTestDao {
      * @param point
      * @param rssi
      */
-    public void addGpsWithRssiPoint(GpsPoint point, Rssi rssi) {
+    public void addGpsWithRssiPoint(GpsPoint point, OptionalInt rssi) {
 
-        System.err.println(point.getLatitude() + " " + point.getLongitude());
+        // Добавляем точку, если были получены координаты и rssi
+        if (point.getLatitude().isPresent() && rssi.isPresent()) {
 
-        gpsQuery.addWithRssi(
-                point.getLatitude(),
-                point.getLongitude(),
-                rssi.getRssi()
-        );
-    }
+            gpsQuery.addWithRssi(
+                    point.getSignificantLatitude(),
+                    point.getSignificantLongitude(),
+                    rssi.getAsInt()
+            );
 
-    /**
-     * Добавляет значение уровня сигнала
-     * @param rssi
-     */
-    public void addRssi(Rssi rssi) {
-        System.out.println(rssi.getTime());
-        rssiQuery.add(
-                rssi.getRssi()
-        );
+            log.info(
+                    "Добавлена точка со значением rssi: " +
+                            point.getSignificantLatitude() + " " +
+                            point.getSignificantLongitude() + " " +
+                            rssi.getAsInt()
+            );
+        }
+
+
     }
 
     /**
@@ -155,6 +155,7 @@ public class SerialTestDao {
      * @return
      */
     public List<TriangleMarkerRssi> getDelauneyTriangles() {
+        triangleQuery.generateTriangles();
         return triangleQuery.getAll();
     }
 

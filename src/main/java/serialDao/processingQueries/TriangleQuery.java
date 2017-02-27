@@ -34,11 +34,16 @@ public interface TriangleQuery {
             "GROUP BY l_delauney_shape.geom) AS foo")
     List<TriangleMarkerRssi> getAll();
 
-    @SqlUpdate("TRUNCATE TABLE l_delauney_shape;" +
-    "INSERT INTO l_delauney_shape (geom) " +
-            "  SELECT (ST_Dump(geom)).geom " +
-            "  FROM (SELECT st_delaunaytriangles(ST_Collect(geom)) AS geom " +
-            "        FROM gpspoint) AS triangles;")
+    /**
+     *
+     * @return
+     */
+    @SqlUpdate(
+            "TRUNCATE TABLE l_delauney_shape;" + 
+            "INSERT INTO l_delauney_shape (geom) " +
+            "SELECT (ST_Dump(geom)).geom " +
+            "FROM (SELECT st_delaunaytriangles(ST_Collect(geom)) AS geom " +
+            "FROM gpspoint) AS triangles;")
     int generateTriangles();
 
     @SqlUpdate("TRUNCATE TABLE l_delauney_shape;")

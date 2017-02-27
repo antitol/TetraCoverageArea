@@ -2,7 +2,7 @@ package common.entities.visualPart;
 
 import de.fhpotsdam.unfolding.geo.Location;
 import de.fhpotsdam.unfolding.marker.SimplePointMarker;
-import gui.applet.CoverageMap;
+import gui.applet.map.CoverageMap;
 import processing.core.PGraphics;
 
 import java.awt.*;

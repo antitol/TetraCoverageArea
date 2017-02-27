@@ -1,15 +1,16 @@
 package gui.panels;
 
 import common.entities.serialPart.GpsPoint;
-import common.entities.serialPart.Rssi;
-import common.entities.visualPart.TriangleMarkerRssi;
+import gui.applet.MapApplet;
+import gui.applet.map.ToolMarkers;
+import net.miginfocom.swing.MigLayout;
 import serialDao.SerialTestDao;
 import testValues.GpsTestVelues;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Optional;
+import java.util.OptionalInt;
 
 /**
  * Панель для ввода тестовых данных в базу данных
@@ -18,8 +19,6 @@ import java.util.Optional;
  */
 public class TestDataInputPanel extends JPanel {
 
-    private JTextField meanFieldLat;
-    private JTextField meanFieldLong;
     private JTextField sdFieldLat;
     private JTextField sdFieldLong;
     private JTextField amountPointsLat;
@@ -31,8 +30,8 @@ public class TestDataInputPanel extends JPanel {
 
     public TestDataInputPanel() {
 
-        meanFieldLat = new JTextField("54.93");
-        meanFieldLong = new JTextField("73.433");
+        setLayout(new MigLayout());
+
         sdFieldLat = new JTextField("0.05");
         sdFieldLong = new JTextField("0.08");
         amountPointsLat = new JTextField("1000");
@@ -49,9 +48,9 @@ public class TestDataInputPanel extends JPanel {
             try {
 
                 ArrayList<GpsPoint> points = GpsTestVelues.getGetRandomGpsPointList(
-                        Double.parseDouble(meanFieldLat.getText()),
+                        (double) (ToolMarkers.getInstence().getMouseClicked().getLocation().getLat()),
                         Double.parseDouble(sdFieldLat.getText()),
-                        Double.parseDouble(meanFieldLong.getText()),
+                        (double) (ToolMarkers.getInstence().getMouseClicked().getLocation().getLon()),
                         Double.parseDouble(sdFieldLong.getText()),
                         Integer.parseInt(amountPointsLat.getText())
                 );
@@ -62,14 +61,19 @@ public class TestDataInputPanel extends JPanel {
                 for (int i = 0; i < points.size(); i++) {
                     GpsPoint point =  points.get(i);
 
-                    Rssi rssi = new Rssi(Optional.of(
+                    OptionalInt rssi = OptionalInt.of(
                             (int) (minSlider.getValue() + fadeSlider.getValue() * (
-                                    Math.pow(Math.abs(centerLat - point.getLatitude()), 2)/ GpsTestVelues.getNormalLat().getStandardDeviation() +
-                                            Math.pow(Math.abs(centerLong - point.getLongitude()), 2)/ GpsTestVelues.getNormalLong().getStandardDeviation()
-                            ))));
+                                    Math.pow(Math.abs(centerLat - point.getSignificantLatitude()), 2)/ GpsTestVelues.getNormalLat().getStandardDeviation() +
+                                            Math.pow(Math.abs(centerLong - point.getSignificantLongitude()), 2)/ GpsTestVelues.getNormalLong().getStandardDeviation()
+                            )));
 
                     SerialTestDao.getInstance().addGpsWithRssiPoint(point, rssi);
+
                 }
+
+                MapApplet.getMap().enablePoints(false);
+                MapApplet.getMap().setPoints(SerialTestDao.getInstance().getPoints());
+                MapApplet.getMap().enablePoints(true);
             } catch (NumberFormatException ex) {
 
                 JOptionPane.showMessageDialog(this, "Вводи цифры, сложно догадаться чтоли?");
@@ -80,8 +84,6 @@ public class TestDataInputPanel extends JPanel {
         fillRandomButton = new JButton("Fill random values");
         fillRandomButton.addActionListener(e -> {
 
-                    meanFieldLat.setText(String.format(String.valueOf(90*Math.random()), "%.3d"));
-                    meanFieldLong.setText(String.format(String.valueOf(180*Math.random()), "%.3d"));
                     sdFieldLat.setText(String.format(String.valueOf(1*Math.random()), "%.5d"));
                     sdFieldLong.setText(String.format(String.valueOf(1*Math.random()), "%.5d"));
                     amountPointsLat.setText(String.valueOf((int) (10000*Math.random())));
@@ -92,13 +94,15 @@ public class TestDataInputPanel extends JPanel {
 
         clearTableButton = new JButton("Clear table");
         clearTableButton.addActionListener(e -> {
-            java.util.List<TriangleMarkerRssi> triangles = SerialTestDao.getInstance().getDelauneyTriangles();
-            triangles = triangles.get(0).centropolate();
+            MapApplet.getMap().enablePoints(false);
+            MapApplet.getMap().enableDelaunayTriangles(false);
+            SerialTestDao.getInstance().clearGpsTable();
         });
 
-        Arrays.asList(meanFieldLat, meanFieldLong,
+        Arrays.asList(
                 sdFieldLat, sdFieldLong, amountPointsLat, minSlider,
                 fadeSlider, fillRandomButton, addPointsButton, clearTableButton)
-                .forEach(component -> add(component, "w 100%, wrap"));
+                .forEach(component -> add(component, "w 100%, wrap")
+        );
     }
 }

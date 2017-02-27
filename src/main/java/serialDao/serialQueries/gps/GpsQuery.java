@@ -38,8 +38,7 @@ public interface GpsQuery {
     @GetGeneratedKeys
     int add(
             @Bind("lat") double lat,
-            @Bind("lon") double lon,
-            @Bind("rssi") int rssi
+            @Bind("lon") double lon
     );
 
     @SqlUpdate("DELETE FROM gpsPoint")
