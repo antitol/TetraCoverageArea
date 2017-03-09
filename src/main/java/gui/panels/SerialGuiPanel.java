@@ -25,6 +25,8 @@ public class SerialGuiPanel extends JPanel {
 
     public static final Logger log = Logger.getLogger(SerialGuiPanel.class);
 
+    private int i,k = 0;
+
     public enum ATRequest {
         RSSI_AT_QUERY("AT+CSQ?"),
         GPS_AT_QUERY("AT+CGPS=20");
@@ -76,46 +78,21 @@ public class SerialGuiPanel extends JPanel {
         setLayout(new MigLayout());
 
         startDataCaptureButton = new JToggleButton("Начать сбор данных");
-        startDataCaptureButton.setEnabled(false);
+
         startDataCaptureButton.setUI(GuiComponents.getToggleButtonGreenUI());
         startDataCaptureButton.addActionListener(e -> {
 
                     // При старте сбора данных:
                     if (startDataCaptureButton.isSelected()) {
 
-                        // Отменяем проверку доступности устройства
-                        listenTimer.cancel();
-
-                        // Заменяем слушателя ответов на проверку слушателем данных
-                        try {
-                            serialPort.removeEventListener();
-                            portReader.setSerialPort(serialPort);
-                            serialPort.addEventListener(portReader);
-                        } catch (SerialPortException ex) {
-                            log.info("Не удалось подменить слушателя");
-                        }
-                        portStateLabel.setText("Сбор данных...");
-
-                        // Запускаем таймеры на отправку запросов
-                        startTimers(RSSI_TIME_REQUEST, GPS_TIME_REQUEST, DB_INSERT_TIME_REQUEST);
-
-                        startDataCaptureButton.setText("Завершить");
+                        stopPortMonitoring();
+                        startCapturingData();
 
                     // При останове сбора данных:
                     } else {
 
-                        startDataCaptureButton.setText("Начать сбор данных");
-
-                        try {
-                            stopTimers();
-                            serialPort.removeEventListener();
-                            breakPortConnection();
-                        } catch (SerialPortException e1) {
-                            e1.printStackTrace();
-                        }
-
-                        // Прекращаем слать запросы на сбор данных и начинаем проверку доступности
-                        startDeviceListenTimer();
+                        stopCapturingData();
+                        startPortMonitoring();
                     }
                 }
         );
@@ -126,18 +103,12 @@ public class SerialGuiPanel extends JPanel {
         });
 
         portBox.addActionListener(e -> {
-            log.info("Item changed");
+
                     Object selected = portBox.getSelectedItem();
                     portBox.setModel(new DefaultComboBoxModel(SerialPortList.getPortNames()));
                     portBox.setSelectedItem(selected);
 
-                    listenTimer.cancel();
-
                     breakPortConnection();
-
-                    startDeviceListenTimer();
-
-
                     serialPort = new SerialPort(selected.toString());
                 }
         );
@@ -149,13 +120,15 @@ public class SerialGuiPanel extends JPanel {
             add(component, "w 100%, wrap");
         }
 
-        startDeviceListenTimer();
+        startPortMonitoring();
     }
 
     /**
      * Запускает таймер проверки доступности устройства на выбранном порту
      */
-    public void startDeviceListenTimer() {
+    public void startPortMonitoring() {
+        portBox.setEnabled(true);
+        startDataCaptureButton.setEnabled(false);
         listenTimer = new Timer();
         listenTimer.schedule(new TimerTask() {
             @Override
@@ -165,9 +138,12 @@ public class SerialGuiPanel extends JPanel {
                     if (!serialPort.isOpened()) {
 
                         serialPort.openPort();
-                        serialPortReader = new SerialPortReader(serialPort);
-                        serialPort.addEventListener(serialPortReader);
+                    } else {
+                        serialPort.removeEventListener();
                     }
+
+                    serialPortReader = new SerialPortReader(serialPort);
+                    serialPort.addEventListener(serialPortReader);
 
                     serialPort.setParams(SerialPort.BAUDRATE_38400,
                             SerialPort.DATABITS_8,
@@ -176,7 +152,8 @@ public class SerialGuiPanel extends JPanel {
 
                     serialPort.writeString("AT\r\n");
 
-                    Thread.sleep(1000);
+                    // Опытным путем установлено, что для прихода ответа требуется 5 мс
+                    Thread.sleep(25);
 
 
                     if (serialPortReader.isDeviceConnected()) {
@@ -188,8 +165,7 @@ public class SerialGuiPanel extends JPanel {
 
 
                 } catch (SerialPortException | InterruptedException | NullPointerException ex) {
-                    log.info("Порт недоступен");
-                    log.info(ex.getMessage());
+                    log.info("Порт " + portBox.getSelectedItem().toString() + " недоступен");
                 }
             }
         }, 0, 1000);
@@ -220,6 +196,7 @@ public class SerialGuiPanel extends JPanel {
 
                 // Если устройство отправило ответ, содержащий OK - то оно признается подключенным
                 if (response.contains("OK")) {
+
                     deviceConnected = true;
                 }
             } catch (SerialPortException ex) {}
@@ -233,9 +210,7 @@ public class SerialGuiPanel extends JPanel {
 
         try {
             serialPort.closePort();
-        } catch (SerialPortException  ex) {
-            log.info("Порт не закрылся при смене порта");
-        } catch (NullPointerException ex) {}
+        } catch (SerialPortException | NullPointerException  ex) {}
 
         portStateLabel.setText("Устройство не опознано");
         startDataCaptureButton.setEnabled(false);
@@ -265,8 +240,6 @@ public class SerialGuiPanel extends JPanel {
             }
         }, delayGps, delayGps);
 
-        log.info("Таймеры запущены");
-
     }
 
     /** Останов таймеров */
@@ -275,10 +248,7 @@ public class SerialGuiPanel extends JPanel {
             rssiRequestTimer.cancel();
             gpsRequestTimer.cancel();
             pointToDatabaseTimer.cancel();
-            log.info("Таймеры остановлены");
-        } catch (NullPointerException ex) {
-            log.info("Таймеры не были запущены");
-        }
+        } catch (NullPointerException ex) {}
     }
 
     /**
@@ -294,18 +264,74 @@ public class SerialGuiPanel extends JPanel {
             @Override
             public void run() {
 
-                if (!serialPort.isOpened()) {
-                    timer.cancel();
-                    return;
-                }
 
                 try {
-                    serialPort.writeString(request + "\r\n");
+                    if (portReader.isAlive()) {
+                        serialPort.writeString(request + "\r\n");
+                    } else {
+                        throw new SerialPortException(portBox.getSelectedItem().toString(), "alive", SerialPortException.TYPE_PORT_NOT_FOUND);
+                    }
                 } catch (SerialPortException e) {
-
+                    stopCapturingData();
+                    startPortMonitoring();
+                    startDataCaptureButton.setSelected(false);
+                    showLostConnectionError();
                 }
             }
         };
+    }
+
+    /**
+     * Запуск работы порта в режиме сбора данных
+     */
+    public void startCapturingData() {
+        // Заменяем слушателя ответов на проверку слушателем данных
+        try {
+                serialPort.removeEventListener();
+                portReader.setSerialPort(serialPort);
+                serialPort.addEventListener(portReader);
+                portReader.setAlive(true);
+                portStateLabel.setText("Сбор данных...");
+                portBox.setEnabled(false);
+        } catch (SerialPortException ex) {
+            log.info("Не удалось подменить слушателя");
+        }
+
+        // Запускаем таймеры на отправку запросов
+        startTimers(RSSI_TIME_REQUEST, GPS_TIME_REQUEST, DB_INSERT_TIME_REQUEST);
+
+        startDataCaptureButton.setEnabled(true);
+        startDataCaptureButton.setText("Завершить");
+        log.info("Старт сбора данных");
+    }
+
+    /**
+     * Прекращение работы порта в режиме сбора данных
+     */
+    public void stopCapturingData() {
+
+        startDataCaptureButton.setText("Начать сбор данных");
+
+        try {
+            stopTimers();
+            serialPort.removeEventListener();
+            breakPortConnection();
+        } catch (SerialPortException e1) {
+            e1.printStackTrace();
+        }
+        log.info("Останов сбора данных");
+    }
+
+    /**
+     * Прекращение прослушивания портов в режиме проверки доступности устройства
+     */
+    public void stopPortMonitoring() {
+        listenTimer.cancel();
+        log.info("Останов мониторинга");
+    }
+
+    public void showLostConnectionError() {
+        JOptionPane.showMessageDialog(this, "Нет ответа от устройства");
     }
 
 }

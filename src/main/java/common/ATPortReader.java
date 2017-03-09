@@ -18,9 +18,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.Optional;
-import java.util.OptionalDouble;
-import java.util.OptionalInt;
+import java.util.*;
 
 import static common.entities.serialPart.GpsPoint.LatitudeSign.NORTH;
 import static common.entities.serialPart.GpsPoint.LatitudeSign.SOUTH;
@@ -31,6 +29,13 @@ import static common.entities.serialPart.GpsPoint.LongitudeSign.WEST;
 public class ATPortReader extends SentenceAdapter implements SerialPortEventListener {
 
     public static final Logger log = LogManager.getLogger(ATPortReader.class);
+
+    private boolean alive = true;
+
+    // Таймаут простоя в режиме сбора данных
+    private final int BREAK_CAPTURE_TIMEOUT = 6000;
+
+    private Timer responseTimeoutTimer;
 
     private String nmea;
 
@@ -56,15 +61,17 @@ public class ATPortReader extends SentenceAdapter implements SerialPortEventList
 
     public ATPortReader(SerialPort serialPort) {
 
-            this.serialPort = serialPort;
+        this.serialPort = serialPort;
 
-            sentenceReader = new SentenceReader(nmeaStream);
-            sentenceReader.addSentenceListener(this);
+        sentenceReader = new SentenceReader(nmeaStream);
+        sentenceReader.addSentenceListener(this);
 
-            formatSymbols.setDecimalSeparator('.');
+        formatSymbols.setDecimalSeparator('.');
 
-            latFormatter.setDecimalFormatSymbols(formatSymbols);
-            lonFormatter.setDecimalFormatSymbols(formatSymbols);
+        latFormatter.setDecimalFormatSymbols(formatSymbols);
+        lonFormatter.setDecimalFormatSymbols(formatSymbols);
+
+        startResponseTimeoutTimer();
     }
 
     /** Событие слушателя порта */
@@ -124,6 +131,8 @@ public class ATPortReader extends SentenceAdapter implements SerialPortEventList
 
     @Override
     public void sentenceRead(SentenceEvent sentenceEvent) {
+        responseTimeoutTimer.cancel();
+        startResponseTimeoutTimer();
         // Поток преобразуется в RMC предложение
         RMCSentence sentence = ((RMCSentence) sentenceEvent.getSentence());
         Position position = sentence.getPosition();
@@ -195,5 +204,24 @@ public class ATPortReader extends SentenceAdapter implements SerialPortEventList
 
     public void setSerialPort(SerialPort serialPort) {
         this.serialPort = serialPort;
+    }
+
+    public void startResponseTimeoutTimer() {
+        responseTimeoutTimer = new Timer();
+        responseTimeoutTimer.schedule(
+                new TimerTask() {
+                    @Override
+                    public void run() {
+                        alive = false;
+                    }
+                }, BREAK_CAPTURE_TIMEOUT);
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
     }
 }
