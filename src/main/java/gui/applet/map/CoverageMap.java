@@ -1,12 +1,14 @@
 package gui.applet.map;
 
+import common.entities.visualPart.OuterShapeMarker;
 import common.entities.visualPart.PointMarkerRssi;
-import common.entities.visualPart.PolygonMarkerRssi;
 import common.entities.visualPart.TriangleMarkerRssi;
 import de.fhpotsdam.unfolding.UnfoldingMap;
 import de.fhpotsdam.unfolding.events.MapEventListener;
 import de.fhpotsdam.unfolding.geo.Location;
 import de.fhpotsdam.unfolding.marker.Marker;
+import de.fhpotsdam.unfolding.marker.MarkerManager;
+import de.fhpotsdam.unfolding.marker.SimplePointMarker;
 import de.fhpotsdam.unfolding.providers.AbstractMapProvider;
 import gui.applet.MarkerChangeEvent;
 import org.apache.log4j.Logger;
@@ -15,16 +17,286 @@ import serialDao.SerialTestDao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by anatoliy on 17.02.17.
+ *
+ * Карта покрытия
  */
 public class CoverageMap extends UnfoldingMap implements MapEventListener {
 
     public static final Logger log = Logger.getLogger(SerialTestDao.class);
 
+    // Диапазон значений rssi
     private static int minRssi = 20;
     private static int maxRssi = 100;
+
+    private boolean markerRedrawing = true;
+
+    private SimplePointMarker mouseClickedMarker;
+    private OuterShapeMarker outerShapeMarker;
+
+    // Менеджер вспомогательных маркеров (маркер-указатель, маркер внешней области)
+    private MarkerManager<Marker> mapToolsManager = new MarkerManager<Marker>();
+
+    // Менеджеры маркеров, добавление маркеров в менеджер означает добавление непосредственно на карту
+    private MarkerManager<Marker> pointsManager = new MarkerManager<Marker>();
+    private MarkerManager<Marker> delauneyTrianglesManager = new MarkerManager<Marker>();
+    private MarkerManager<Marker> voronoiPolygonsManager = new MarkerManager<Marker>();
+
+    public CoverageMap(PApplet pApplet, AbstractMapProvider abstractMapProvider) {
+
+        super(pApplet, abstractMapProvider);
+
+        zoom(535f);
+        panTo(new Location(55.0, 73.6));
+
+        showMarkers(false, pointsManager);
+        showMarkers(false, delauneyTrianglesManager);
+
+        initMarkersFromDB();
+
+        addMarkerManager(pointsManager);
+        addMarkerManager(delauneyTrianglesManager);
+        addMarkerManager(voronoiPolygonsManager);
+
+        // Устанавливаем зум и перемещаем карту к указанным координатам
+    }
+
+    /**
+     * Устанавливает менеджера карты (например, тайлового менеджера TileMapProvider)
+     *
+     * @param provider
+     */
+    public void setMapProvider(AbstractMapProvider provider) {
+        this.mapDisplay.setMapProvider(provider);
+    }
+
+
+    /**
+     * Добавляет/удаляет лист маркеров на карту
+     * При выполнении метода спаунится MarkerChangeEvent
+     *
+     * @param markers - маркеры
+     */
+    @Override
+    public void addMarkers(List<Marker> markers) {
+
+        mapDisplay.addMarkers(markers);
+    }
+
+    /**
+     * Добавляет маркеры к указанному менеджеру маркеров
+     * @param markers - список маркеров
+     * @param markerManager - менеджер маркеров
+     */
+    public void addMarkers(List<? extends Marker> markers, MarkerManager<Marker> markerManager) {
+
+        markers.forEach(markerManager::addMarker);
+        onManipulation(new MarkerChangeEvent(this, "addmarkers", "marker"));
+    }
+
+    /**
+     * Добавляет маркеры точек на карту
+     * @param markers
+     */
+    public void addPoints(List<PointMarkerRssi> markers) {
+
+        addMarkers(markers, pointsManager);
+    }
+
+    /**
+     * Добавляет маркеры точек на карту
+     * @param markers
+     */
+    public void addDelaunayTriangles(List<TriangleMarkerRssi> markers) {
+
+        addMarkers(markers, delauneyTrianglesManager);
+    }
+
+
+    /**
+     * Подменяет список маркеров для указанного менеджера маркеров
+     * @param markers - список маркеров
+     * @param markerManager - менеджер маркеров
+     */
+    public void setMarkers(List<? extends Marker> markers, MarkerManager<Marker> markerManager) {
+
+            markerManager.clearMarkers();
+            addMarkers(markers, markerManager);
+    }
+
+    /**
+     * Устанавливает маркеры точек на карту
+     * @param points
+     */
+    public void setPoints(List<PointMarkerRssi> points) {
+        setMarkers(points, pointsManager);
+    }
+
+    /**
+     * Устанавливает маркеры треугольников Делоне на карту
+     * @param triangles
+     */
+    public void setDelaunayTriangles(List<TriangleMarkerRssi> triangles) {
+        setMarkers(triangles, delauneyTrianglesManager);
+    }
+
+    /**
+     * Отображать / скрыть маркеры указанного менеджера на карте
+     * @param show
+     * @param markerManager
+     */
+    public void showMarkers(boolean show, MarkerManager<Marker> markerManager) {
+
+        if (show) {
+            markerManager.enableDrawing();
+        } else {
+            markerManager.disableDrawing();
+        }
+
+        onManipulation(new MarkerChangeEvent(this, "marker", "marker"));
+    }
+
+    /**
+     * Отображать / скрыть точки
+     * @param show
+     */
+    public void showPoints(boolean show) {
+
+        showMarkers(show, pointsManager);
+    }
+
+    /**
+     * Отображать / скрыть полигоны Делоне
+     * @param show
+     */
+    public void showDelaunayTriangles(boolean show) {
+
+        showMarkers(show, delauneyTrianglesManager);
+    }
+
+    /**
+     * Удаляет список маркеров указанного менеджера маркеров
+     * @param markerManager
+     */
+    public void clearMarkers(MarkerManager<Marker> markerManager) {
+
+        markerManager.clearMarkers();
+    }
+
+    /**
+     * Удаляет точки из менеджера маркеров
+     */
+    public void clearPoints() {
+        clearMarkers(pointsManager);
+    }
+
+    /**
+     * Удаляет треугольники Делоне из менеджера маркеров
+     */
+    public void clearDelaunayTriangles() {
+        clearMarkers(delauneyTrianglesManager);
+    }
+
+    /**
+     * Интерполирует и выводит интерполированные треугольники Делоне
+     *
+     * @param area - площадь в кв.км
+     */
+    public void delaunayInterpolation(double area) {
+
+        setMarkers(
+                getInterpolateTriangles(delauneyTrianglesManager.getMarkers()
+                    .stream()
+                    .map(t -> (TriangleMarkerRssi) t)
+                    .collect(Collectors.toList()),
+                area),
+                delauneyTrianglesManager
+        );
+    }
+
+    /**
+     * Производит интерполяцию треугольников путем их рекурсивного разбиения до требуемой площади
+     *
+     * @param delauneyTriangles - массив, подвергаемый интерполяции
+     * @return
+     */
+    public List<TriangleMarkerRssi> getInterpolateTriangles(List<TriangleMarkerRssi> delauneyTriangles, double area) {
+
+        List<TriangleMarkerRssi> interpolateTriangles = new ArrayList<TriangleMarkerRssi>();
+
+        for (TriangleMarkerRssi triangle : delauneyTriangles) {
+
+                if (SerialTestDao.getInstance().getArea(triangle) > area) {
+
+                    interpolateTriangles.addAll(getInterpolateTriangles(triangle.centropolate(), area));
+                } else {
+
+                    interpolateTriangles.add(triangle);
+                }
+        }
+
+        return interpolateTriangles;
+    }
+
+    /**
+     * Удаляет лист маркеров
+     *
+     * @param list - маркеры
+     */
+    public void removeMarkers(List<? extends Marker> list) throws NullPointerException {
+
+        list.forEach(getDefaultMarkerManager()::removeMarker);
+    }
+
+    /**
+     * Удаляет отдельный маркер с карты
+     * @param marker
+     */
+    public void removeMarker(Marker marker) {
+        getDefaultMarkerManager().removeMarker(marker);
+    }
+
+    /**
+     * Список точек на карте
+     * @return
+     */
+    public List<Marker> getPoints() {
+        return pointsManager.getMarkers();
+    }
+
+    public void initMarkersFromDB() {
+
+        setPoints(SerialTestDao.getInstance().getPoints());
+        setDelaunayTriangles(SerialTestDao.getInstance().getDelaunayTriangles());
+        setOuterShapeMarker(SerialTestDao.getInstance().getDelaunayBoundary());
+    }
+
+    /**
+     * Возвращает список треугольников Делоне
+     * @return
+     */
+    public List<Marker> getDelauneyTriangles() {
+        return delauneyTrianglesManager.getMarkers();
+    }
+
+    public MarkerManager<Marker> getPointsManager() {
+        return pointsManager;
+    }
+
+    public MarkerManager<Marker> getDelauneyTrianglesManager() {
+        return delauneyTrianglesManager;
+    }
+
+    public MarkerManager<Marker> getVoronoiPolygonsManager() {
+        return voronoiPolygonsManager;
+    }
+
+    public boolean isMarkerRedrawing() {
+        return markerRedrawing;
+    }
 
     public static void setMinRssi(int minRssi) {
         CoverageMap.minRssi = minRssi;
@@ -43,172 +315,36 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener {
         return maxRssi;
     }
 
-    private List<PointMarkerRssi> points;
-    private List<TriangleMarkerRssi> delauneyTriangles;
-    private List<PolygonMarkerRssi> voronoiPolygons;
-
-    private List<TriangleMarkerRssi> interpolateDelaunayTriangles;
-
-    public CoverageMap(PApplet pApplet, AbstractMapProvider abstractMapProvider) {
-        super(pApplet, abstractMapProvider);
-        log.info("Я живой");
-
-        // Устанавливаем зум и перемещаем карту к указанным координатам
-        zoom(535f);
-        panTo(new Location(55.0, 73.6));
+    public SimplePointMarker getMouseClickedMarker() {
+        return mouseClickedMarker;
     }
 
-    /**
-     * Устанавливает менеджера карты (например, тайлового менеджера TileMapProvider)
-     *
-     * @param provider
-     */
-    public void setMapProvider(AbstractMapProvider provider) {
-        this.mapDisplay.setMapProvider(provider);
+    public OuterShapeMarker getOuterShapeMarker() {
+        return outerShapeMarker;
     }
 
-    /**
-     * Отображать точки на карте
-     *
-     * @param show
-     */
-    public void enablePoints(boolean show) {
-        enableMarkers(show, points);
+    public void setMouseClickedMarker(SimplePointMarker mouseClickedMarker) {
+        this.mouseClickedMarker = mouseClickedMarker;
     }
 
-    /**
-     * Подгружает, выгружает триангуляцию Делоне на карту
-     *
-     * @param show
-     */
-    public void enableDelaunayTriangles(boolean show) {
-        enableMarkers(show, delauneyTriangles);
+    public void setOuterShapeMarker(OuterShapeMarker outerShapeMarker) {
+        this.outerShapeMarker = outerShapeMarker;
     }
 
-    /**
-     * Добавляет/удаляет лист маркеров на карту
-     * При выполнении метода спаунится MarkerChangeEvent
-     *
-     * @param show - добавить/удалить
-     * @param markers - маркеры
-     */
-    public void enableMarkers(boolean show, List<? extends Marker> markers) {
-
-        try {
-
-            if (show) {
-
-                markers.forEach(p -> this.addMarkers(p));
-                onManipulation(new MarkerChangeEvent(this, "addmarkers", "marker"));
-            } else {
-
-                removeMarkers(markers);
-                onManipulation(new MarkerChangeEvent(this, "addmarkers", "marker"));
-            }
-        } catch (Exception ex) {
-
-        }
-    }
-
-    /**
-     * Добавляет / удаляет маркер на карту
-     *
-     * @param show
-     * @param marker
-     */
-    public void enableMarker(boolean show, Marker marker) {
+    public void showOuterShape(boolean show) {
         try {
             if (show) {
-
-                addMarker(marker);
-                onManipulation(new MarkerChangeEvent(this, "addmarker", "marker"));
+                mapToolsManager.addMarker(outerShapeMarker);
             } else {
-
-                removeMarker(marker);
-                onManipulation(new MarkerChangeEvent(this, "removemarker", "marker"));
+                mapToolsManager.removeMarker(outerShapeMarker);
             }
-            // Спауним MapEvent, что у нас
-
-
-        } catch (Exception ex) {
-
+        } catch (NullPointerException ex) {
+            log.info("Маркер внешней области уже удален");
         }
     }
 
-    /**
-     * Интерполирует и выводит интерполированные треугольники Делоне
-     *
-     * @param area - площадь в кв.км
-     */
-    public void startInterpolationDelaunay(double area) {
-
-        enableMarkers(false, interpolateDelaunayTriangles);
-
-        interpolateDelaunayTriangles = new ArrayList<TriangleMarkerRssi>();
-        interpolateTriangles(delauneyTriangles, area);
-
-        enableMarkers(true, interpolateDelaunayTriangles);
-
-    }
-
-    /**
-     * Производит интерполяцию треугольников путем их разбиения до требуемой площади
-     *
-     * @param delauneyTriangles
-     * @return
-     */
-    public void interpolateTriangles(List<TriangleMarkerRssi> delauneyTriangles, double area) {
-
-        for (TriangleMarkerRssi triangle : delauneyTriangles) {
-
-                if (SerialTestDao.getInstance().getArea(triangle) > area) {
-                    interpolateTriangles(triangle.centropolate(), area);
-                } else {
-                    interpolateDelaunayTriangles.add(triangle);
-                }
-        }
-    }
-
-    /**
-     * Удаляет лист маркеров
-     *
-     * @param list - маркеры
-     */
-    public void removeMarkers(List<? extends Marker> list) throws NullPointerException {
-        list.forEach(getDefaultMarkerManager()::removeMarker);
-    }
-
-    public void removeMarker(Marker marker) {
-        getDefaultMarkerManager().removeMarker(marker);
-    }
-
-    public List<PointMarkerRssi> getPoints() {
-        return points;
-    }
-
-    public List<TriangleMarkerRssi> getDelauneyTriangles() {
-        return delauneyTriangles;
-    }
-
-    public List<PolygonMarkerRssi> getVoronoiPolygons() {
-        return voronoiPolygons;
-    }
-
-    public void setPoints(List<PointMarkerRssi> points) {
-        this.points = points;
-    }
-
-    public void setDelauneyTriangles(List<TriangleMarkerRssi> delauneyTriangles) {
-        this.delauneyTriangles = delauneyTriangles;
-    }
-
-    public void setVoronoiPolygons(List<PolygonMarkerRssi> voronoiPolygons) {
-        this.voronoiPolygons = voronoiPolygons;
-    }
-
-    @Override
-    public void addMarkers(List<Marker> markers) {
-        super.addMarkers(markers);
+    public MarkerManager<Marker> getMapToolsManager() {
+        return mapToolsManager;
     }
 }
 

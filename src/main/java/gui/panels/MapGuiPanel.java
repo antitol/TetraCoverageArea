@@ -1,13 +1,12 @@
 package gui.panels;
 
 import gui.applet.MapApplet;
+import gui.components.GuiComponents;
+import gui.dialogs.FilterDialog;
 import net.miginfocom.swing.MigLayout;
 import org.apache.log4j.Logger;
-import serialDao.SerialTestDao;
 
 import javax.swing.*;
-import javax.swing.plaf.metal.MetalToggleButtonUI;
-import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,75 +17,57 @@ import java.util.List;
  */
 public class MapGuiPanel extends JPanel {
 
-    public static final Logger log = Logger.getLogger(SerialTestDao.class);
+    public static final Logger log = Logger.getLogger(MapGuiPanel.class);
 
-    private JToggleButton enablePoints;
-    private JToggleButton enablePolygons;
-
-    private JLabel interpolationLabel;
-    private JTextField interpolationAreaField;
-    private JButton updatePolygons;
-
-    private MetalToggleButtonUI greenSelectedUI = new MetalToggleButtonUI() {
-        @Override
-        protected Color getSelectColor() {
-            return Color.green;
-        }
-    };
+    private JToggleButton enablePointsButton;
+    private JToggleButton enablePolygonsButton;
+    private JButton filtersButton;
+    private JToggleButton enableOuterShape;
 
     public MapGuiPanel() {
-        log.info("Я живой");
 
         setLayout(new MigLayout());
 
-        enablePoints = new JToggleButton("Точки покрытия");
-        enablePoints.setUI(greenSelectedUI);
-        enablePoints.addActionListener(
+        enablePointsButton = new JToggleButton("Точки покрытия");
+        enablePointsButton.setUI(GuiComponents.getToggleButtonGreenUI());
+        enablePointsButton.addActionListener(
                 e -> {
-                    if (enablePoints.isSelected()) {
-                        MapApplet.getMap().setPoints(SerialTestDao.getInstance().getPoints());
-                        MapApplet.getMap().enablePoints(true);
-                    } else {
-                        MapApplet.getMap().enablePoints(false);
-                    }
+                    MapApplet.getMap().showPoints(((JToggleButton) e.getSource()).isSelected());
                 }
         );
 
-        enablePolygons = new JToggleButton("Карта покрытия");
-        enablePolygons.setUI(greenSelectedUI);
-        enablePolygons.addActionListener(
+        enablePolygonsButton = new JToggleButton("Карта покрытия");
+        enablePolygonsButton.setUI(GuiComponents.getToggleButtonGreenUI());
+
+        enablePolygonsButton.addActionListener(
 
                 e -> {
-
-                    if (enablePolygons.isSelected()) {
-                        try {
-                            MapApplet.getMap().getDelauneyTriangles();
-                            log.info(MapApplet.getMap().getDelauneyTriangles().size());
-                        } catch (Exception ex) {
-                            MapApplet.getMap().setDelauneyTriangles(SerialTestDao.getInstance().getDelauneyTriangles());
-                        }
-                        MapApplet.getMap().enableDelaunayTriangles(true);
-                    } else {
-                        MapApplet.getMap().enableDelaunayTriangles(false);
-                    }
+                    MapApplet.getMap().showDelaunayTriangles(((JToggleButton) e.getSource()).isSelected());
                 }
         );
 
-        updatePolygons = new JButton("Обновить карту покрытия");
-        updatePolygons.addActionListener(e -> {
-                    MapApplet.getMap().enableDelaunayTriangles(false);
-                    MapApplet.getMap().setDelauneyTriangles(
-                        SerialTestDao.getInstance().getDelauneyTriangles());
-                }
-        );
+        JPanel panel = new JPanel();
+        panel.setSize(100, 100);
 
+        filtersButton = new JButton("Фильтры");
+        filtersButton.addActionListener(e -> {
+            FilterDialog.getInstance().setVisible(true);
+
+            // Некрасивый код здесь
+            FilterDialog.getInstance().getTimeFilterPanel().timedateChanged();
+        });
+
+        enableOuterShape = new JToggleButton("Внешняя граница");
+        enableOuterShape.setUI(GuiComponents.getToggleButtonGreenUI());
+        enableOuterShape.addActionListener(e ->
+
+            MapApplet.getMap().showOuterShape(enableOuterShape.isSelected())
+        );
 
         List<JComponent> components = Arrays.asList(
-                enablePoints, enablePolygons, updatePolygons
+                enablePointsButton, enablePolygonsButton, enableOuterShape, filtersButton
         );
 
         components.forEach(c -> add(c, "w 100%, wrap"));
-
-        log.info("Я закончил");
     }
 }

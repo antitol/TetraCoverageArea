@@ -7,7 +7,6 @@ import de.fhpotsdam.unfolding.providers.OpenStreetMap;
 import de.fhpotsdam.unfolding.utils.DebugDisplay;
 import de.fhpotsdam.unfolding.utils.MapUtils;
 import gui.applet.map.CoverageMap;
-import gui.applet.map.ToolMarkers;
 import org.apache.log4j.Logger;
 import processing.core.PApplet;
 
@@ -26,9 +25,11 @@ public class MapApplet extends PApplet{
 
     public void setup() {
 
-        size(800, 600, P2D);
         map = new CoverageMap(this, new OpenStreetMap.OpenStreetMapProvider());
+        size(800, 600, P2D);
 
+        log.info("Создана карта");
+        log.info(getSize().getHeight() + "x" + getSize().getWidth());
         MapUtils.createDefaultEventDispatcher(this, map);
         // Устанавливает FPS
         frameRate(30);
@@ -38,7 +39,7 @@ public class MapApplet extends PApplet{
         background(color(0,0,0));
 
         map.draw();
-        log.info(frameCount);
+//        log.info(frameCount);
 
         // Останавливает перерисовку
         if (looping && frameCount - stampFrameCount > 30) {
@@ -55,18 +56,28 @@ public class MapApplet extends PApplet{
         }
     }
 
+    public void mouseMoved() {
+
+        /*try {
+            Marker marker = map.getPointsManager().getNearestMarker(mouseX, mouseY);
+            log.info(((PointMarkerRssi) marker).getRssi());
+        } catch (NullPointerException ex) {
+            log.info("Нет данных о rssi");
+        }*/
+    }
+
     public void mousePressed() {
         try {
-            map.enableMarker(false,
-                    ToolMarkers.getInstence().getMouseClicked()
-            );
+
+            map.removeMarker(map.getMouseClickedMarker());
         } catch (NullPointerException ex) {}
-        ToolMarkers.getInstence().setMouseClicked(
+
+        map.setMouseClickedMarker(
                 new SimplePointMarker(map.getLocation(mouseX, mouseY))
         );
-        map.enableMarker(true,
-                ToolMarkers.getInstence().getMouseClicked()
-        );
+
+        map.addMarker(map.getMouseClickedMarker());
+
     }
 
     /**
@@ -92,7 +103,8 @@ public class MapApplet extends PApplet{
         return map;
     }
 
-
-
+    public static void main(String[] args) {
+        PApplet.main(new String[] {MapApplet.class.getName()});
+    }
 
 }

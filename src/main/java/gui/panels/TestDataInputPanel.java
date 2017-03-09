@@ -2,7 +2,6 @@ package gui.panels;
 
 import common.entities.serialPart.GpsPoint;
 import gui.applet.MapApplet;
-import gui.applet.map.ToolMarkers;
 import net.miginfocom.swing.MigLayout;
 import serialDao.SerialTestDao;
 import testValues.GpsTestVelues;
@@ -42,15 +41,15 @@ public class TestDataInputPanel extends JPanel {
         fadeSlider.setPaintLabels(true);
         fadeSlider.setMajorTickSpacing(25);
 
-        addPointsButton = new JButton("Add points");
+        addPointsButton = new JButton("Добавить точки");
         addPointsButton.addActionListener(e ->
         {
             try {
 
                 ArrayList<GpsPoint> points = GpsTestVelues.getGetRandomGpsPointList(
-                        (double) (ToolMarkers.getInstence().getMouseClicked().getLocation().getLat()),
+                        (double) (MapApplet.getMap().getCenter().getLat()),
                         Double.parseDouble(sdFieldLat.getText()),
-                        (double) (ToolMarkers.getInstence().getMouseClicked().getLocation().getLon()),
+                        (double) (MapApplet.getMap().getCenter().getLon()),
                         Double.parseDouble(sdFieldLong.getText()),
                         Integer.parseInt(amountPointsLat.getText())
                 );
@@ -71,17 +70,17 @@ public class TestDataInputPanel extends JPanel {
 
                 }
 
-                MapApplet.getMap().enablePoints(false);
                 MapApplet.getMap().setPoints(SerialTestDao.getInstance().getPoints());
-                MapApplet.getMap().enablePoints(true);
+                MapApplet.getMap().setDelaunayTriangles(SerialTestDao.getInstance().getDelaunayTriangles());
+
             } catch (NumberFormatException ex) {
 
-                JOptionPane.showMessageDialog(this, "Вводи цифры, сложно догадаться чтоли?");
+                JOptionPane.showMessageDialog(this, "Некорректно заполнены поля");
 
             }
         });
 
-        fillRandomButton = new JButton("Fill random values");
+        fillRandomButton = new JButton("Заполнить случайными данными");
         fillRandomButton.addActionListener(e -> {
 
                     sdFieldLat.setText(String.format(String.valueOf(1*Math.random()), "%.5d"));
@@ -92,11 +91,12 @@ public class TestDataInputPanel extends JPanel {
                 }
         );
 
-        clearTableButton = new JButton("Clear table");
+        clearTableButton = new JButton("Очистить таблицы");
         clearTableButton.addActionListener(e -> {
-            MapApplet.getMap().enablePoints(false);
-            MapApplet.getMap().enableDelaunayTriangles(false);
-            SerialTestDao.getInstance().clearGpsTable();
+
+            MapApplet.getMap().clearPoints();
+            MapApplet.getMap().clearDelaunayTriangles();
+            SerialTestDao.getInstance().clearTables();
         });
 
         Arrays.asList(

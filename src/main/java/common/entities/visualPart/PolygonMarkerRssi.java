@@ -12,36 +12,20 @@ import java.util.List;
  */
 public class PolygonMarkerRssi extends SimplePolygonMarker {
 
-    private float rssi;
+    private List<Double> rssiValues;
 
-    private List<Location> innerLocations;
-
-    public List<Location> getInnerLocations() {
-        return innerLocations;
-    }
-
-    public PolygonMarkerRssi() {
-        super();
-    }
-
-    public PolygonMarkerRssi(List<Location> list, float rssi) {
+    public PolygonMarkerRssi(List<Location> list, List<Double> rssiValues) {
 
         super(list);
-        this.rssi = rssi;
+        this.rssiValues = rssiValues;
     }
 
-    public float getRssi() {
-        return rssi;
+    public List<Double> getRssiValues() {
+        return rssiValues;
     }
 
-    public void setRssi(float rssi) {
-        this.rssi = rssi;
-    }
-
-    public PolygonMarkerRssi(List<Location> outerLocations, List<Location> innerLocations) {
-
-        super(outerLocations);
-        this.innerLocations = innerLocations;
+    public void setRssiValues(List<Double> rssiValues) {
+        this.rssiValues = rssiValues;
     }
 
     // TODO: скооперировать данный класс с TriangleMarkerRssi, сделать его наследником этого класса
@@ -49,22 +33,12 @@ public class PolygonMarkerRssi extends SimplePolygonMarker {
     /* Просто оставлю здесь:
      * TODO:
       * +1. Переписать апплет в соответствии с новыми классами
-      * 4. Тестирование добавления и удаления точек с карты
-      * 5. Заполнение панелей GUI, переписать MainFrame
+      * +4. Тестирование добавления и удаления точек с карты
+      * +5. Заполнение панелей GUI, переписать MainFrame
       * 6. Написать класс таблицы и добавить вкладки в MainFrame
       * 7. Добиться отображения объектов в таблице по запросам
       * 8. Тестирование замены тайлового менеджера
       * +/- 9. Замутить красивый градиент в зависимости от rssi и придумать как им управлять с GUI
       * 10. Нагрузочное тестирование */
 
-    /**
-     *
-     * Промежуточные итоги:
-     *
-     * 1. Полигоны Вороного не нужны, следовательно и polygonMarkerRssi
-     * 2. Отдельные методы для отрисовки точек на карте не нужны (те, которые сейчас в CoverageArea), можно складывать в MapDisplay наследников маркера
-     * 3. Придумать как сохранять однажды сгенеренную картинку маркеров в рисунок и сохранять его в высоком разрешении, перерисовывать по взаимодествию пользователя с GUI
-     * либо придумать как сократить количество объектов, частоту отрисовок (отрисовка всех маркеров производится при каждой отрисовке карты 60 FPS
-     * 4. Можно получать замкнутый полигон по набору Location, но скорей всего это только откушать еще ресурсов
-     */
 }

@@ -13,13 +13,13 @@ import java.util.HashMap;
  */
 public class PointMarkerRssi extends SimplePointMarker {
 
-    private float rssi;
+    private double rssi;
 
     public PointMarkerRssi(float rssi) {
         this.rssi = rssi;
     }
 
-    public PointMarkerRssi(Location location, float rssi) {
+    public PointMarkerRssi(Location location, double rssi) {
         super(location);
         this.rssi = rssi;
     }
@@ -29,7 +29,7 @@ public class PointMarkerRssi extends SimplePointMarker {
         this.rssi = rssi;
     }
 
-    public float getRssi() {
+    public double getRssi() {
         return rssi;
     }
 
@@ -48,7 +48,7 @@ public class PointMarkerRssi extends SimplePointMarker {
         int min = CoverageMap.getMinRssi();
         int max = CoverageMap.getMaxRssi();
 
-        float rssi = this.rssi > max ? 1 : (this.rssi - min)/(max - min);
+        float rssi = this.rssi > max ? 1 : (float) (this.rssi - min)/(max - min);
 
         if (rssi < 0.5) {
 
@@ -58,7 +58,15 @@ public class PointMarkerRssi extends SimplePointMarker {
         }
 
         pg.fill(color);
-        pg.ellipse((int) x, (int) y, radius, radius); // TODO use radius in km and convert to px
+        pg.ellipse((int) x, (int) y, radius, radius);
         pg.popStyle();
+    }
+
+    public double getLatitude() {
+        return location.getLat();
+    }
+
+    public double getLongitude() {
+        return location.getLon();
     }
 }
