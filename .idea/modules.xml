@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/serialtest.iml" filepath="$PROJECT_DIR$/.idea/modules/serialtest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/serialtest_main.iml" filepath="$PROJECT_DIR$/.idea/modules/serialtest_main.iml" group="serialtest" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/serialtest_test.iml" filepath="$PROJECT_DIR$/.idea/modules/serialtest_test.iml" group="serialtest" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tetracoveragearea.iml" filepath="$PROJECT_DIR$/.idea/modules/tetracoveragearea.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tetracoveragearea_main.iml" filepath="$PROJECT_DIR$/.idea/modules/tetracoveragearea_main.iml" group="tetracoveragearea" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tetracoveragearea_test.iml" filepath="$PROJECT_DIR$/.idea/modules/tetracoveragearea_test.iml" group="tetracoveragearea" />
     </modules>
   </component>
 </project>

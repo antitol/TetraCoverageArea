@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="serialtest_main" target="1.8" />
       <module name="serialtest_test" target="1.8" />
+      <module name="tetracoveragearea_main" target="1.8" />
+      <module name="tetracoveragearea_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

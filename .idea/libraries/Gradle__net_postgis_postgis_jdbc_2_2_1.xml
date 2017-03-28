@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: net.postgis:postgis-jdbc:2.2.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.postgis/postgis-jdbc/2.2.1/34bea96f6c146dd23c541f7538f719b7dd2eb5bb/postgis-jdbc-2.2.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.postgis/postgis-jdbc/2.2.1/708b619f6ee48691dcb5cf0b6f5a11ada624aa3f/postgis-jdbc-2.2.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
