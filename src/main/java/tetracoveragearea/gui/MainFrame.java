@@ -6,9 +6,13 @@ import tetracoveragearea.gui.applet.MapApplet;
 import tetracoveragearea.gui.panels.MainContentPanel;
 import tetracoveragearea.gui.panels.MenuPanel;
 import tetracoveragearea.gui.panels.mapPanels.MapGuiPanel;
+import tetracoveragearea.gui.panels.settingsPanels.gradient.ChooseGradientTableModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.*;
 import java.util.List;
 
 /**
@@ -55,6 +59,31 @@ public class MainFrame extends JFrame {
         add(mapGuiPanel, "wrap, center");
         add(MainContentPanel.getInstance(), "wrap");
 
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+
+                try {
+
+                    File file = new File(ClassLoader.getSystemClassLoader().getResource("assets/gradientProfiles").getFile());
+
+                    FileOutputStream fileOutputStream = new FileOutputStream(file);
+
+                    ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+                    objectOutputStream.writeObject(ChooseGradientTableModel.getInstance().getGradientList());
+
+                    objectOutputStream.close();
+                    fileOutputStream.close();
+
+                } catch (FileNotFoundException ex) {
+
+                    log.info("Файл для сохранения профилей градиента не найден");
+                } catch (IOException ex) {
+
+                    log.info("Ошибка ввода-вывода");
+                }
+            }
+        });
 
         setVisible(true);
 

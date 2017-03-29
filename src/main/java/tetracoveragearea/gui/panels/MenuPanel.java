@@ -11,8 +11,6 @@ import java.util.List;
  */
 public class MenuPanel extends JPanel {
 
-
-
     private JToggleButton deviceButton;
     private JToggleButton databaseButton;
     private JToggleButton loadButton;

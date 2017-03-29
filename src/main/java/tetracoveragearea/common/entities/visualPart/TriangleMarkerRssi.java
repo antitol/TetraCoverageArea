@@ -7,7 +7,7 @@ import processing.core.PGraphics;
 import tetracoveragearea.common.delaunay.Point;
 import tetracoveragearea.common.delaunay.Triangle;
 import tetracoveragearea.gui.applet.map.CoverageMap;
-import tetracoveragearea.gui.tools.MultilayerGradient;
+import tetracoveragearea.gui.panels.settingsPanels.GradientTableModel;
 
 import java.util.Collections;
 import java.util.List;
@@ -72,8 +72,8 @@ public class TriangleMarkerRssi extends PolygonMarkerRssi {
     @Override
     public void draw(PGraphics pg, List<MapPosition> mapPositions) {
 
-        float lastRssi = 0;
         MapPosition lastPosition = new MapPosition();
+        double lastRssi = 0;
         int min = CoverageMap.getMinRssi();
         int max = CoverageMap.getMaxRssi();
 
@@ -90,28 +90,25 @@ public class TriangleMarkerRssi extends PolygonMarkerRssi {
         for (int i = 0; i < mapPositions.size(); i++) {
 
             // Определяем вес точки по уровню сигнала
-            Float rssi;
-
-            rssi = (float) (getRssiValues().get(i) - min)/(max - min);
 
             if (i > 0) {
-                Float halfRssi = (rssi + lastRssi) / 2f;
+                Double halfRssi = (getRssiValues().get(i) + lastRssi) / 2f;
                 mapPositions.get(i - 1).add(mapPositions.get(i));
                 mapPositions.get(i - 1).div(2);
 
-                pg.fill(MultilayerGradient.getInstance().getColor(halfRssi).getRGB(), 0.5f);
+                pg.fill(GradientTableModel.getInstance().getMultilayerGradient().getColor(halfRssi).getRGB(), 0.5f);
                 pg.vertex(mapPositions.get(i - 1).x, mapPositions.get(i - 1).y);
 
             }
 
             // Заполняем цветом
-            pg.fill(MultilayerGradient.getInstance().getColor(rssi).getRGB(), 0.5f);
+            pg.fill(GradientTableModel.getInstance().getMultilayerGradient().getColor(getRssiValues().get(i)).getRGB(), 0.5f);
 
             pg.vertex(mapPositions.get(i).x, mapPositions.get(i).y);
 
 
 
-            lastRssi = rssi;
+            lastRssi = getRssiValues().get(i);
         }
 
         pg.endShape(PConstants.CLOSE);

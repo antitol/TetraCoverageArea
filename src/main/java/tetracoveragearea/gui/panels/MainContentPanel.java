@@ -4,6 +4,7 @@ import net.miginfocom.swing.MigLayout;
 import tetracoveragearea.gui.panels.devicePanels.DevicesGuiPanel;
 import tetracoveragearea.gui.panels.filterPanels.InterpolationPanel;
 import tetracoveragearea.gui.panels.filterPanels.TimeFilterPanel;
+import tetracoveragearea.gui.panels.settingsPanels.gradient.GradientPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +24,7 @@ public class MainContentPanel extends JPanel {
     private DevicesGuiPanel devicesGuiPanel = new DevicesGuiPanel();
     private DatabasePanel databasePanel = new DatabasePanel();
     private TabbedPanel filterPanel = new TabbedPanel(Arrays.asList(new TimeFilterPanel(), new InterpolationPanel()));
-    private TabbedPanel settingsPanel = new TabbedPanel(Arrays.asList());
+    private TabbedPanel settingsPanel = new TabbedPanel(Arrays.asList(new GradientPanel()));
     private TestDataInputPanel testDataInputPanel = new TestDataInputPanel();
 
     public MainContentPanel() {
@@ -55,7 +56,7 @@ public class MainContentPanel extends JPanel {
     public void swtichFilterPanel() {
         setPanel(filterPanel);
     }
-    
+
     public void swtichSettingsPanel() { setPanel(settingsPanel); }
 
     public DevicesGuiPanel getDevicesGuiPanel() {
@@ -69,7 +70,7 @@ public class MainContentPanel extends JPanel {
     public TabbedPanel getFilterPanel() {
         return filterPanel;
     }
-    
+
     public TabbedPanel getSettingsPanel() {return settingsPanel;}
 
     public TestDataInputPanel getTestDataInputPanel() {

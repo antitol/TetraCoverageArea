@@ -5,7 +5,7 @@ import de.fhpotsdam.unfolding.marker.SimplePointMarker;
 import processing.core.PGraphics;
 import tetracoveragearea.common.delaunay.Point;
 import tetracoveragearea.gui.applet.map.CoverageMap;
-import tetracoveragearea.gui.tools.MultilayerGradient;
+import tetracoveragearea.gui.panels.settingsPanels.GradientTableModel;
 
 /**
  * Маркер-точка
@@ -60,10 +60,9 @@ public class PointMarkerRssi extends SimplePointMarker {
         int min = CoverageMap.getMinRssi();
         int max = CoverageMap.getMaxRssi();
 
-        float rssi = this.rssi > max ? 1 : (float) (this.rssi - min)/(max - min);
 
         // Забираем цвет из класса градиента
-        pg.fill(MultilayerGradient.getInstance().getColor(rssi).getRGB());
+        pg.fill(GradientTableModel.getInstance().getMultilayerGradient().getColor(rssi).getRGB());
         pg.ellipse((int) x, (int) y, radius, radius);
         pg.popStyle();
     }

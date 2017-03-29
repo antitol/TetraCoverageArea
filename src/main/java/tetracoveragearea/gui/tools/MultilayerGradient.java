@@ -8,7 +8,8 @@ import org.apache.log4j.Logger;
 import processing.core.PApplet;
 
 import java.awt.*;
-import java.util.Arrays;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -16,55 +17,71 @@ import java.util.List;
 /**
  * Многослойный градиент (занимается выдачей цвета маркерам, в зависимости от значения уровня сигнала)
  */
-public class MultilayerGradient {
+public class MultilayerGradient implements Serializable {
 
     public static final Logger log = Logger.getLogger(MultilayerGradient.class);
 
     ColorLayerComparator colorLayerComparator = new ColorLayerComparator();
 
+    // Список слоев обязательно должен быть отсортирован по возрастанию уровней сигнала
     private List<ColorLayer> layers;
 
+    // Максимальное и минимальное значение, среди существующих слоев градиента
+    private double maxPart;
+    private double minPart;
 
-    private static MultilayerGradient instance = new MultilayerGradient(
-            Arrays.asList(
-                        new ColorLayer(Color.GREEN, 0f),
-                        new ColorLayer(Color.YELLOW, 0.5f),
-                        new ColorLayer(Color.RED, 1f)
-                    )
-    );
+    private String name = "";
 
-    public static MultilayerGradient getInstance() {
-        return instance;
+    public MultilayerGradient() {
+        this.layers = new ArrayList<>();
     }
-
-    private double max;
-    private double min;
 
     public MultilayerGradient(List<ColorLayer> layers) {
         this.layers = layers;
-        Collections.sort(layers, colorLayerComparator);
-        max = layers.stream().mapToDouble(layer -> layer.part).max().getAsDouble();
-        min = layers.stream().mapToDouble(layer -> layer.part).min().getAsDouble();
+        sortLayers();
     }
 
-    public Color getColor(float part) {
+    public MultilayerGradient(List<ColorLayer> layers, String name) {
+        this.layers = layers;
+        this.name = name;
+        sortLayers();
+    }
 
-        if (part >= max) return layers.get(layers.size() - 1).color;
-        if (part <= min) return layers.get(0).color;
+    /**
+     * Возвращает цвет для определенного уровня сигнала
+     * @param value
+     * @return
+     */
+    public Color getColor(double value) {
 
-        int index = getNearestLayer(part);
+        if (value >= maxPart) return layers.get(layers.size() - 1).color;
+        if (value <= minPart) return layers.get(0).color;
+
+        int index = getNearestLayer(value);
 
         return mixColors(
                 layers.get(index).color, layers.get(index + 1).color,
-                (part - layers.get(index).part) / (layers.get(index + 1).part - layers.get(index).part));
+                (float) (value - layers.get(index).part) / (layers.get(index + 1).part - layers.get(index).part));
     }
 
-    public int getNearestLayer(float part) {
+    /**
+     * Ищет номер ближайшего слоя градиента в зависимости от значения
+     * @param value - значение rssi
+     * @return
+     */
+    public int getNearestLayer(double value) {
         int index;
-        for (index = 0; (part - layers.get(index).part) > 0; index++);
+        for (index = 0; (value - layers.get(index).part) > 0; index++);
         return index -1;
     }
 
+    /**
+     * Возвращает результат смешения двух цветов в определенной пропорции, линейная шкала изменения цвета
+     * @param color1
+     * @param color2
+     * @param part - значение на линейной шкале от 0 до 1 (0 - полностью color1, 1 - полностью color2)
+     * @return
+     */
     public Color mixColors(Color color1, Color color2, float part) {
         if (part > 1) { return color2;}
         else if (part < 0) {return color1;}
@@ -87,12 +104,86 @@ public class MultilayerGradient {
                 (PApplet.round(b1 + (b2-b1)*part)));
     }
 
+    /**
+     * Добавляет слой к профилю градиента
+     * @param color
+     * @param part
+     */
     public void addLayer(Color color, float part) {
         layers.add(new ColorLayer(color, part));
-        Collections.sort(layers, colorLayerComparator);
+        sortLayers();
     }
 
-    private static class ColorLayer {
+    public ColorLayer getLayer(int layer) {
+        return layers.get(layer);
+    }
+
+    public void setLayer(int index, ColorLayer colorLayer) {
+        layers.set(index, colorLayer);
+        sortLayers();
+    }
+
+    public void removeLayer(int index) {
+        layers.remove(layers.get(index));
+        sortLayers();
+    }
+
+    public List<ColorLayer> getLayers() {
+        return layers;
+    }
+
+    /**
+     * Сортировка слоев по уровню сигнала
+     */
+    public void sortLayers() {
+        Collections.sort(layers, colorLayerComparator);
+        if (layers.size() > 0) {
+            minPart = layers.get(0).getPart();
+            maxPart = layers.get(layers.size() - 1).getPart();
+        }
+    }
+
+    public double getWidth(int index) {
+        return (layers.get(index + 1).part - layers.get(index).part) / (maxPart - minPart);
+    }
+
+    public double getMaxPart() {
+        return maxPart;
+    }
+
+    public double getMinPart() {
+        return minPart;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Возвращает копию профиля градиента
+     * @param multilayerGradient
+     * @return
+     */
+    public static MultilayerGradient getCopy(MultilayerGradient multilayerGradient) {
+
+        MultilayerGradient copiedMultilayerGradient = new MultilayerGradient();
+
+        for (ColorLayer colorLayer : multilayerGradient.getLayers()) {
+            copiedMultilayerGradient.addLayer(colorLayer.getColor(), colorLayer.getPart());
+        }
+        copiedMultilayerGradient.sortLayers();
+
+        return copiedMultilayerGradient;
+    }
+
+    /**
+     * Класс слоя градиента. Содержит цвет и соответсвующее этому цвету значению
+     */
+    public static class ColorLayer implements Serializable {
         Color color;
         float part;
 
@@ -100,9 +191,28 @@ public class MultilayerGradient {
             this.color = color;
             this.part = part;
         }
+
+        public Color getColor() {
+            return color;
+        }
+
+        public float getPart() {
+            return part;
+        }
+
+        public void setColor(Color color) {
+            this.color = color;
+        }
+
+        public void setPart(float part) {
+            this.part = part;
+        }
     }
 
-    private class ColorLayerComparator implements Comparator<ColorLayer> {
+    /**
+     * Компаратор для слоев
+     */
+    private class ColorLayerComparator implements Comparator<ColorLayer>, Serializable {
         @Override
         public int compare(ColorLayer o1, ColorLayer o2) {
             return Float.compare(o1.part, o2.part);
