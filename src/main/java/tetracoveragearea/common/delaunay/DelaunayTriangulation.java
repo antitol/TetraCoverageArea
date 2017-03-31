@@ -1397,6 +1397,10 @@ public class DelaunayTriangulation {
 		return ans.iterator();
 	}
 
+	public Set<Point> getVertices() {
+		return vertices;
+	}
+
 	/**
 	 * returns an iterator to the set of points compusing this triangulation.
 	 * 

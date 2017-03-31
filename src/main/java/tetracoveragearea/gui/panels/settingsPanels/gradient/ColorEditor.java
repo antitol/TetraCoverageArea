@@ -31,11 +31,6 @@
 
 package tetracoveragearea.gui.panels.settingsPanels.gradient;
 
-/* 
- * ColorEditor.java (compiles with releases 1.3 and 1.4) is used by 
- * TableDialogEditDemo.java.
- */
-
 import javax.swing.*;
 import javax.swing.colorchooser.AbstractColorChooserPanel;
 import javax.swing.colorchooser.ColorChooserComponentFactory;
@@ -44,6 +39,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Связывает ColorChooser и ячейку таблицы слоев градиента с цветом слоя
+ */
 public class ColorEditor extends AbstractCellEditor
                          implements TableCellEditor,
 			            ActionListener {

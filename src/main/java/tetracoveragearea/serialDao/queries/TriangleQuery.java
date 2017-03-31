@@ -88,8 +88,6 @@ public interface TriangleQuery {
             @Bind("to") Timestamp to
     );
 
-
-
     @SqlUpdate("TRUNCATE TABLE l_delauney_shape;")
     int clear();
 }

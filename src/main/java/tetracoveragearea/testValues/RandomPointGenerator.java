@@ -4,6 +4,7 @@ import org.apache.commons.math3.distribution.AbstractRealDistribution;
 import org.apache.commons.math3.distribution.NormalDistribution;
 import tetracoveragearea.common.delaunay.Point;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +49,8 @@ public class RandomPointGenerator {
             Point point = new Point(
                     lat,
                     lon,
-                    maxRssi - wieght*(maxRssi - minRssi)
+                    maxRssi - wieght*(maxRssi - minRssi),
+                    LocalDateTime.now()
             );
 
             points.add(i, point);

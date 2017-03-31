@@ -13,6 +13,8 @@ import tetracoveragearea.common.entities.centralPart.GeometryStore;
 import tetracoveragearea.gui.applet.map.CoverageMap;
 import tetracoveragearea.gui.panels.MainContentPanel;
 
+import java.time.LocalDateTime;
+
 /**
  *
  * Главный класс processing апплета
@@ -94,7 +96,8 @@ public class MapApplet extends PApplet{
                     new Point(
                             mouseClickedLocation.getLat(),
                             mouseClickedLocation.getLon(),
-                            MainContentPanel.getInstance().getTestDataInputPanel().getRssiValue()
+                            MainContentPanel.getInstance().getTestDataInputPanel().getRssiValue(),
+                            LocalDateTime.now()
                     )
             );
 

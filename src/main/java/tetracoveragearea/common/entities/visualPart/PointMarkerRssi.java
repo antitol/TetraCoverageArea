@@ -5,7 +5,7 @@ import de.fhpotsdam.unfolding.marker.SimplePointMarker;
 import processing.core.PGraphics;
 import tetracoveragearea.common.delaunay.Point;
 import tetracoveragearea.gui.applet.map.CoverageMap;
-import tetracoveragearea.gui.panels.settingsPanels.GradientTableModel;
+import tetracoveragearea.gui.panels.settingsPanels.gradient.GradientTableModel;
 
 /**
  * Маркер-точка

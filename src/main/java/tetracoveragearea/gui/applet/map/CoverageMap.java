@@ -64,7 +64,7 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
         addMarkerManager(delauneyTrianglesManager);
         addMarkerManager(voronoiPolygonsManager);
 
-        GeometryStore.getInstance().registerObserver(this);
+        GeometryStore.getInstance().addGeometryListener(this);
     }
 
     /**
@@ -376,6 +376,15 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
     }
 
     /**
+     * Добавить точку на карту
+     * @param point
+     */
+    @Override
+    public void addPoint(Point point) {
+        pointsManager.addMarker(new PointMarkerRssi(point));
+    }
+
+    /**
      * Добавление точек на карту
      * @param points
      */
@@ -411,6 +420,11 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
     public void clearTriangles() {
 
         clearMarkers(delauneyTrianglesManager);
+    }
+
+    @Override
+    public void setPoint(int index, Point point) {
+        pointsManager.getMarkers().set(index, new PointMarkerRssi(point));
     }
 }
 

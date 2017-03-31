@@ -1,18 +1,16 @@
 package tetracoveragearea.gui.panels.settingsPanels.gradient;
 
 import net.miginfocom.swing.MigLayout;
-import tetracoveragearea.gui.panels.SetDefaultState;
-import tetracoveragearea.gui.panels.settingsPanels.GradientTableModel;
+import tetracoveragearea.gui.panels.primitives.SubPanel;
 import tetracoveragearea.gui.tools.MultilayerGradient;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Arrays;
 
 /**
  * Created by anatoliy on 28.03.17.
  */
-public class GradientPanel extends JPanel implements SetDefaultState {
+public class GradientPanel extends SubPanel {
 
     private JTable gradientTable = new JTable(GradientTableModel.getInstance());
 
@@ -26,19 +24,7 @@ public class GradientPanel extends JPanel implements SetDefaultState {
     private JLabel gradientNameLabel = new JLabel("Имя профиля: ");
     private JTextField gradientNameField = new JTextField("SampleName");
 
-    private LoadGradientDialog loadGradientDialog = new LoadGradientDialog(this,
-            Arrays.asList(
-                    new MultilayerGradient(
-                            Arrays.asList(new MultilayerGradient.ColorLayer(Color.GREEN, 10f),
-                                    new MultilayerGradient.ColorLayer(Color.YELLOW, 20f),
-                                    new MultilayerGradient.ColorLayer(Color.RED, 30f))),
-                    new MultilayerGradient(
-                            Arrays.asList(new MultilayerGradient.ColorLayer(Color.GREEN, 10f),
-                                    new MultilayerGradient.ColorLayer(Color.YELLOW, 20f),
-                                    new MultilayerGradient.ColorLayer(Color.RED, 30f)
-                            ))
-            )
-    );
+    private LoadGradientDialog loadGradientDialog = new LoadGradientDialog(this);
 
     public GradientPanel() {
 
@@ -134,7 +120,7 @@ public class GradientPanel extends JPanel implements SetDefaultState {
     }
 
     @Override
-    public void setDefaultState() {
+    public void onInvoke() {
 
     }
 }

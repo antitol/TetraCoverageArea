@@ -12,7 +12,9 @@ import java.util.List;
 public interface GeometryObserver {
 
     void setPoints(List<Point> points);
+    void setPoint(int index, Point point);
     void setTriangles(List<Triangle> triangles);
+    void addPoint(Point point);
     void addPoints(List<Point> points);
     void addTriangles(List<Triangle> triangles);
     void clearPoints();

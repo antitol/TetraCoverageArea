@@ -6,10 +6,7 @@ import tetracoveragearea.common.delaunay.Point;
 import tetracoveragearea.common.delaunay.Triangle;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -17,7 +14,7 @@ import java.util.stream.Collectors;
  */
 public class GeometryStore implements GeometryObservable {
 
-    private List<Point> points = new ArrayList<Point>();
+    private List<Point> points = new ArrayList<>();
     private List<Triangle> triangles = new ArrayList<Triangle>();
     private DelaunayTriangulation delaunayTriangulation = new DelaunayTriangulation();
     private DelaunayTriangulation filterDelaunayTriangulation = new DelaunayTriangulation();
@@ -68,6 +65,7 @@ public class GeometryStore implements GeometryObservable {
      */
     public void addPoints(List<Point> points) {
         this.points.addAll(points);
+        points.sort(Point::compareTo);
         delaunayTriangulation.insertPoints(points);
         refreshTriangles();
         notifyOnAddPoints(points);
@@ -79,10 +77,24 @@ public class GeometryStore implements GeometryObservable {
      * @param point
      */
     public void addPoint(Point point) {
-        this.points.add(point);
-        delaunayTriangulation.insertPoint(point);
+
+        int samePointIndex = Collections.binarySearch(points, point, Point::compareTo);
+        // Если точка с такими координатами уже есть в коллекции, то берем среднее rssi от этого значения и нового
+        if (samePointIndex >= 0) {
+
+            Point samePoint = points.get(samePointIndex);
+            samePoint.setZ((samePoint.getZ() + point.getZ())/2);
+            notifyOnSetPoint(samePointIndex, samePoint);
+
+        } else {
+
+            this.points.add(point);
+            points.sort(Point::compareTo);
+            delaunayTriangulation.insertPoint(point);
+            notifyOnAddPoint(point);
+        }
+
         refreshTriangles();
-        notifyOnAddPoints(Arrays.asList(point));
         notifyOnSetTriangles(triangles);
     }
 
@@ -198,12 +210,12 @@ public class GeometryStore implements GeometryObservable {
         return (points.isEmpty() ? LocalDateTime.now() :  points.stream().map(point -> point.getDateTime()).max(LocalDateTime::compareTo).get());
     }
 
-    public void registerObserver(GeometryObserver o) {
+    public void addGeometryListener(GeometryObserver o) {
         geometryObservers.add(o);
     }
 
     @Override
-    public void removeObserver(GeometryObserver o) {
+    public void removeGeometryListener(GeometryObserver o) {
         geometryObservers.remove(o);
     }
 
@@ -215,6 +227,11 @@ public class GeometryStore implements GeometryObservable {
     @Override
     public void notifyOnSetTriangles(List<Triangle> triangles) {
         geometryObservers.forEach(o -> o.setTriangles(triangles));
+    }
+
+    @Override
+    public void notifyOnAddPoint(Point point) {
+        geometryObservers.forEach(o -> o.addPoint(point));
     }
 
     @Override
@@ -235,6 +252,11 @@ public class GeometryStore implements GeometryObservable {
     @Override
     public void notifyOnClearTriangles() {
         geometryObservers.forEach(o -> o.clearTriangles());
+    }
+
+    @Override
+    public void notifyOnSetPoint(int index, Point point) {
+        geometryObservers.forEach(o -> o.setPoint(index, point));
     }
 
     public List<Point> getFilterPoints() {

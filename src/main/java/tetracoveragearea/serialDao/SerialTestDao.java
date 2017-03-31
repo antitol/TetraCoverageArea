@@ -10,6 +10,7 @@ import org.skife.jdbi.v2.util.IntegerColumnMapper;
 import org.skife.jdbi.v2.util.StringColumnMapper;
 import org.skife.jdbi.v2.util.TimestampColumnMapper;
 import tetracoveragearea.common.delaunay.Point;
+import tetracoveragearea.common.entities.centralPart.GeometryAdapter;
 import tetracoveragearea.common.entities.visualPart.OuterShapeMarker;
 import tetracoveragearea.common.entities.visualPart.PolygonMarkerRssi;
 import tetracoveragearea.common.entities.visualPart.TriangleMarkerRssi;
@@ -26,15 +27,13 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * Отвечает за взаимодействие с базой данных
  * Created by anatoliy on 17.01.17.
  */
-public class SerialTestDao {
+public class SerialTestDao extends GeometryAdapter {
 
     public static final Logger log = Logger.getLogger(SerialTestDao.class);
 
-    private String url = "jdbc:postgresql://127.0.0.1:5432/postgis";
-    private String login = "postgis";
-    private String pass = "postgis";
     private Handle h;
     private DBI dbi;
 
@@ -75,25 +74,6 @@ public class SerialTestDao {
         if (!h.isClosed()) {
             h.close();
         }
-    }
-
-    /**
-     * Добавляет точку с значением уровня сигнала
-     * @param point
-     */
-    public void addPoint(Point point) {
-
-        // Добавляем точку, если были получены координаты и rssi
-
-        pointQuery.addPointWithRssi(
-                point.getX(),
-                point.getY(),
-                point.getZ()
-        );
-
-        log.info(
-                "Добавлена точка в БД: " + point.toString()
-        );
     }
 
     /**
@@ -268,5 +248,46 @@ public class SerialTestDao {
         );
     }
 
+    @Override
+    public void setPoints(List<Point> points) {
+        pointQuery.clear();
+        addPoints(points);
+    }
 
+    @Override
+    public void setPoint(int index, Point point) {
+        addPoint(point);
+    }
+
+    /**
+     * Добавляет точку с значением уровня сигнала
+     * @param point
+     */
+    @Override
+    public void addPoint(Point point) {
+
+        // Добавляем точку, если были получены координаты и rssi
+
+        pointQuery.addPoint(
+                point.getX(),
+                point.getY(),
+                point.getZ(),
+                getTimestamp(point.getDateTime())
+        );
+
+        log.info(
+                "Добавлена точка в БД: " + point.toString()
+        );
+    }
+
+    @Override
+    public void addPoints(List<Point> points) {
+
+        points.forEach(this::addPoint);
+    }
+
+    @Override
+    public void clearPoints() {
+        pointQuery.clear();
+    }
 }

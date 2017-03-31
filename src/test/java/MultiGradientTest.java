@@ -1,5 +1,4 @@
 import org.junit.Test;
-import tetracoveragearea.gui.panels.settingsPanels.gradient.LoadGradientDialog;
 import tetracoveragearea.gui.tools.MultilayerGradient;
 
 import java.awt.*;
@@ -35,24 +34,5 @@ public class MultiGradientTest {
 
     @Test
     public void dialogTest() {
-
-        LoadGradientDialog loadGradientDialog = new LoadGradientDialog(new ArrayList<>(
-                Arrays.asList(
-                        new MultilayerGradient(
-                            Arrays.asList(new MultilayerGradient.ColorLayer(Color.GREEN, 10f),
-                                    new MultilayerGradient.ColorLayer(Color.YELLOW, 20f),
-                                    new MultilayerGradient.ColorLayer(Color.RED, 30f))),
-                        new MultilayerGradient(
-                                Arrays.asList(new MultilayerGradient.ColorLayer(Color.GREEN, 10f),
-                                        new MultilayerGradient.ColorLayer(Color.YELLOW, 20f),
-                                        new MultilayerGradient.ColorLayer(Color.RED, 30f)
-                                ))
-        )));
-
-        loadGradientDialog.setVisible(true);
-
-        while (true) {
-
-        }
     }
 }

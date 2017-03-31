@@ -1,19 +1,18 @@
-package tetracoveragearea.gui.panels;
+package tetracoveragearea.gui.panels.databasePanels;
 
-import net.miginfocom.swing.MigLayout;
 import tetracoveragearea.common.entities.centralPart.GeometryStore;
 import tetracoveragearea.gui.components.GuiComponents;
+import tetracoveragearea.gui.panels.primitives.PrimaryPanel;
 import tetracoveragearea.serialDao.SerialTestDao;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
 /**
  * Created by anatoliy on 15.03.17.
  */
-public class DatabasePanel extends JPanel {
+public class DatabasePanel extends PrimaryPanel {
 
     private final String DB_ERROR = "Не удалось подключиться к базе данных";
 
@@ -31,12 +30,9 @@ public class DatabasePanel extends JPanel {
 
     private JToggleButton connectionButton = new JToggleButton("Подключение");
     private JButton loadData = new JButton("Загрузить данные");
+    private JToggleButton syncronizeWithDB = new JToggleButton("Синхронизировать БД");
 
     public DatabasePanel() {
-
-        setLayout(new MigLayout("debug"));
-
-        setPreferredSize(new Dimension(265, 400));
 
         connectionButton.setUI(GuiComponents.getToggleButtonGreenUI());
 
@@ -48,6 +44,7 @@ public class DatabasePanel extends JPanel {
 
                     connectionButton.setText("Отключение");
                     loadData.setEnabled(true);
+                    syncronizeWithDB.setEnabled(true);
                 } else {
                     JOptionPane.showMessageDialog(this, DB_ERROR, "Ошибка", JOptionPane.ERROR_MESSAGE);
                     connectionButton.setSelected(false);
@@ -57,6 +54,7 @@ public class DatabasePanel extends JPanel {
                 SerialTestDao.getInstance().closeConnection();
                 connectionButton.setText("Подключение");
                 loadData.setEnabled(false);
+                syncronizeWithDB.setEnabled(false);
             }
         });
 
@@ -66,11 +64,22 @@ public class DatabasePanel extends JPanel {
             GeometryStore.getInstance().setPoints(SerialTestDao.getInstance().getPoints());
         });
 
+        syncronizeWithDB.setUI(GuiComponents.getToggleButtonGreenUI());
+        syncronizeWithDB.setEnabled(false);
+        syncronizeWithDB.addActionListener(e -> {
+            if (syncronizeWithDB.isSelected()) {
+                GeometryStore.getInstance().addGeometryListener(SerialTestDao.getInstance());
+            } else {
+                GeometryStore.getInstance().removeGeometryListener(SerialTestDao.getInstance());
+            }
+        });
+
         List<JComponent> components = Arrays.asList(
                 dbHostLabel, dbHostField, dbPortLabel, dbPortField,
                 dbNameLabel, dbNameField, dbLoginLabel, dbLoginField,
-                dbPasswordLabel, dbPasswordField, connectionButton, loadData
+                dbPasswordLabel, dbPasswordField, connectionButton, loadData, syncronizeWithDB
         );
+
 
         components.forEach(component -> add(component, "wrap, w 100%"));
 
@@ -94,5 +103,15 @@ public class DatabasePanel extends JPanel {
 
             return false;
         }
+    }
+
+    @Override
+    public void onInvoke() {
+
+    }
+
+    @Override
+    public void onRevoke() {
+
     }
 }

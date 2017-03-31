@@ -1,4 +1,4 @@
-package tetracoveragearea.gui.panels;
+package tetracoveragearea.gui.panels.testPanels;
 
 import com.jidesoft.swing.RangeSlider;
 import de.fhpotsdam.unfolding.geo.Location;
@@ -6,6 +6,7 @@ import net.miginfocom.swing.MigLayout;
 import org.apache.commons.math3.distribution.NormalDistribution;
 import tetracoveragearea.common.entities.centralPart.GeometryStore;
 import tetracoveragearea.gui.applet.MapApplet;
+import tetracoveragearea.gui.panels.primitives.PrimaryPanel;
 import tetracoveragearea.serialDao.SerialTestDao;
 import tetracoveragearea.testValues.RandomPointGenerator;
 
@@ -17,7 +18,7 @@ import java.util.Arrays;
  *
  * Created by anatoliy on 17.02.17.
  */
-public class TestDataInputPanel extends JPanel {
+public class TestDataInputPanel extends PrimaryPanel {
 
     private JComboBox pointDistributionBox;
     private JComboBox rssiDistributionBox;
@@ -40,13 +41,14 @@ public class TestDataInputPanel extends JPanel {
     private JButton clearTableButton;
 
     private double rssiValue = 20;
+    private boolean manualInput = false;
 
     public TestDataInputPanel() {
 
         setLayout(new MigLayout());
 
-        manualInputPanel = new JPanel(new MigLayout());
-        distributionPanel = new JPanel(new MigLayout());
+        manualInputPanel = new JPanel(new MigLayout("insets 0, w 260"));
+        distributionPanel = new JPanel(new MigLayout("insets 0, w 260"));
 
         typeInputPointBox = new JComboBox(new String[] {"Ручной ввод", "Выборка"});
 
@@ -54,7 +56,7 @@ public class TestDataInputPanel extends JPanel {
 
             try {
 
-                boolean manualInput = typeInputPointBox.getSelectedIndex() == 0;
+                manualInput = typeInputPointBox.getSelectedIndex() == 0;
 
                 MapApplet.getInstance().setManualPointInput(manualInput);
 
@@ -137,15 +139,28 @@ public class TestDataInputPanel extends JPanel {
                 .forEach(component -> distributionPanel.add(component, "w 100%, wrap")
         );
 
+
         Arrays.asList(
                 rssiValueSlider
         )
                 .forEach(component -> manualInputPanel.add(component, "w 100%, wrap"));
 
         add(typeInputPointBox, "w 250, wrap");
+        add(manualInputPanel, "w 100%, wrap");
+        manualInput = true;
     }
 
     public double getRssiValue() {
         return rssiValue;
+    }
+
+    @Override
+    public void onInvoke() {
+        MapApplet.getInstance().setManualPointInput(manualInput);
+    }
+
+    @Override
+    public void onRevoke() {
+        MapApplet.getInstance().setManualPointInput(false);
     }
 }

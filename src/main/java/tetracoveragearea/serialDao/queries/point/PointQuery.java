@@ -25,32 +25,14 @@ public interface PointQuery {
             @Bind("to") Timestamp to
     );
 
-    @SqlUpdate("INSERT INTO gpspoint_buffer (geom, rssi) " +
-            "VALUES (ST_SetSRID(ST_MakePoint(:lon, :lat), 4326), :rssi)")
-    void addToBuffer(
-            @Bind("lat") double lat,
-            @Bind("lon") double lon,
-            @Bind("rssi") int rssi
-    );
-
-    @SqlUpdate("DELETE FROM gpspoint_buffer")
-    void clearBuffer();
-
     @SqlUpdate("INSERT INTO gpspoint (geom, time) " +
             "VALUES (ST_SetSRID(ST_MakePoint(:lon, :lat, :rssi), 4326), now())")
     @GetGeneratedKeys
-    int addPointWithRssi(
-            @Bind("lat") double lat,
-            @Bind("lon") double lon,
-            @Bind("rssi") double rssi
-    );
-
-    @SqlUpdate("INSERT INTO gpsPoint (geom, time) " +
-            "VALUES (ST_SetSRID(ST_MakePoint(:lon, :lat), 4326), now())")
-    @GetGeneratedKeys
     int addPoint(
             @Bind("lat") double lat,
-            @Bind("lon") double lon
+            @Bind("lon") double lon,
+            @Bind("rssi") double rssi,
+            @Bind("time") Timestamp timestamp
     );
 
     @SqlUpdate("DELETE FROM gpsPoint")

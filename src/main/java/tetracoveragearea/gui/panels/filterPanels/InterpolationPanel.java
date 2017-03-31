@@ -1,8 +1,7 @@
 package tetracoveragearea.gui.panels.filterPanels;
 
-import net.miginfocom.swing.MigLayout;
 import tetracoveragearea.common.entities.centralPart.GeometryStore;
-import tetracoveragearea.gui.panels.SetDefaultState;
+import tetracoveragearea.gui.panels.primitives.SubPanel;
 
 import javax.swing.*;
 import java.util.Arrays;
@@ -11,7 +10,7 @@ import java.util.List;
 /**
  * Created by anatoliy on 24.03.17.
  */
-public class InterpolationPanel extends JPanel implements SetDefaultState {
+public class InterpolationPanel extends SubPanel {
 
 
     private final JLabel areaLabel = new JLabel("Площадь в кв.км");
@@ -23,8 +22,6 @@ public class InterpolationPanel extends JPanel implements SetDefaultState {
     private boolean userSetted = false;
 
     public InterpolationPanel() {
-
-        setLayout(new MigLayout("debug"));
 
         setName("Интерполяция");
 
@@ -58,10 +55,5 @@ public class InterpolationPanel extends JPanel implements SetDefaultState {
 
         add(confirmButton, "center");
         add(resetButton, "center, wrap");
-    }
-
-    @Override
-    public void setDefaultState() {
-
     }
 }

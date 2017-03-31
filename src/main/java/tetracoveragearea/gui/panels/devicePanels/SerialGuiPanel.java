@@ -1,17 +1,16 @@
 package tetracoveragearea.gui.panels.devicePanels;
 
 import jssc.*;
-import net.miginfocom.swing.MigLayout;
 import org.apache.log4j.Logger;
 import tetracoveragearea.common.ATListener;
 import tetracoveragearea.common.ATPortReader;
 import tetracoveragearea.gui.components.GuiComponents;
+import tetracoveragearea.gui.panels.primitives.SubPanel;
+import tetracoveragearea.gui.panels.settingsPanels.timers.TimersPanel;
 
 import javax.swing.*;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.Timer;
-import java.util.TimerTask;
 
 import static tetracoveragearea.gui.panels.devicePanels.SerialGuiPanel.ATRequest.GPS_AT_QUERY;
 import static tetracoveragearea.gui.panels.devicePanels.SerialGuiPanel.ATRequest.RSSI_AT_QUERY;
@@ -21,12 +20,9 @@ import static tetracoveragearea.gui.panels.devicePanels.SerialGuiPanel.ATRequest
  *
  * Created by anatoliy on 17.02.17.
  */
-public class SerialGuiPanel extends JPanel implements ATListener {
+public class SerialGuiPanel extends SubPanel implements ATListener {
 
     public static final Logger log = Logger.getLogger(SerialGuiPanel.class);
-
-    private int i,k = 0;
-
 
     public enum ATRequest {
         RSSI_AT_QUERY("AT+CSQ?"),
@@ -48,14 +44,14 @@ public class SerialGuiPanel extends JPanel implements ATListener {
     private final int GPS_TIME_REQUEST = 5000;
     private final int RSSI_TIME_REQUEST = 5000;
 
-    // Таймаут сброса точки в бд
-    private final int DB_INSERT_TIME_REQUEST = 5000;
 
     private JLabel selectPortLabel = new JLabel("Последовательный порт: ");
     private JLabel portStateLabel = new JLabel();
     private JToggleButton startDataCaptureButton = new JToggleButton("Начать сбор данных");
 
-    private JComboBox portBox = new JComboBox(SerialPortList.getPortNames());
+    private Vector portBoxVector = new Vector(Arrays.asList(SerialPortList.getPortNames()));
+
+    private JComboBox portBox = new JComboBox(portBoxVector);
 
     // Таймеры запроса данных
     private Timer rssiRequestTimer;
@@ -74,7 +70,7 @@ public class SerialGuiPanel extends JPanel implements ATListener {
 
     public SerialGuiPanel() {
 
-        setLayout(new MigLayout());
+        Vector portBoxVector = new Vector(Arrays.asList(SerialPortList.getPortNames()));
 
         startDataCaptureButton.setUI(GuiComponents.getToggleButtonGreenUI());
         startDataCaptureButton.addActionListener(e -> {
@@ -99,8 +95,6 @@ public class SerialGuiPanel extends JPanel implements ATListener {
         portBox.addActionListener(e -> {
 
                     Object selected = portBox.getSelectedItem();
-                    portBox.setModel(new DefaultComboBoxModel(SerialPortList.getPortNames()));
-                    portBox.setSelectedItem(selected);
 
                     closePortConnection();
                     serialPort = new SerialPort(selected.toString());
@@ -163,7 +157,7 @@ public class SerialGuiPanel extends JPanel implements ATListener {
                     setNotAvailableCaptureState();
                 }
             }
-        }, 0, 1000);
+        }, 0, CHECK_PORT_TIME_REQUEST);
     }
 
     /**
@@ -236,7 +230,7 @@ public class SerialGuiPanel extends JPanel implements ATListener {
      * @param delayRssi - интервал запросов rssi
      * @param delayGps - интервал запросов gps
      */
-    public void startTimers(int delayRssi, int delayGps, int delayStore) {
+    public void startTimers(int delayRssi, int delayGps) {
 
         rssiRequestTimer = new Timer();
         gpsRequestTimer = new Timer();
@@ -292,9 +286,10 @@ public class SerialGuiPanel extends JPanel implements ATListener {
             portReader.setSerialPort(serialPort);
             serialPort.addEventListener(portReader);
             portReader.addATListener(this);
+            portReader.startResponseTimeoutTimer();
 
             // Запускаем таймеры на отправку запросов
-            startTimers(RSSI_TIME_REQUEST, GPS_TIME_REQUEST, DB_INSERT_TIME_REQUEST);
+            startTimers((int) (TimersPanel.getRssiQueryTime() * 1000), (int) (TimersPanel.getGpsQueryTime() * 1000));
             log.info("Старт сбора данных");
 
         } catch (SerialPortException ex) {
@@ -311,7 +306,7 @@ public class SerialGuiPanel extends JPanel implements ATListener {
             // Прерываем таймеры, убираем слушателя данных, разрываем соединение
             stopTimers();
             serialPort.removeEventListener();
-            portReader.removeATListener(this);
+            portReader.stopResponseTimeoutTimer();
             closePortConnection();
 
             setNotAvailableCaptureState();
@@ -331,15 +326,15 @@ public class SerialGuiPanel extends JPanel implements ATListener {
     }
 
     public void showDeviceError() {
-        JOptionPane.showMessageDialog(this, "Нет ответа от устройства");
+        JOptionPane.showMessageDialog(this, "Нет ответа устройства");
     }
 
     public void showLostGpsError() {
-        JOptionPane.showMessageDialog(this, "Нет ответа GNSS");
+        JOptionPane.showMessageDialog(this, "Нет ответа системы навигации");
     }
 
     public void showLostNetworkError() {
-        JOptionPane.showMessageDialog(this, "Нет ответа сети");
+        JOptionPane.showMessageDialog(this, "Нет ответа базовой станции");
 
     }
 

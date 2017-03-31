@@ -1,9 +1,6 @@
 package tetracoveragearea.common;
 
 import com.sun.xml.messaging.saaj.util.ByteInputStream;
-import tetracoveragearea.common.delaunay.Point;
-import tetracoveragearea.common.entities.centralPart.GeometryStore;
-import tetracoveragearea.common.entities.serialPart.GpsPoint;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
@@ -15,6 +12,10 @@ import net.sf.marineapi.nmea.sentence.RMCSentence;
 import net.sf.marineapi.nmea.util.Position;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import tetracoveragearea.common.delaunay.Point;
+import tetracoveragearea.common.entities.centralPart.GeometryStore;
+import tetracoveragearea.common.entities.serialPart.GpsPoint;
+import tetracoveragearea.gui.panels.settingsPanels.timers.TimersPanel;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -38,11 +39,11 @@ public class ATPortReader extends SentenceAdapter implements SerialPortEventList
     private boolean networkAlive;
     private boolean gpsAlive;
 
-    private int gpsFailureCount = 0;
-    private int rssiFailureCount = 0;
+    private int gpsFailureCount;
+    private int rssiFailureCount;
 
     // Таймаут простоя в режиме сбора данных
-    private final int BREAK_CAPTURE_TIMEOUT = 6000;
+    private int checkDataStateTimeout = 6000;
 
     private Timer responseTimeoutTimer;
 
@@ -80,10 +81,11 @@ public class ATPortReader extends SentenceAdapter implements SerialPortEventList
         latFormatter.setDecimalFormatSymbols(formatSymbols);
         lonFormatter.setDecimalFormatSymbols(formatSymbols);
 
+        gpsFailureCount = 0;
+        rssiFailureCount = 0;
+
         networkAlive = true;
         gpsAlive = true;
-
-        startResponseTimeoutTimer();
     }
 
     /** Событие слушателя порта */
@@ -104,8 +106,10 @@ public class ATPortReader extends SentenceAdapter implements SerialPortEventList
 
                         try {
 
-                            Double rssi = Double.parseDouble(
-                                    data.split("\\+CSQ: ")[1].substring(1, 3));
+                            System.out.println(data.split("\\+CSQ: ")[1].split(",")[0]);
+                            Double rssi = Math.abs(Double.parseDouble(
+                                    data.split("\\+CSQ: ")[1].split(",")[0]));
+
 
                             if (!currentRssi.isPresent() || rssi != currentRssi.getAsDouble()) {
                                 currentRssi = OptionalDouble.of(rssi);
@@ -139,7 +143,9 @@ public class ATPortReader extends SentenceAdapter implements SerialPortEventList
                         // Если приходит сообщение о необслуживании терминала сетью, то отсылаем ошибку сети слушателям
                     } else if (data.contains("+CME ERROR: 30")) {
 
-                        notifyOnNetworkError();
+                        log.info("Поймал отсутствие сети");
+                        currentRssi = OptionalDouble.of(127);
+                        networkAlive = true;
                     }
                 }
             }
@@ -226,17 +232,6 @@ public class ATPortReader extends SentenceAdapter implements SerialPortEventList
         this.serialPort = serialPort;
     }
 
-    public void startGpsResponseTimeoutTimer() {
-        responseTimeoutTimer = new Timer();
-        responseTimeoutTimer.schedule(
-                new TimerTask() {
-                    @Override
-                    public void run() {
-                        gpsAlive = false;
-                    }
-                }, BREAK_CAPTURE_TIMEOUT);
-    }
-
     /**
      * Монитор успешного получения данных
      * Отсылает сообщения об ошибках приема данных, если они не были распознаны 3 периода подряд
@@ -258,36 +253,45 @@ public class ATPortReader extends SentenceAdapter implements SerialPortEventList
                                                 currentGpsPoint.getSignificantLongitude().getAsDouble(),
                                                 currentRssi.getAsDouble(),
                                                 LocalDateTime.now()
-                                        ));
+                                        )
+                                );
+
+
 
                                 log.info("Была отправлена точка в базу");
 
                                 gpsFailureCount = 0;
                                 rssiFailureCount = 0;
+                            } else {
+                                log.info("Все было распознано, но данные оказались битыми");
                             }
-
-                            log.info("Все было распознано, но данные оказались битыми");
-
                         } else {
                             // Увеличиваем счетчики
                             gpsFailureCount = gpsAlive ? 0 : gpsFailureCount + 1;
-                            rssiFailureCount = networkAlive ? 0 : gpsFailureCount + 1;
+                            rssiFailureCount = networkAlive ? 0 : rssiFailureCount + 1;
                             log.info("Счетчик ошибок приема: GPS - " + gpsFailureCount + " RSSI - " + rssiFailureCount);
 
-                            // Шлем уведомление при превышении пороге
-                            if (gpsFailureCount > 3 && gpsFailureCount > 3) {
-                                notifyOnDeviceError();
-                            } else if (gpsFailureCount > 3) {
-                                notifyOnGpsError();
-                            } else if (rssiFailureCount > 3) {
-                                notifyOnNetworkError();
+                            // Шлем уведомление при превышении порога ошибок
+                            if (gpsFailureCount > 3 || rssiFailureCount > 3) {
+
+                                if (gpsFailureCount > 3 && rssiFailureCount > 3) {
+                                    notifyOnDeviceError();
+                                } else if (rssiFailureCount > 3) {
+                                    notifyOnNetworkError();
+                                } else {
+                                    notifyOnGpsError();
+                                }
+
+                                // Сброс счетчика ошибок
+                                gpsFailureCount = 0;
+                                rssiFailureCount = 0;
                             }
                         }
 
                         networkAlive = false;
                         gpsAlive = false;
                     }
-                }, BREAK_CAPTURE_TIMEOUT);
+                }, (int) (TimersPanel.getDumpPointTime() * 1000), (int) (TimersPanel.getDumpPointTime() * 1000));
     }
 
     public void stopResponseTimeoutTimer() {
@@ -304,16 +308,36 @@ public class ATPortReader extends SentenceAdapter implements SerialPortEventList
     }
 
     public void notifyOnNetworkError() {
-        atListeners.forEach(listener -> listener.onNetworkError());
+        Iterator iterator = atListeners.iterator();
+        while (iterator.hasNext()) {
+            ATListener atListener = (ATListener) iterator.next();
+            atListener.onNetworkError();
+        }
+
+        atListeners.remove(0);
     }
 
     public void notifyOnGpsError() {
-        atListeners.forEach(listener -> listener.onGpsError());
+        Iterator iterator = atListeners.iterator();
+        while (iterator.hasNext()) {
+            ATListener atListener = (ATListener) iterator.next();
+            atListener.onGpsError();
+        }
+
+        atListeners.remove(0);
     }
 
     public void notifyOnDeviceError() {
-        atListeners.forEach(listener -> listener.onDeviceError());
+        Iterator iterator = atListeners.iterator();
+        while (iterator.hasNext()) {
+            ATListener atListener = (ATListener) iterator.next();
+            atListener.onDeviceError();
+        }
+
+        atListeners.remove(0);
     }
 
-
+    public void setCheckDataStateTimeout(int checkDataStateTimeout) {
+        this.checkDataStateTimeout = checkDataStateTimeout;
+    }
 }

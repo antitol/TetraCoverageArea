@@ -15,7 +15,7 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Многослойный градиент (занимается выдачей цвета маркерам, в зависимости от значения уровня сигнала)
+ * Профиль многослойного градиента (занимается выдачей цвета маркерам, в зависимости от значения уровня сигнала)
  */
 public class MultilayerGradient implements Serializable {
 

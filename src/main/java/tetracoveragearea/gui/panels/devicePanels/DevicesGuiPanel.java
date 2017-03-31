@@ -1,16 +1,16 @@
 package tetracoveragearea.gui.panels.devicePanels;
 
-import net.miginfocom.swing.MigLayout;
+import tetracoveragearea.gui.panels.primitives.PrimaryPanel;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Панель взаимодействия с устройствами
  * Created by anatoliy on 15.03.17.
  */
-public class DevicesGuiPanel extends JPanel {
+public class DevicesGuiPanel extends PrimaryPanel {
 
     private Map<String, JPanel> panelMap = new HashMap<String, JPanel>();
 
@@ -22,8 +22,6 @@ public class DevicesGuiPanel extends JPanel {
 
     public DevicesGuiPanel() {
 
-        setLayout(new MigLayout());
-        setPreferredSize(new Dimension(265, 400));
         // Складываем панельки здесь
         panelMap.put("RS-232", serialGuiPanel);
 
@@ -45,5 +43,15 @@ public class DevicesGuiPanel extends JPanel {
         add(deviceTypeLabel, "wrap, w 100%");
         add(deviceBox, "wrap, w 100%");
         add(contentPanel, "w 100%");
+    }
+
+    @Override
+    public void onInvoke() {
+
+    }
+
+    @Override
+    public void onRevoke() {
+
     }
 }

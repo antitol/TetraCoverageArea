@@ -1,4 +1,4 @@
-package tetracoveragearea.gui.panels.settingsPanels;
+package tetracoveragearea.gui.panels.settingsPanels.gradient;
 
 import tetracoveragearea.gui.tools.MultilayerGradient;
 

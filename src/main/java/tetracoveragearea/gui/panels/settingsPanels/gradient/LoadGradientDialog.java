@@ -6,7 +6,6 @@ import tetracoveragearea.gui.tools.MultilayerGradient;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
-import java.util.List;
 
 /**
  * Диалоговое окно выбора градиента
@@ -24,7 +23,7 @@ public class LoadGradientDialog extends JDialog {
     private JButton deleteButton = new JButton("Удалить");
     private JButton cancelButton = new JButton("Отмена");
 
-    public LoadGradientDialog(GradientPanel gradientPanel, List<MultilayerGradient> gradientList) {
+    public LoadGradientDialog(GradientPanel gradientPanel) {
 
         super();
 
@@ -83,6 +82,10 @@ public class LoadGradientDialog extends JDialog {
 
     }
 
+    /**
+     * Добавление профиля градиента в таблицу
+     * @param multilayerGradient
+     */
     public void addMultiGradient(MultilayerGradient multilayerGradient) {
 
         chooseGradientTableModel.addMultiGradient(multilayerGradient);

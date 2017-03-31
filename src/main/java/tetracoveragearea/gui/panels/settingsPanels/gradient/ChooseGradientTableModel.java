@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Модель таблицы выбора профиля градиента
  * Created by anatoliy on 29.03.17.
  */
 public class ChooseGradientTableModel extends AbstractTableModel {
@@ -125,7 +126,14 @@ public class ChooseGradientTableModel extends AbstractTableModel {
         }
     }
 
+    /**
+     * Добавление профиля градиента в таблицу
+     * Уникальный ключ профиля - его имя
+     * Профиль с именем, существующим в списке заменит существуюший профиль
+     * @param multilayerGradient
+     */
     public void addMultiGradient(MultilayerGradient multilayerGradient) {
+
 
         for (int i = 0; i < gradientList.size(); i++) {
 
@@ -142,6 +150,10 @@ public class ChooseGradientTableModel extends AbstractTableModel {
         fireTableDataChanged();
     }
 
+    /**
+     * Удаление профиля мультиградиента
+     * @param index
+     */
     public void removeMultiGradient(int index) {
 
         gradientList.remove(index);

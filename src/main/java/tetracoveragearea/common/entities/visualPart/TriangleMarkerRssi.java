@@ -7,7 +7,7 @@ import processing.core.PGraphics;
 import tetracoveragearea.common.delaunay.Point;
 import tetracoveragearea.common.delaunay.Triangle;
 import tetracoveragearea.gui.applet.map.CoverageMap;
-import tetracoveragearea.gui.panels.settingsPanels.GradientTableModel;
+import tetracoveragearea.gui.panels.settingsPanels.gradient.GradientTableModel;
 
 import java.util.Collections;
 import java.util.List;

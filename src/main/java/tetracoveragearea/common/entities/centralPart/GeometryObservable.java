@@ -11,8 +11,8 @@ import java.util.List;
  */
 public interface GeometryObservable {
 
-        void registerObserver(GeometryObserver o);
-        void removeObserver(GeometryObserver o);
+        void addGeometryListener(GeometryObserver o);
+        void removeGeometryListener(GeometryObserver o);
 
         /**
          * Установить набор точек
@@ -27,10 +27,24 @@ public interface GeometryObservable {
         void notifyOnSetTriangles(List<Triangle> triangles);
 
         /**
+         * Добавить точку к набору
+         * @param point
+         */
+        void notifyOnAddPoint(Point point);
+
+        /**
          * Добавить точки к набору
          * @param points
          */
         void notifyOnAddPoints(List<Point> points);
+
+
+        /**
+         * Заменить точку с указанным индексом
+         * @param index
+         * @param point
+         */
+        void notifyOnSetPoint(int index, Point point);
 
         /**
          * Добавить треугольники к набору

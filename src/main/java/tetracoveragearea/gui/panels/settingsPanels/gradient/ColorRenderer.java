@@ -31,16 +31,14 @@
 
 package tetracoveragearea.gui.panels.settingsPanels.gradient;
 
-/* 
- * ColorRenderer.java (compiles with releases 1.2, 1.3, and 1.4) is used by 
- * TableDialogEditDemo.java.
- */
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 
+/**
+ * Рендер ячеек, содержащих цвет слоя градиента
+ */
 public class ColorRenderer extends JLabel
                            implements TableCellRenderer {
     Border unselectedBorder = null;

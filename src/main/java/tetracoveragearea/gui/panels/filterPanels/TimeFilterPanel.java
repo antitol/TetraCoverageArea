@@ -5,9 +5,8 @@ import com.github.lgooddatepicker.components.DatePickerSettings;
 import com.github.lgooddatepicker.components.TimePicker;
 import com.github.lgooddatepicker.components.TimePickerSettings;
 import com.jidesoft.swing.RangeSlider;
-import net.miginfocom.swing.MigLayout;
 import tetracoveragearea.common.entities.centralPart.GeometryStore;
-import tetracoveragearea.gui.panels.SetDefaultState;
+import tetracoveragearea.gui.panels.primitives.SubPanel;
 
 import javax.swing.*;
 import java.time.LocalDateTime;
@@ -18,7 +17,7 @@ import java.util.List;
 /**
  * Created by anatoliy on 02.03.17.
  */
-public class TimeFilterPanel extends JPanel implements SetDefaultState {
+public class TimeFilterPanel extends SubPanel {
 
     private final JLabel timedateFilterLabel = new JLabel("Фильтр данных по дате");
 
@@ -42,8 +41,6 @@ public class TimeFilterPanel extends JPanel implements SetDefaultState {
     private boolean userSetted = false;
 
     public TimeFilterPanel() {
-
-        setLayout(new MigLayout());
 
         setName("Время");
 
@@ -229,7 +226,7 @@ public class TimeFilterPanel extends JPanel implements SetDefaultState {
     }
 
     @Override
-    public void setDefaultState() {
+    public void onInvoke() {
         if (!userSetted) {
             setDefaultDateTimes();
         }
