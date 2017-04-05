@@ -37,17 +37,14 @@ dependencies {
     compile 'com.miglayout:miglayout:3.7.4'
     compile 'org.scream3r:jssc:2.8.0'
     compile 'org.jdbi:jdbi:2.78'
-    compile 'mysql:mysql-connector-java:5.1.38'
     compile 'net.sf.marineapi:marineapi:0.9.0'
-    compile 'org.postgresql:postgresql:9.4.1212.jre7'
     compile 'org.apache.commons:commons-math3:3.6.1'
-    compile 'org.apache.commons:commons-collections4:4.1'
-    compile 'org.locationtech.spatial4j:spatial4j:0.6'
     compile 'com.github.lgooddatepicker:LGoodDatePicker:8.3.0'
     compile 'org.processing:core:2.2.1'
     compile 'com.jidesoft:jide-oss:3.6.18'
-    compile 'net.postgis:postgis-jdbc-java2d:2.2.1'
-    compile 'net.postgis:postgis-jdbc-jtsparser:2.2.1'
+    compile 'de.micromata.jak:JavaAPIforKml:2.2.1'
+    compile 'de.grundid.opendatalab:geojson-jackson:1.8'
+    compile 'org.postgresql:postgresql:9.4.1212.jre7'
 
     compile fileTree(dir: 'lib', include: ['*.jar'])
 

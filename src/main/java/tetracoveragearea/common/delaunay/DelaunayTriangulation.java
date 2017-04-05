@@ -1397,8 +1397,8 @@ public class DelaunayTriangulation {
 		return ans.iterator();
 	}
 
-	public Set<Point> getVertices() {
-		return vertices;
+	public List<Point> getVertices() {
+		return new ArrayList<>(vertices);
 	}
 
 	/**

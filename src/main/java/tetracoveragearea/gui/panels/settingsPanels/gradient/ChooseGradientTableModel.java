@@ -5,10 +5,7 @@ import tetracoveragearea.gui.tools.MultilayerGradient;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +17,8 @@ public class ChooseGradientTableModel extends AbstractTableModel {
 
     public static final Logger log = Logger.getLogger(ChooseGradientTableModel.class);
 
+    private final File gradientFile = new File("src/main/resources/assets/gradientProfiles");
+
     private List<MultilayerGradient> gradientList =  new ArrayList<MultilayerGradient>();
     private List<GradientLabel> gradientLabels = new ArrayList<GradientLabel>();
     private List<String> namesList = new ArrayList<String>();
@@ -27,9 +26,12 @@ public class ChooseGradientTableModel extends AbstractTableModel {
     public ChooseGradientTableModel() {
 
         try {
-            FileInputStream fileInputStream = new FileInputStream(
-                    getClass().getClassLoader().getResource("assets/gradientProfiles").getFile()
-            );
+
+            if (!gradientFile.exists()) {
+                gradientFile.createNewFile();
+            }
+
+            FileInputStream fileInputStream = new FileInputStream(gradientFile);
 
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             setGradientList((List<MultilayerGradient>) objectInputStream.readObject());
@@ -43,6 +45,8 @@ public class ChooseGradientTableModel extends AbstractTableModel {
             log.info("Ошибка ввода-вывода при попытке загрузить файл профилей");
         } catch (ClassNotFoundException ex) {
             log.info("Не найден класс десериализуемого объекта");
+        } catch (NullPointerException ex) {
+
         }
 
     }
@@ -158,5 +162,9 @@ public class ChooseGradientTableModel extends AbstractTableModel {
 
         gradientList.remove(index);
         gradientLabels.remove(index);
+    }
+
+    public File getGradientFile() {
+        return gradientFile;
     }
 }

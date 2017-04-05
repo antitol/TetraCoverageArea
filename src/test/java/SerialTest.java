@@ -22,6 +22,7 @@ public class SerialTest {
                     "localhost", "5432", "postgis", "postgis", "postgis"
             );
         } catch (Exception e) {
+            e.printStackTrace();
             log.warning("Connection fall");
         }
     }

@@ -7,7 +7,6 @@ import de.fhpotsdam.unfolding.utils.MapPosition;
 import processing.core.PConstants;
 import processing.core.PGraphics;
 
-import java.awt.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -35,6 +34,8 @@ public class OuterShapeMarker extends SimplePolygonMarker {
         super(list);
     }
 
+
+
     public OuterShapeMarker() {
         super();
     }
@@ -44,10 +45,6 @@ public class OuterShapeMarker extends SimplePolygonMarker {
 
         pg.pushStyle();
         pg.beginShape();
-
-        Image image;
-
-
 
         pg.fill(255, 0,0, 127);
 
@@ -66,12 +63,5 @@ public class OuterShapeMarker extends SimplePolygonMarker {
         pg.endContour();
         pg.endShape(PConstants.CLOSE);
         pg.popStyle();
-    }
-
-    @Override
-    public void draw(PGraphics pg, List<MapPosition> list) {
-
-
-
     }
 }

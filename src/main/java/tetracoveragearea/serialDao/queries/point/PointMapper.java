@@ -21,6 +21,6 @@ public class PointMapper implements ResultSetMapper<Point> {
                 r.getDouble("st_y"),
                 r.getDouble("st_x"),
                 r.getDouble("st_z"),
-                r.getTimestamp("time").toLocalDateTime());
+                r.getTimestamp("point_time").toLocalDateTime());
     }
 }

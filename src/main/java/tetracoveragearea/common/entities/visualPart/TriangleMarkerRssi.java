@@ -84,7 +84,8 @@ public class TriangleMarkerRssi extends PolygonMarkerRssi {
         pg.colorMode(PConstants.RGB, 1);
 
         // Без рамки
-        pg.stroke(0,0,0, 127);
+        pg.noStroke();
+//        pg.stroke(0,0,0, 127);
         pg.beginShape();
 
         for (int i = 0; i < mapPositions.size(); i++) {

@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * Панель управления интерполяцией точек
  * Created by anatoliy on 24.03.17.
  */
 public class InterpolationPanel extends SubPanel {
@@ -42,7 +43,7 @@ public class InterpolationPanel extends SubPanel {
         resetButton = new JButton("Сбросить");
         resetButton.addActionListener(e -> {
 
-            GeometryStore.getInstance().resetFilters();
+            GeometryStore.getInstance().filter();
 
             userSetted = false;
         });

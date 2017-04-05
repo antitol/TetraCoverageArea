@@ -3,6 +3,7 @@ package tetracoveragearea.gui;
 import net.miginfocom.swing.MigLayout;
 import org.apache.log4j.Logger;
 import tetracoveragearea.gui.applet.MapApplet;
+import tetracoveragearea.gui.components.GuiComponents;
 import tetracoveragearea.gui.panels.MainContentPanel;
 import tetracoveragearea.gui.panels.MenuPanel;
 import tetracoveragearea.gui.panels.mapPanels.MapGuiPanel;
@@ -12,13 +13,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by anatoliy on 16.01.17.
  */
 public class MainFrame extends JFrame {
+
+
 
     public static final Logger log = Logger.getLogger(MainFrame.class);
 
@@ -28,8 +35,13 @@ public class MainFrame extends JFrame {
     private MenuPanel menuPanel = new MenuPanel();
     private MapGuiPanel mapGuiPanel = new MapGuiPanel();
 
+    GuiComponents guiComponents = new GuiComponents();
+
     public MainFrame() {
+
+
         super("ComTest");
+        Locale.setDefault(new Locale.Builder().setLanguage("ru").build());
 
         log.info("Старт frame'a");
 
@@ -65,9 +77,9 @@ public class MainFrame extends JFrame {
 
                 try {
 
-                    File file = new File(ClassLoader.getSystemClassLoader().getResource("assets/gradientProfiles").getFile());
-
-                    FileOutputStream fileOutputStream = new FileOutputStream(file);
+                    FileOutputStream fileOutputStream = new FileOutputStream(
+                            ChooseGradientTableModel.getInstance().getGradientFile()
+                    );
 
                     ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
                     objectOutputStream.writeObject(ChooseGradientTableModel.getInstance().getGradientList());

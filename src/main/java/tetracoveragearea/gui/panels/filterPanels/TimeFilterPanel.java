@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by anatoliy on 02.03.17.
@@ -80,9 +81,15 @@ public class TimeFilterPanel extends SubPanel {
         confirmButton = new JButton("Применить");
         confirmButton.addActionListener(e -> {
 
-            GeometryStore.getInstance().timeFilter(
-                    getBeginLocalDateTime(), getEndLocalDateTime()
+            Filter.setStartTime(
+                    Optional.of(getBeginLocalDateTime())
             );
+
+            Filter.setEndTime(
+                    Optional.of(getEndLocalDateTime())
+            );
+
+            GeometryStore.getInstance().filter();
 
             userSetted = true;
 
@@ -90,7 +97,10 @@ public class TimeFilterPanel extends SubPanel {
 
         resetButton = new JButton("Сбросить");
         resetButton.addActionListener(e -> {
-            GeometryStore.getInstance().resetFilters();
+
+            Filter.setStartTime(Optional.empty());
+            Filter.setEndTime(Optional.empty());
+            GeometryStore.getInstance().filter();
             setDefaultDateTimes();
 
             userSetted = false;

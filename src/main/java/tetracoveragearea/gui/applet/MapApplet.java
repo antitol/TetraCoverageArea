@@ -118,7 +118,6 @@ public class MapApplet extends PApplet{
      * Аналог реализации MapEventListener
      * @param mapEvent
      */
-    // TODO: разобраться, почему не проходит MapEvent при вызове точек или полигонов
     public void mapChanged(MapEvent mapEvent) {
 
         // При изменении масштаба тайлы не успевают прогрузиться за одну отрисовку, выделяется 30 кадров

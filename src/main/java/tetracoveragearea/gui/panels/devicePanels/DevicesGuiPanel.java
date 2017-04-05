@@ -1,6 +1,7 @@
 package tetracoveragearea.gui.panels.devicePanels;
 
 import tetracoveragearea.gui.panels.primitives.PrimaryPanel;
+import tetracoveragearea.gui.panels.primitives.SubPanel;
 
 import javax.swing.*;
 import java.util.HashMap;
@@ -12,7 +13,9 @@ import java.util.Map;
  */
 public class DevicesGuiPanel extends PrimaryPanel {
 
-    private Map<String, JPanel> panelMap = new HashMap<String, JPanel>();
+    private Map<String, SubPanel> panelMap = new HashMap<>();
+    private SubPanel selectedPanel;
+
 
     private SerialGuiPanel serialGuiPanel = new SerialGuiPanel();
     private JPanel contentPanel = new JPanel();
@@ -27,6 +30,7 @@ public class DevicesGuiPanel extends PrimaryPanel {
 
         // По умолчанию
         contentPanel.add(panelMap.get("RS-232"));
+        selectedPanel = panelMap.get("RS-232");
 
         deviceBox.setModel(new  DefaultComboBoxModel<String>(
                 // Складывает ключи в ComboBox
@@ -36,7 +40,10 @@ public class DevicesGuiPanel extends PrimaryPanel {
         deviceBox.addActionListener(e -> {
 
             contentPanel.removeAll();
-            contentPanel.add(panelMap.get(deviceBox.getSelectedItem()));
+            selectedPanel = panelMap.get(deviceBox.getSelectedItem());
+            contentPanel.add(selectedPanel);
+            selectedPanel.onInvoke();
+
             revalidate();
         });
 
@@ -47,11 +54,13 @@ public class DevicesGuiPanel extends PrimaryPanel {
 
     @Override
     public void onInvoke() {
-
+        try {
+            selectedPanel.onInvoke();
+        } catch (NullPointerException ex) {}
     }
 
     @Override
     public void onRevoke() {
-
+        selectedPanel.onRevoke();
     }
 }

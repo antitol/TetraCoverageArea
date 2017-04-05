@@ -16,16 +16,16 @@ import java.util.List;
 @RegisterMapper(PointMapper.class)
 public interface PointQuery {
 
-    @SqlQuery("SELECT st_x(geom), st_y(geom), st_z(geom), time FROM gpspoint;")
+    @SqlQuery("SELECT st_x(geom), st_y(geom), st_z(geom), point_time FROM gpspoint;")
     List<Point> getAll();
 
-    @SqlQuery("SELECT st_x(geom), st_y(geom), st_z(geom) FROM gpspoint WHERE time BETWEEN :from AND :to;")
+    @SqlQuery("SELECT st_x(geom), st_y(geom), st_z(geom) FROM gpspoint WHERE point_time BETWEEN :from AND :to;")
     List<Point> getByDateTimePeriod(
             @Bind("from") Timestamp from,
             @Bind("to") Timestamp to
     );
 
-    @SqlUpdate("INSERT INTO gpspoint (geom, time) " +
+    @SqlUpdate("INSERT INTO gpspoint (geom, point_time) " +
             "VALUES (ST_SetSRID(ST_MakePoint(:lon, :lat, :rssi), 4326), now())")
     @GetGeneratedKeys
     int addPoint(

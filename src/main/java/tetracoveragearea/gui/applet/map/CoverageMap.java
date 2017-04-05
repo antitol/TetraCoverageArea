@@ -2,6 +2,7 @@ package tetracoveragearea.gui.applet.map;
 
 import de.fhpotsdam.unfolding.UnfoldingMap;
 import de.fhpotsdam.unfolding.events.MapEventListener;
+import de.fhpotsdam.unfolding.events.ZoomMapEvent;
 import de.fhpotsdam.unfolding.geo.Location;
 import de.fhpotsdam.unfolding.marker.Marker;
 import de.fhpotsdam.unfolding.marker.MarkerManager;
@@ -13,13 +14,15 @@ import tetracoveragearea.common.delaunay.Point;
 import tetracoveragearea.common.delaunay.Triangle;
 import tetracoveragearea.common.entities.centralPart.GeometryObserver;
 import tetracoveragearea.common.entities.centralPart.GeometryStore;
+import tetracoveragearea.common.entities.visualPart.OuterBoundingBoxMarker;
 import tetracoveragearea.common.entities.visualPart.OuterShapeMarker;
 import tetracoveragearea.common.entities.visualPart.PointMarkerRssi;
 import tetracoveragearea.common.entities.visualPart.TriangleMarkerRssi;
 import tetracoveragearea.gui.applet.MarkerChangeEvent;
 import tetracoveragearea.serialDao.SerialTestDao;
 
-import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,14 +43,16 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
 
     private SimplePointMarker mouseClickedMarker;
     private OuterShapeMarker outerShapeMarker;
+    private OuterBoundingBoxMarker boundingBoxMarker;
 
     // Менеджер вспомогательных маркеров (маркер-указатель, маркер внешней области)
-    private MarkerManager<Marker> mapToolsManager = new MarkerManager<Marker>();
+    private EnhancedMarkerManager<Marker> mapToolsManager = new EnhancedMarkerManager<Marker>();
 
     // Менеджеры маркеров, добавление маркеров в менеджер означает добавление непосредственно на карту
-    private MarkerManager<Marker> pointsManager = new MarkerManager<Marker>();
-    private MarkerManager<Marker> delauneyTrianglesManager = new MarkerManager<Marker>();
-    private MarkerManager<Marker> voronoiPolygonsManager = new MarkerManager<Marker>();
+    private EnhancedMarkerManager<Marker> pointsManager = new EnhancedMarkerManager<Marker>();
+    private EnhancedMarkerManager<Marker> delauneyTrianglesManager = new EnhancedMarkerManager<Marker>();
+    private EnhancedMarkerManager<Marker> voronoiPolygonsManager = new EnhancedMarkerManager<Marker>();
+    private EnhancedMarkerManager<Marker> boundingBoxManager = new EnhancedMarkerManager<Marker>();
 
     public CoverageMap(PApplet pApplet, AbstractMapProvider abstractMapProvider) {
 
@@ -58,11 +63,17 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
 
         showMarkers(false, pointsManager);
         showMarkers(false, delauneyTrianglesManager);
+        showMarkers(false, boundingBoxManager);
 
         addMarkerManager(mapToolsManager);
         addMarkerManager(pointsManager);
         addMarkerManager(delauneyTrianglesManager);
         addMarkerManager(voronoiPolygonsManager);
+        addMarkerManager(boundingBoxManager);
+
+        boundingBoxMarker = new OuterBoundingBoxMarker(-85,-180,85,180);
+        boundingBoxManager.addMarker(boundingBoxMarker);
+
 
         GeometryStore.getInstance().addGeometryListener(this);
     }
@@ -74,8 +85,8 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
      */
     public void setMapProvider(AbstractMapProvider provider) {
         this.mapDisplay.setMapProvider(provider);
+        onManipulation(new ZoomMapEvent(this, "", ""));
     }
-
 
     /**
      * Добавляет/удаляет лист маркеров на карту
@@ -92,10 +103,10 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
     /**
      * Добавляет маркеры к указанному менеджеру маркеров
      * Спаунит событие обновления для карты
-     * @param markers - список маркеров
-     * @param markerManager - менеджер маркеров
+     * @param markers - маркеры
+     * @param markerManager - менеджерМаркеров
      */
-    public void addMarkers(List<? extends Marker> markers, MarkerManager<Marker> markerManager) {
+    public void addMarkers(List<? extends Marker> markers, EnhancedMarkerManager<Marker> markerManager) {
 
         markers.forEach(markerManager::addMarker);
         onManipulation(new MarkerChangeEvent(this, "addmarkers", "marker"));
@@ -115,7 +126,7 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
      * @param markers - список маркеров
      * @param markerManager - менеджер маркеров
      */
-    public void setMarkers(List<? extends Marker> markers, MarkerManager<Marker> markerManager) {
+    public void setMarkers(List<? extends Marker> markers, EnhancedMarkerManager<Marker> markerManager) {
 
             markerManager.clearMarkers();
             addMarkers(markers, markerManager);
@@ -134,7 +145,7 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
      * @param show
      * @param markerManager
      */
-    public void showMarkers(boolean show, MarkerManager<Marker> markerManager) {
+    public void showMarkers(boolean show, EnhancedMarkerManager<Marker> markerManager) {
 
         if (show) {
             markerManager.enableDrawing();
@@ -163,55 +174,19 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
         showMarkers(show, delauneyTrianglesManager);
     }
 
+    public void showBoundingBox(boolean show) {
+
+        showMarkers(show, boundingBoxManager);
+    }
+
     /**
      * Удаляет список маркеров указанного менеджера маркеров
      * @param markerManager
      */
-    public void clearMarkers(MarkerManager<Marker> markerManager) {
+    public void clearMarkers(EnhancedMarkerManager<Marker> markerManager) {
 
         markerManager.clearMarkers();
         onManipulation(new MarkerChangeEvent(this, "removemarker", "marker"));
-    }
-
-    /**
-     * Интерполирует и выводит интерполированные треугольники Делоне
-     *
-     * @param area - площадь в кв.км
-     */
-    public void delaunayInterpolation(double area) {
-
-        setMarkers(
-                getInterpolateTriangles(delauneyTrianglesManager.getMarkers()
-                    .stream()
-                    .map(t -> (TriangleMarkerRssi) t)
-                    .collect(Collectors.toList()),
-                area),
-                delauneyTrianglesManager
-        );
-    }
-
-    /**
-     * Производит интерполяцию треугольников путем их рекурсивного разбиения до требуемой площади
-     *
-     * @param delauneyTriangles - массив, подвергаемый интерполяции
-     * @return
-     */
-    public List<TriangleMarkerRssi> getInterpolateTriangles(List<TriangleMarkerRssi> delauneyTriangles, double area) {
-
-        List<TriangleMarkerRssi> interpolateTriangles = new ArrayList<TriangleMarkerRssi>();
-
-        for (TriangleMarkerRssi triangle : delauneyTriangles) {
-
-                if (SerialTestDao.getInstance().getArea(triangle) > area) {
-
-                    interpolateTriangles.addAll(getInterpolateTriangles(triangle.centropolate(), area));
-                } else {
-
-                    interpolateTriangles.add(triangle);
-                }
-        }
-
-        return interpolateTriangles;
     }
 
     /**
@@ -248,15 +223,15 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
         return delauneyTrianglesManager.getMarkers();
     }
 
-    public MarkerManager<Marker> getPointsManager() {
+    public EnhancedMarkerManager<Marker> getPointsManager() {
         return pointsManager;
     }
 
-    public MarkerManager<Marker> getDelauneyTrianglesManager() {
+    public EnhancedMarkerManager<Marker> getDelauneyTrianglesManager() {
         return delauneyTrianglesManager;
     }
 
-    public MarkerManager<Marker> getVoronoiPolygonsManager() {
+    public EnhancedMarkerManager<Marker> getVoronoiPolygonsManager() {
         return voronoiPolygonsManager;
     }
 
@@ -351,8 +326,12 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
                 .collect(Collectors.toList());
     }
 
-    public MarkerManager<Marker> getMapToolsManager() {
+    public EnhancedMarkerManager<Marker> getMapToolsManager() {
         return mapToolsManager;
+    }
+
+    public EnhancedMarkerManager<Marker> getBoundingBoxManager() {
+        return boundingBoxManager;
     }
 
     /**
@@ -422,9 +401,46 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
         clearMarkers(delauneyTrianglesManager);
     }
 
+    /**
+     * Устанавливает границы маркера фильтр-области по широте
+     * @param minLat
+     * @param maxLat
+     */
+    public void setLatitudeBounds(double minLat, double maxLat) {
+        boundingBoxMarker.setLatitudeBounds(minLat, maxLat);
+        onManipulation(new MarkerChangeEvent(this, "changemarker", "boundingBox"));
+    }
+
+    /**
+     * Устанавливает границы маркера фильтр-области по долготе
+     * @param minLon
+     * @param maxLon
+     */
+    public void setLongitudeBounds(double minLon, double maxLon) {
+        boundingBoxMarker.setLongitudeBounds(minLon, maxLon);
+        onManipulation(new MarkerChangeEvent(this, "changemarker", "boundingBox"));
+    }
+
     @Override
     public void setPoint(int index, Point point) {
         pointsManager.getMarkers().set(index, new PointMarkerRssi(point));
+    }
+
+
+    public class EnhancedMarkerManager<E extends Marker> extends MarkerManager {
+        @Override
+        public void draw() {
+
+            if (!bEnableDrawing)
+                return;
+
+            try {
+                Iterator<? extends Marker> markerIterator = markers.iterator();
+                while (markerIterator.hasNext()) {
+                    markerIterator.next().draw(map);
+                }
+            } catch (ConcurrentModificationException ex) {}
+        }
     }
 }
 

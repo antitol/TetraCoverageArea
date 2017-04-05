@@ -108,9 +108,9 @@ public class SerialGuiPanel extends SubPanel implements ATListener {
         for (JComponent component : components) {
             add(component, "w 100%, wrap");
         }
-
-        startPortMonitoring();
     }
+
+    TimerTask timerTask;
 
     /**
      * Запускает таймер проверки доступности устройства на выбранном порту
@@ -322,6 +322,11 @@ public class SerialGuiPanel extends SubPanel implements ATListener {
      */
     public void stopPortMonitoring() {
         listenTimer.cancel();
+
+        // Ожидание, пока не закончит выполнение таймер проверки состояния устройства
+        try {
+            Thread.sleep(30);
+        } catch (InterruptedException ex) {ex.printStackTrace();}
         log.info("Останов мониторинга");
     }
 
@@ -361,5 +366,15 @@ public class SerialGuiPanel extends SubPanel implements ATListener {
     public void onDeviceError() {
         breakConnection();
         showDeviceError();
+    }
+
+    @Override
+    public void onInvoke() {
+        startPortMonitoring();
+    }
+
+    @Override
+    public void onRevoke() {
+        stopPortMonitoring();
     }
 }

@@ -2,6 +2,7 @@ package tetracoveragearea.common.delaunay;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Класс точки, точка имеет 3 измерения
@@ -94,6 +95,10 @@ public class Point implements Comparable<Point>, Serializable {
 	 */
 	public void setZ(double z) {
 		this.z = z;
+	}
+
+	public void setDateTime(LocalDateTime dateTime) {
+		this.dateTime = dateTime;
 	}
 
 	double distance2(Point p) {
@@ -270,6 +275,7 @@ public class Point implements Comparable<Point>, Serializable {
 				"x=" + x +
 				", y=" + y +
 				", z=" + z +
+				", DateTime=" + dateTime.format(DateTimeFormatter.ISO_DATE_TIME) +
 				'}';
 	}
 

@@ -1,13 +1,10 @@
 import org.junit.Test;
 import tetracoveragearea.common.delaunay.DelaunayTriangulation;
 import tetracoveragearea.common.delaunay.Point;
-import tetracoveragearea.common.entities.centralPart.GeometryStore;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * Created by anatoliy on 16.03.17.
@@ -32,10 +29,6 @@ public class TriangleTest {
                 new Point(1,4,3),
                 new Point(1,5,3)
                 );
-
-        System.out.println(GeometryStore.getInstance().intersectPoints(points1, points2));
-
-        assertEquals(GeometryStore.getInstance().intersectPoints(points1, points2), Arrays.asList(new Point(1,2,3)));
     }
 
     @Test

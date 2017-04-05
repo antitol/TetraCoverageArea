@@ -1,18 +1,27 @@
 package tetracoveragearea.common.entities.centralPart;
 
-import org.apache.commons.collections4.CollectionUtils;
 import tetracoveragearea.common.delaunay.DelaunayTriangulation;
 import tetracoveragearea.common.delaunay.Point;
 import tetracoveragearea.common.delaunay.Triangle;
+import tetracoveragearea.gui.panels.filterPanels.Filter;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by anatoliy on 14.03.17.
  */
 public class GeometryStore implements GeometryObservable {
+
+    private boolean enableTimeFilter = false;
+    private boolean enableXFilter = false;
+    private boolean enableYFilter = false;
+    private boolean enableZFilter = false;
 
     private List<Point> points = new ArrayList<>();
     private List<Triangle> triangles = new ArrayList<Triangle>();
@@ -22,7 +31,7 @@ public class GeometryStore implements GeometryObservable {
     List<GeometryObserver> geometryObservers = new LinkedList<>();
 
     // Набор точек хранилища, хранит пересечение множеств точек, которые выдали фильтры
-    private List<Point> filterPoints = new ArrayList<Point>();
+    private List<Point> filterPoints = new ArrayList<Point>(points);
 
     private List<Triangle> filterTriangles = new ArrayList<>();
 
@@ -109,13 +118,76 @@ public class GeometryStore implements GeometryObservable {
         notifyOnClearTriangles();
     }
 
+    /**
+     * Сброс фильтров и выставление исходного набора объектов на карту
+     */
     public void resetFilters() {
-        filterPoints = new ArrayList<Point>();
+        filterPoints = new ArrayList<Point>(points);
         filterTriangles = new ArrayList<Triangle>();
         filterDelaunayTriangulation = null;
 
         notifyOnSetPoints(points);
         notifyOnSetTriangles(triangles);
+    }
+
+    public void filter() {
+
+        Stream<Point> filteredStream = points.parallelStream();
+
+        if (Filter.getStartTime().isPresent()) {
+            filteredStream = filteredStream.filter(
+                    point -> point.getDateTime().isAfter(Filter.getStartTime().get())
+            );
+        }
+
+        if (Filter.getEndTime().isPresent()) {
+            filteredStream = filteredStream.filter(
+                    point -> point.getDateTime().isBefore(Filter.getEndTime().get())
+            );
+        }
+
+        if (Filter.getMinLat().isPresent()) {
+            filteredStream = filteredStream.filter(
+                    point -> point.getX() >= Filter.getMinLat().getAsDouble()
+            );
+        }
+
+        if (Filter.getMaxLat().isPresent()) {
+            filteredStream = filteredStream.filter(
+                    point -> point.getX() <= Filter.getMaxLat().getAsDouble()
+            );
+        }
+
+        if (Filter.getMinLong().isPresent()) {
+            filteredStream = filteredStream.filter(
+                    point -> point.getY() >= Filter.getMinLong().getAsDouble()
+            );
+        }
+
+        if (Filter.getMaxLong().isPresent()) {
+            filteredStream = filteredStream.filter(
+                    point -> point.getY() <= Filter.getMaxLong().getAsDouble()
+            );
+        }
+
+        if (Filter.getMinRssi().isPresent()) {
+            filteredStream = filteredStream.filter(
+                    point -> point.getZ() >= Filter.getMinRssi().getAsDouble()
+            );
+        }
+
+        if (Filter.getMaxRssi().isPresent()) {
+            filteredStream = filteredStream.filter(
+                    point -> point.getZ() <= Filter.getMaxRssi().getAsDouble()
+            );
+        }
+
+        filterPoints = filteredStream.collect(Collectors.toList());
+        filterDelaunayTriangulation = new DelaunayTriangulation(filterPoints);
+
+        filterTriangles = filterDelaunayTriangulation.getTriangulation();
+        notifyOnSetPoints(filterPoints);
+        notifyOnSetTriangles(filterTriangles);
     }
 
     /**
@@ -129,39 +201,37 @@ public class GeometryStore implements GeometryObservable {
             @Override
             public void run() {
 
-                filterPoints = (filterPoints.isEmpty() ? points : filterPoints);
+                List<Point> interpolatePoints = new ArrayList<>(points.size() > filterPoints.size() ? points : filterPoints);
 
-                filterDelaunayTriangulation = new DelaunayTriangulation(filterPoints);
+                DelaunayTriangulation interpolateTriangulation = new DelaunayTriangulation(interpolatePoints);
 
-                int inserts = filterPoints.size();
+                List<Triangle> interpolateTriangles = (filterTriangles.isEmpty() ? triangles : filterTriangles);
+
+                int inserts = interpolateTriangles.size();
 
                 while (inserts > 0) {
 
                     inserts = 0;
 
-                    for (Triangle triangle : (filterTriangles.isEmpty() ? triangles : filterTriangles)) {
+                    for (Triangle triangle : interpolateTriangles) {
 
                         if (triangle.getArea() > area) {
 
                             Point insertPoint = triangle.getCentroid();
-                            filterDelaunayTriangulation.insertPoint(insertPoint);
-                            filterPoints.add(insertPoint);
+                            interpolateTriangulation.insertPoint(insertPoint);
+                            interpolatePoints.add(insertPoint);
                             inserts++;
                         }
                     }
 
-                    filterTriangles = filterDelaunayTriangulation.getTriangulation();
-                    notifyOnSetTriangles(filterTriangles);
+                    interpolateTriangles = interpolateTriangulation.getTriangulation();
 
-                    System.out.println("Количество точег: " + filterPoints.size());
-                    System.out.println("Количество треугольнеков: " + filterTriangles.size());
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException ex) {}
-
+                    System.out.println("Количество точек: " + interpolatePoints.size());
+                    System.out.println("Количество треугольников: " + interpolateTriangles.size());
                 }
 
-                System.out.println("Ну все, конец");
+                notifyOnSetPoints(interpolatePoints);
+                notifyOnSetTriangles(interpolateTriangles);
             }
         });
 
@@ -171,43 +241,36 @@ public class GeometryStore implements GeometryObservable {
 //        notifyOnSetTriangles(filterTriangles);
     }
 
-    /**
-     * Фильтрует по указанному времени набор точек хранилища
-     * @param fromDateTime - минимальное время
-     * @param toDateTime - максимальное время
-     */
-    public void timeFilter(LocalDateTime fromDateTime, LocalDateTime toDateTime) {
-
-        filterPoints = points.stream()
-                .filter(point -> point.getDateTime().isAfter(fromDateTime))
-                .filter(point -> point.getDateTime().isBefore(toDateTime))
-                .collect(Collectors.toList());
-
-        filterDelaunayTriangulation = new DelaunayTriangulation(filterPoints);
-
-        filterTriangles = filterDelaunayTriangulation.getTriangulation();
-        notifyOnSetPoints(filterPoints);
-        notifyOnSetTriangles(filterTriangles);
-    }
-
-    /**
-     * Пересечение множеств точек
-     * @param points1
-     * @param points2
-     * @return
-     */
-    public List<Point> intersectPoints(List<Point> points1, List<Point> points2) {
-        return (List<Point>) CollectionUtils.intersection(points1, points2);
-    }
-
     public LocalDateTime getDateTimeOfEarliestPoint() {
-
-        return (points.isEmpty() ? LocalDateTime.now() : points.stream().map(point -> point.getDateTime()).min(LocalDateTime::compareTo).get());
+        return (points.isEmpty() ? LocalDateTime.now() : points.parallelStream().map(point -> point.getDateTime()).min(LocalDateTime::compareTo).get());
     }
 
     public LocalDateTime getDateTimeOfLatestPoint() {
+        return (points.isEmpty() ? LocalDateTime.now() :  points.parallelStream().map(point -> point.getDateTime()).max(LocalDateTime::compareTo).get());
+    }
 
-        return (points.isEmpty() ? LocalDateTime.now() :  points.stream().map(point -> point.getDateTime()).max(LocalDateTime::compareTo).get());
+    public double getMinLatitude() {
+        return points.isEmpty() ? 0 : points.parallelStream().map(point -> point.getX()).min(Double::compareTo).get();
+    }
+
+    public double getMaxLatitude() {
+        return points.isEmpty() ? 0 : points.parallelStream().map(point -> point.getX()).max(Double::compareTo).get();
+    }
+
+    public double getMinLongitude() {
+        return points.isEmpty() ? 0 : points.parallelStream().map(point -> point.getY()).min(Double::compareTo).get();
+    }
+
+    public double getMaxLongitude() {
+        return points.isEmpty() ? 0 : points.parallelStream().map(point -> point.getY()).max(Double::compareTo).get();
+    }
+
+    public double getMinRssi() {
+        return points.isEmpty() ? 0 : points.parallelStream().map(point -> point.getZ()).min(Double::compareTo).get();
+    }
+
+    public double getMaxRssi() {
+        return points.isEmpty() ? 0 : points.parallelStream().map(point -> point.getZ()).max(Double::compareTo).get();
     }
 
     public void addGeometryListener(GeometryObserver o) {

@@ -9,6 +9,7 @@ import tetracoveragearea.gui.panels.filterPanels.TimeFilterPanel;
 import tetracoveragearea.gui.panels.primitives.PrimaryPanel;
 import tetracoveragearea.gui.panels.primitives.TabbedPanel;
 import tetracoveragearea.gui.panels.settingsPanels.gradient.GradientPanel;
+import tetracoveragearea.gui.panels.settingsPanels.tileProvider.ChangeTileProviderPanel;
 import tetracoveragearea.gui.panels.settingsPanels.timers.TimersPanel;
 import tetracoveragearea.gui.panels.testPanels.TestDataInputPanel;
 
@@ -33,7 +34,7 @@ public class MainContentPanel extends JPanel {
     private DevicesGuiPanel devicesGuiPanel = new DevicesGuiPanel();
     private DatabasePanel databasePanel = new DatabasePanel();
     private TabbedPanel filterPanel = new TabbedPanel(Arrays.asList(new TimeFilterPanel(), new InterpolationPanel(), new LocationFilterPanel()));
-    private TabbedPanel settingsPanel = new TabbedPanel(Arrays.asList(new GradientPanel(), new TimersPanel()));
+    private TabbedPanel settingsPanel = new TabbedPanel(Arrays.asList(new GradientPanel(), new TimersPanel(), new ChangeTileProviderPanel()));
     private TestDataInputPanel testDataInputPanel = new TestDataInputPanel();
 
     public MainContentPanel() {

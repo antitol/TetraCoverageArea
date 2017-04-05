@@ -15,12 +15,11 @@ import org.apache.log4j.Logger;
 import tetracoveragearea.common.delaunay.Point;
 import tetracoveragearea.common.entities.centralPart.GeometryStore;
 import tetracoveragearea.common.entities.serialPart.GpsPoint;
+import tetracoveragearea.gui.components.GuiComponents;
 import tetracoveragearea.gui.panels.settingsPanels.timers.TimersPanel;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -63,23 +62,12 @@ public class ATPortReader extends SentenceAdapter implements SerialPortEventList
 
     private GpsPoint currentGpsPoint = new GpsPoint();
 
-    DecimalFormat latFormatter = new DecimalFormat("##.######");
-    DecimalFormat lonFormatter = new DecimalFormat("###.######");
-
-    DecimalFormatSymbols formatSymbols = latFormatter.getDecimalFormatSymbols();
-
-
     public ATPortReader(SerialPort serialPort) {
 
         this.serialPort = serialPort;
 
         sentenceReader = new SentenceReader(nmeaStream);
         sentenceReader.addSentenceListener(this);
-
-        formatSymbols.setDecimalSeparator('.');
-
-        latFormatter.setDecimalFormatSymbols(formatSymbols);
-        lonFormatter.setDecimalFormatSymbols(formatSymbols);
 
         gpsFailureCount = 0;
         rssiFailureCount = 0;
@@ -172,7 +160,7 @@ public class ATPortReader extends SentenceAdapter implements SerialPortEventList
 
         try {
 
-            lat = OptionalDouble.of(Double.parseDouble(latFormatter.format(position.getLatitude())));
+            lat = OptionalDouble.of(Double.parseDouble(GuiComponents.getLatFormatter().format(position.getLatitude())));
             lat_hem = position.getLatitudeHemisphere().toChar() == 'N' ? Optional.of(NORTH) : Optional.of(SOUTH);
 
         } catch (DataNotAvailableException ex) {
@@ -183,7 +171,7 @@ public class ATPortReader extends SentenceAdapter implements SerialPortEventList
 
         try {
 
-            lon = OptionalDouble.of(Double.parseDouble(latFormatter.format(position.getLongitude())));
+            lon = OptionalDouble.of(Double.parseDouble(GuiComponents.getLonFormatter().format(position.getLongitude())));
             lon_hem = position.getLongitudeHemisphere().toChar() == 'E' ? Optional.of(EAST) : Optional.of(WEST);
         } catch (DataNotAvailableException ex) {
 

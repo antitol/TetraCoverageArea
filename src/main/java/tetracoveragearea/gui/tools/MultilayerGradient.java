@@ -55,7 +55,7 @@ public class MultilayerGradient implements Serializable {
     public Color getColor(double value) {
 
         if (value >= maxPart) return layers.get(layers.size() - 1).color;
-        if (value <= minPart) return layers.get(0).color;
+        if (value <= minPart || Double.isNaN(value)) return layers.get(0).color;
 
         int index = getNearestLayer(value);
 
