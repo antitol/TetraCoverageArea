@@ -46,7 +46,8 @@ public class OuterShapeMarker extends SimplePolygonMarker {
         pg.pushStyle();
         pg.beginShape();
 
-        pg.fill(255, 0,0, 127);
+        pg.fill(127, 127,127, 100);
+        pg.stroke(20, 20, 20, 127);
 
         // Внешние границы карты
         for (Location loc : getMapBounds()) {

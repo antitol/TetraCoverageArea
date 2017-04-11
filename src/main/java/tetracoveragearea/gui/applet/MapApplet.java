@@ -4,27 +4,26 @@ import de.fhpotsdam.unfolding.events.MapEvent;
 import de.fhpotsdam.unfolding.events.ZoomMapEvent;
 import de.fhpotsdam.unfolding.geo.Location;
 import de.fhpotsdam.unfolding.providers.OpenStreetMap;
-import de.fhpotsdam.unfolding.utils.DebugDisplay;
 import de.fhpotsdam.unfolding.utils.MapUtils;
 import org.apache.log4j.Logger;
 import processing.core.PApplet;
-import tetracoveragearea.common.delaunay.Point;
-import tetracoveragearea.common.entities.centralPart.GeometryStore;
 import tetracoveragearea.gui.applet.map.CoverageMap;
+import tetracoveragearea.gui.applet.map.InformationDisplay;
 import tetracoveragearea.gui.panels.MainContentPanel;
 
-import java.time.LocalDateTime;
+//import tetracoveragearea.common.delaunay.Point;
+//import tetracoveragearea.common.entities.centralPart.GeometryStore;
 
 /**
  *
  * Главный класс processing апплета
  */
-public class MapApplet extends PApplet{
+public class MapApplet extends PApplet {
 
     public static final Logger log = Logger.getLogger(MapApplet.class);
 
     private CoverageMap map;
-    private DebugDisplay debugDisplay;
+    private InformationDisplay informationDisplay;
 
     private Location mouseClickedLocation;
 
@@ -43,6 +42,7 @@ public class MapApplet extends PApplet{
         size(800, 600, P2D);
 
         map = new CoverageMap(this, new OpenStreetMap.OpenStreetMapProvider());
+        informationDisplay = new InformationDisplay(this, map);
 
         log.info("Создана карта");
         log.info(getSize().getHeight() + "x" + getSize().getWidth());
@@ -58,6 +58,7 @@ public class MapApplet extends PApplet{
         background(color(255,255,255));
 
         map.draw();
+        informationDisplay.draw();
 
 //        log.info(frameCount);
 
@@ -92,25 +93,14 @@ public class MapApplet extends PApplet{
 
         // Если выбран режим ручного ввода точек, то они добавляются в хранилище
         if (manualPointInput) {
-            GeometryStore.getInstance().addPoint(
-                    new Point(
-                            mouseClickedLocation.getLat(),
-                            mouseClickedLocation.getLon(),
-                            MainContentPanel.getInstance().getTestDataInputPanel().getRssiValue(),
-                            LocalDateTime.now()
-                    )
+            MainContentPanel.getInstance().getTestDataInputPanel().addManualPoint(
+                    mouseClickedLocation
             );
-
-            log.info("Добавлена точка: " + mouseClickedLocation.getLat() + ", " + mouseClickedLocation.getLon() + " " + MainContentPanel.getInstance().getTestDataInputPanel().getRssiValue());
         }
 
         map.setMouseClickedMarkerAt(
                 mouseClickedLocation
         );
-
-        log.info("Количество точек на карте " + map.getPoints().size());
-        log.info("Количество полигонов на карте " + map.getDelauneyTriangles().size());
-
     }
 
     /**
@@ -136,7 +126,7 @@ public class MapApplet extends PApplet{
     }
 
     public static void main(String[] args) {
-        PApplet.main(new String[] {MapApplet.class.getName()});
+        PApplet.main(MapApplet.class.getName());
     }
 
     public Location getMouseClickedLocation() {

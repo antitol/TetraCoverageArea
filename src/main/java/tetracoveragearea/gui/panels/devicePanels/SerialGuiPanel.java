@@ -305,15 +305,12 @@ public class SerialGuiPanel extends SubPanel implements ATListener {
         try {
             // Прерываем таймеры, убираем слушателя данных, разрываем соединение
             stopTimers();
-            serialPort.removeEventListener();
             portReader.stopResponseTimeoutTimer();
             closePortConnection();
-
             setNotAvailableCaptureState();
 
-        } catch (SerialPortException e1) {
-            e1.printStackTrace();
-        }
+            serialPort.removeEventListener();
+        } catch (SerialPortException e1) {}
         log.info("Останов сбора данных");
     }
 

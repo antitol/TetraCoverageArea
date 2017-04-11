@@ -4,13 +4,14 @@ import com.jidesoft.swing.RangeSlider;
 import de.fhpotsdam.unfolding.geo.Location;
 import net.miginfocom.swing.MigLayout;
 import org.apache.commons.math3.distribution.NormalDistribution;
+import tetracoveragearea.common.delaunay.Point;
 import tetracoveragearea.common.entities.centralPart.GeometryStore;
 import tetracoveragearea.gui.applet.MapApplet;
 import tetracoveragearea.gui.panels.primitives.PrimaryPanel;
-import tetracoveragearea.serialDao.SerialTestDao;
 import tetracoveragearea.testValues.RandomPointGenerator;
 
 import javax.swing.*;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 /**
@@ -28,6 +29,7 @@ public class TestDataInputPanel extends PrimaryPanel {
     private JPanel manualInputPanel;
     private JPanel distributionPanel;
 
+    private JLabel rssiValueLabel = new JLabel("Значение rssi, дБм");
     private JSlider rssiValueSlider;
 
     private JLabel amountPointLabel;
@@ -38,9 +40,8 @@ public class TestDataInputPanel extends PrimaryPanel {
     private RangeSlider rssiRangeSlider;
     private JButton fillRandomButton;
     private JButton addPointsButton;
-    private JButton clearTableButton;
 
-    private double rssiValue = 20;
+    private double rssiValue = 50;
     private boolean manualInput = false;
 
     public TestDataInputPanel() {
@@ -82,7 +83,7 @@ public class TestDataInputPanel extends PrimaryPanel {
         firstParameterLabel = new JLabel("Девиация, град");
         firstParameterField = new JTextField("0");
 
-        rssiValueSlider = new JSlider(20, 120, 50);
+        rssiValueSlider = new JSlider(20, 120, (int) rssiValue);
         rssiValueSlider.setPaintLabels(true);
         rssiValueSlider.setMajorTickSpacing(20);
 
@@ -120,28 +121,22 @@ public class TestDataInputPanel extends PrimaryPanel {
             }
         });
 
-        fillRandomButton = new JButton("Заполнить случайными данными");
+        fillRandomButton = new JButton("Случайныe данныe");
         fillRandomButton.addActionListener(e -> {
 
                     amountPointsField.setText(String.valueOf((int) (1000*Math.random())));
                 }
         );
 
-        clearTableButton = new JButton("Очистить таблицы");
-        clearTableButton.addActionListener(e -> {
-
-            SerialTestDao.getInstance().clearTables();
-        });
-
         Arrays.asList(
                 amountPointLabel, amountPointsField,  firstParameterLabel, firstParameterField, rssiRangeSlider,
-                fillRandomButton, addPointsButton, clearTableButton)
+                fillRandomButton, addPointsButton)
                 .forEach(component -> distributionPanel.add(component, "w 100%, wrap")
         );
 
 
         Arrays.asList(
-                rssiValueSlider
+                rssiValueLabel, rssiValueSlider
         )
                 .forEach(component -> manualInputPanel.add(component, "w 100%, wrap"));
 
@@ -152,6 +147,17 @@ public class TestDataInputPanel extends PrimaryPanel {
 
     public double getRssiValue() {
         return rssiValue;
+    }
+
+    public void addManualPoint(Location location) {
+        GeometryStore.getInstance().addPoint(
+                new Point(
+                        location.getLat(),
+                        location.getLon(),
+                        rssiValue,
+                        LocalDateTime.now()
+                )
+        );
     }
 
     @Override

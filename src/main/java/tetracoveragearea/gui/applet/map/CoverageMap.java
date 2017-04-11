@@ -54,10 +54,11 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
     private EnhancedMarkerManager<Marker> voronoiPolygonsManager = new EnhancedMarkerManager<Marker>();
     private EnhancedMarkerManager<Marker> boundingBoxManager = new EnhancedMarkerManager<Marker>();
 
-    public CoverageMap(PApplet pApplet, AbstractMapProvider abstractMapProvider) {
+    public CoverageMap(PApplet pApplet, AbstractMapProvider provider) {
 
-        super(pApplet, abstractMapProvider);
+        super(pApplet, provider);
 
+//        mapDisplay = new OpenGLMapDisplay(p, provider, PConstants.P2D, 0, 0, p.width, p.height);
         zoom(535f);
         panTo(new Location(55.0, 73.6));
 
@@ -74,6 +75,7 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
         boundingBoxMarker = new OuterBoundingBoxMarker(-85,-180,85,180);
         boundingBoxManager.addMarker(boundingBoxMarker);
 
+        setMouseClickedMarkerAt(getCenter());
 
         GeometryStore.getInstance().addGeometryListener(this);
     }
@@ -359,8 +361,8 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
      * @param point
      */
     @Override
-    public void addPoint(Point point) {
-        pointsManager.addMarker(new PointMarkerRssi(point));
+    public boolean addPoint(Point point) {
+        return pointsManager.addMarker(new PointMarkerRssi(point));
     }
 
     /**
@@ -440,6 +442,26 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
                     markerIterator.next().draw(map);
                 }
             } catch (ConcurrentModificationException ex) {}
+        }
+
+        @Override
+        public E getFirstHitMarker(float v, float v1) {
+
+            E foundMarker = null;
+            // NB: Markers should be ordered, e.g. by size ascending, i.e. big, medium, small
+
+            Iterator iterator = markers.iterator();
+            while (iterator.hasNext()) {
+
+                E nextMarker = (E) iterator.next();
+
+                if (nextMarker.isInside(map, v, v1)) {
+                    foundMarker = nextMarker;
+                    break;
+                }
+            }
+
+            return foundMarker;
         }
     }
 }

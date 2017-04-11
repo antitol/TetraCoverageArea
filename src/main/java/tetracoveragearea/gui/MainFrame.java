@@ -40,7 +40,7 @@ public class MainFrame extends JFrame {
     public MainFrame() {
 
 
-        super("ComTest");
+        super("TetraCoverageArea");
         Locale.setDefault(new Locale.Builder().setLanguage("ru").build());
 
         log.info("Старт frame'a");

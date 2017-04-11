@@ -91,7 +91,7 @@ public class MenuPanel extends JPanel {
 
             databaseButton.setIcon(new ImageIcon(getClass().getClassLoader().
                     getResource("assets/db-settings.png")));
-            databaseButton.setToolTipText("Устройства");
+            databaseButton.setToolTipText("База данных");
 
             loadButton.setIcon(new ImageIcon(getClass().getClassLoader().
                     getResource("assets/download.png")));
@@ -99,7 +99,7 @@ public class MenuPanel extends JPanel {
 
             saveButton.setIcon(new ImageIcon(getClass().getClassLoader().
                     getResource("assets/upload.png")));
-            saveButton.setToolTipText("Сохранить во внешнем источнике");
+            saveButton.setToolTipText("Сохранить во внешний источник");
 
             settingsButton.setIcon(new ImageIcon(getClass().getClassLoader().
                     getResource("assets/settings.png")));

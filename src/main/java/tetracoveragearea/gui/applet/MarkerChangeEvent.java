@@ -17,6 +17,5 @@ public class MarkerChangeEvent extends MapEvent {
 
     @Override
     public void executeManipulationFor(UnfoldingMap unfoldingMap) {
-        System.out.println("MarkerEvent");
     }
 }

@@ -14,6 +14,7 @@ import tetracoveragearea.common.entities.centralPart.GeometryAdapter;
 import tetracoveragearea.common.entities.visualPart.OuterShapeMarker;
 import tetracoveragearea.common.entities.visualPart.PolygonMarkerRssi;
 import tetracoveragearea.common.entities.visualPart.TriangleMarkerRssi;
+import tetracoveragearea.gui.panels.MainContentPanel;
 import tetracoveragearea.serialDao.queries.PolygonMapper;
 import tetracoveragearea.serialDao.queries.PolygonQuery;
 import tetracoveragearea.serialDao.queries.TriangleQuery;
@@ -250,8 +251,12 @@ public class SerialTestDao extends GeometryAdapter {
 
     @Override
     public void setPoints(List<Point> points) {
-        pointQuery.clear();
-        addPoints(points);
+        try {
+            pointQuery.clear();
+            addPoints(points);
+        } catch (Exception ex) {
+            onDatabaseError();
+        }
     }
 
     @Override
@@ -264,30 +269,48 @@ public class SerialTestDao extends GeometryAdapter {
      * @param point
      */
     @Override
-    public void addPoint(Point point) {
+    public boolean addPoint(Point point) {
 
         // Добавляем точку, если были получены координаты и rssi
+        try {
+            pointQuery.addPoint(
+                    point.getX(),
+                    point.getY(),
+                    point.getZ(),
+                    getTimestamp(point.getDateTime())
+            );
 
-        pointQuery.addPoint(
-                point.getX(),
-                point.getY(),
-                point.getZ(),
-                getTimestamp(point.getDateTime())
-        );
+            log.info(
+                    "Добавлена точка в БД: " + point.toString()
+            );
 
-        log.info(
-                "Добавлена точка в БД: " + point.toString()
-        );
+            return true;
+        } catch (Exception ex) {
+            onDatabaseError();
+            return false;
+        }
     }
 
     @Override
     public void addPoints(List<Point> points) {
 
-        points.forEach(this::addPoint);
+        for (Point point : points) {
+            if (!addPoint(point)) {
+                break;
+            }
+        }
     }
 
     @Override
     public void clearPoints() {
-        pointQuery.clear();
+        try {
+            pointQuery.clear();
+        } catch (Exception ex) {
+            onDatabaseError();
+        }
+    }
+
+    public void onDatabaseError() {
+        MainContentPanel.getInstance().getDatabasePanel().onDatabaseError();
     }
 }

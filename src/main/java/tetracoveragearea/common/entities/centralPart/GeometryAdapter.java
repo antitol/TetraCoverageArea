@@ -20,7 +20,7 @@ public abstract class GeometryAdapter implements GeometryObserver {
     public void setTriangles(List<Triangle> triangles) {}
 
     @Override
-    public void addPoint(Point point) {}
+    public boolean addPoint(Point point) {return true;}
 
     @Override
     public void addPoints(List<Point> points) {}

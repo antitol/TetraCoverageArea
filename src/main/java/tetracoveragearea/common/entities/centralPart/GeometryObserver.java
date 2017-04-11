@@ -14,7 +14,7 @@ public interface GeometryObserver {
     void setPoints(List<Point> points);
     void setPoint(int index, Point point);
     void setTriangles(List<Triangle> triangles);
-    void addPoint(Point point);
+    boolean addPoint(Point point);
     void addPoints(List<Point> points);
     void addTriangles(List<Triangle> triangles);
     void clearPoints();

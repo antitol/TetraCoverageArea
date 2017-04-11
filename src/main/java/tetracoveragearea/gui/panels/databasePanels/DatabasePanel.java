@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class DatabasePanel extends PrimaryPanel {
 
-    private final String DB_ERROR = "Не удалось подключиться к базе данных";
+    private final String DB_ERROR = "Ошибка соединения с базой данных";
 
     private JLabel dbHostLabel = new JLabel("Хост");
     private JLabel dbPortLabel = new JLabel("Порт");
@@ -46,14 +46,17 @@ public class DatabasePanel extends PrimaryPanel {
                     loadData.setEnabled(true);
                     syncronizeWithDB.setEnabled(true);
                 } else {
-                    JOptionPane.showMessageDialog(this, DB_ERROR, "Ошибка", JOptionPane.ERROR_MESSAGE);
-                    connectionButton.setSelected(false);
+                    onDatabaseError();
                 }
 
             } else {
                 SerialTestDao.getInstance().closeConnection();
                 connectionButton.setText("Подключение");
                 loadData.setEnabled(false);
+
+                if (syncronizeWithDB.isSelected()) {
+                    syncronizeWithDB.doClick();
+                }
                 syncronizeWithDB.setEnabled(false);
             }
         });
@@ -102,6 +105,19 @@ public class DatabasePanel extends PrimaryPanel {
         } catch (Exception ex) {
 
             return false;
+        }
+    }
+
+    public void onDatabaseError() {
+
+        JOptionPane.showMessageDialog(this, DB_ERROR, "Ошибка", JOptionPane.ERROR_MESSAGE);
+
+        if (syncronizeWithDB.isSelected()) {
+            syncronizeWithDB.doClick();
+        }
+
+        if (connectionButton.isSelected()) {
+            connectionButton.doClick();
         }
     }
 
