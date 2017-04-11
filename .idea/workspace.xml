@@ -2,53 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec8cf0d4-4d4d-4cca-ba58-667df663fe24" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/gluegen-rt-2.2.1-natives-linux-amd64.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/gluegen-rt-2.2.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jogl-all-2.2.1-natives-linux-amd64.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jogl-all-2.2.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_media_jai_core_1_1_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/map/InformationDisplay.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_jogl_jogl_2_3_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/scripts/serialtest" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/scripts/serialtest.bat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gluegen-rt-natives-linux-amd64.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gluegen-rt-natives-linux-armv6hf.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gluegen-rt-natives-linux-i586.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gluegen-rt-natives-macosx-universal.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gluegen-rt-natives-windows-amd64.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gluegen-rt-natives-windows-i586.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gluegen-rt.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/jai_core-1.1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/jogl-all-natives-linux-amd64.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/jogl-all-natives-linux-armv6hf.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/jogl-all-natives-linux-i586.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/jogl-all-natives-macosx-universal.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/jogl-all-natives-windows-amd64.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/jogl-all-natives-windows-i586.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/jogl-all.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/json4processing.jar" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_gluegen_gluegen_rt_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_gluegen_gluegen_rt_natives_android_armv6_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_gluegen_gluegen_rt_natives_linux_amd64_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_gluegen_gluegen_rt_natives_linux_armv6_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_gluegen_gluegen_rt_natives_linux_armv6hf_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_gluegen_gluegen_rt_natives_linux_i586_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_gluegen_gluegen_rt_natives_macosx_universal_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_gluegen_gluegen_rt_natives_solaris_amd64_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_gluegen_gluegen_rt_natives_solaris_i586_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_gluegen_gluegen_rt_natives_windows_amd64_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_gluegen_gluegen_rt_natives_windows_i586_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_jogl_jogl_all_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_jogl_jogl_all_natives_android_armv6_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_jogl_jogl_all_natives_linux_amd64_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_jogl_jogl_all_natives_linux_armv6_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_jogl_jogl_all_natives_linux_armv6hf_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_jogl_jogl_all_natives_linux_i586_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_jogl_jogl_all_natives_macosx_universal_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_jogl_jogl_all_natives_solaris_amd64_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_jogl_jogl_all_natives_solaris_i586_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_jogl_jogl_all_natives_windows_amd64_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jogamp_jogl_jogl_all_natives_windows_i586_2_2_4.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gluegen-rt-2.2.1-natives-linux-amd64.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gluegen-rt-2.2.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/jogl-all-2.2.1-natives-linux-amd64.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/jogl-all-2.2.1.jar" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/3.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_processing_core_2_2_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_processing_core_2_2_1.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/tetracoveragearea_main.iml" afterPath="$PROJECT_DIR$/.idea/modules/tetracoveragearea_main.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/tetracoveragearea_test.iml" afterPath="$PROJECT_DIR$/.idea/modules/tetracoveragearea_test.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryAdapter.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryObserver.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryObserver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/visualPart/OuterShapeMarker.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/visualPart/OuterShapeMarker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/MainFrame.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/MainFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/MapApplet.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/MapApplet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/MarkerChangeEvent.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/MarkerChangeEvent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/map/CoverageMap.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/map/CoverageMap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/MenuPanel.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/MenuPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/databasePanels/DatabasePanel.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/databasePanels/DatabasePanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/devicePanels/SerialGuiPanel.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/devicePanels/SerialGuiPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/testPanels/TestDataInputPanel.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/testPanels/TestDataInputPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/serialDao/SerialTestDao.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/serialDao/SerialTestDao.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -235,8 +222,8 @@
       <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-275">
-              <caret line="17" column="9" lean-forward="true" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+            <state relative-caret-position="-107">
+              <caret line="55" column="48" lean-forward="false" selection-start-line="55" selection-start-column="48" selection-end-line="55" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -339,9 +326,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>floor</find>
-      <find>array</find>
-      <find>MarkerManager</find>
       <find>1 /</find>
       <find>filterPoints</find>
       <find>time</find>
@@ -369,10 +353,11 @@
       <find>isGL</find>
       <find>renderer</find>
       <find>jogl</find>
+      <find>2.3.1</find>
+      <find>2.2.4</find>
+      <find>2.3.0</find>
     </findStrings>
     <replaceStrings>
-      <replace>55</replace>
-      <replace>l_delauney_shape</replace>
       <replace>gpspoint</replace>
       <replace>&quot;</replace>
       <replace>gpspoint_buffer</replace>
@@ -401,6 +386,8 @@
       <replace>OptionalDouble.empty();</replace>
       <replace>EnhancedMarkerManager</replace>
       <replace>interpolatePoints</replace>
+      <replace>2.3.0</replace>
+      <replace>2.2.4</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -618,7 +605,7 @@
     <option name="modificationStamps">
       <map>
         <entry key="$USER_HOME$/aquanaut" value="11836393521952" />
-        <entry key="$PROJECT_DIR$" value="2981464857648" />
+        <entry key="$PROJECT_DIR$" value="2981472892065" />
         <entry key="$USER_HOME$/untitled3" value="1484378826226" />
       </map>
     </option>
@@ -939,20 +926,20 @@
     <property name="SearchEverywhereHistoryKey" value="Test&#9;PSI&#9;JAVA://parser.GeojsonTest&#10;Info&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/applet/map/InformationDisplay.java&#10;MapAp&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/applet/MapApplet.java&#10;MapA&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/applet/MapApplet.java&#10;Main&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/Main.java&#10;PGra&#9;FILE&#9;jar:///home/anatoliy/.ideaLibSources/core-2.2.1-sources.jar!/processing/opengl/PGraphicsOpenGL.java&#10;Informa&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/applet/map/InformationDisplay.java&#10;Infor&#9;PSI&#9;JAVA://tetracoveragearea.gui.applet.map.InformationDisplay&#10;Coverage&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/applet/map/CoverageMap.java&#10;MainFr&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/MainFrame.java&#10;C&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/applet/map/CoverageMap.java&#10;PAp&#9;FILE&#9;jar:///home/anatoliy/.gradle/caches/modules-2/files-2.1/org.processing/core/3.2.3/8f7ce4dd9d89f29a6a6c6b60410263bf28c6a5ca/core-3.2.3-sources.jar!/processing/core/PApplet.java&#10;TileLo&#9;PSI&#9;JAVA://de.fhpotsdam.unfolding.tiles.TileLoader&#10;Java2D&#9;PSI&#9;JAVA://de.fhpotsdam.unfolding.mapdisplay.Java2DMapDisplay&#10;Java2DMa&#9;PSI&#9;JAVA://de.fhpotsdam.unfolding.mapdisplay.Java2DMapDisplay&#10;Covera&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/applet/map/CoverageMap.java&#10;JOGL&#9;FILE&#9;jar:///home/anatoliy/.ideaLibSources/core-2.2.1-sources.jar!/processing/opengl/PJOGL.java&#10;PsurfaceN&#9;FILE&#9;jar:///home/anatoliy/.gradle/caches/modules-2/files-2.1/org.processing/core/3.2.3/8f7ce4dd9d89f29a6a6c6b60410263bf28c6a5ca/core-3.2.3-sources.jar!/processing/core/PSurfaceNone.java&#10;Pa&#9;FILE&#9;jar:///home/anatoliy/.ideaLibSources/core-2.2.1-sources.jar!/processing/core/PApplet.java&#10;GLEx&#9;PSI&#9;JAVA://com.jogamp.opengl.GLException&#10;TestDa&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/testPanels/TestDataInputPanel.java&#10;ЬутгЗ&#9;PSI&#9;JAVA://tetracoveragearea.gui.panels.MenuPanel&#10;Ьфшт&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/MainContentPanel.java&#10;Ge&#9;PSI&#9;JAVA://tetracoveragearea.common.entities.centralPart.GeometryObservable&#10;Geom&#9;PSI&#9;JAVA://tetracoveragearea.common.entities.centralPart.GeometryObserver&#10;Ser&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/serialDao/SerialTestDao.java&#10;Databa&#9;PSI&#9;JAVA://tetracoveragearea.gui.panels.databasePanels.DatabasePanel&#10;In&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/applet/map/InformationDisplay.java&#10;Cove&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/applet/map/CoverageMap.java&#10;MainC&#9;PSI&#9;JAVA://tetracoveragearea.gui.panels.MainContentPanel&#10;Geo&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/parserTools/GeojsonParser.java&#10;Mul&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/tools/MultilayerGradient.java&#10;MenuP&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/MenuPanel.java&#10;SerialTe&#9;PSI&#9;JAVA://SerialTest&#10;Js&#9;FILE&#9;jar:///home/anatoliy/.gradle/caches/modules-2/files-2.1/org.locationtech.spatial4j/spatial4j/0.6/b24a8c55cd6244481bbd8c014bc95886d1f053a9/spatial4j-0.6-sources.jar!/org/locationtech/spatial4j/io/GeoJSONWriter.java&#10;MainF&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/MainFrame.java&#10;Device&#9;PSI&#9;JAVA://tetracoveragearea.gui.panels.devicePanels.DevicesGuiPanel&#10;Serial&#9;PSI&#9;JAVA://tetracoveragearea.gui.panels.devicePanels.SerialGuiPanel&#10;MainFra&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/MainFrame.java&#10;GeoJS&#9;PSI&#9;JAVA://org.locationtech.spatial4j.io.GeoJSONWriter&#10;GuiC&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/components/GuiComponents.java&#10;Locat&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/filterPanels/LocationFilterPanel.java&#10;Пущь&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java&#10;Inter&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/filterPanels/InterpolationPanel.java&#10;Tri&#9;PSI&#9;JAVA://tetracoveragearea.common.entities.visualPart.TriangleMarkerRssi&#10;Loca&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/filterPanels/LocationFilterPanel.java&#10;Consum&#9;PSI&#9;JAVA://java.util.function.Consumer&#10;Gui&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/components/GuiComponents.java&#10;Time&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/filterPanels/TimeFilterPanel.java&#10;Geometry&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib" />
+      <recent name="$PROJECT_DIR$/src/main/java/common" />
+      <recent name="$PROJECT_DIR$/src/main" />
       <recent name="$PROJECT_DIR$/src/main/java" />
-      <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="tetracoveragearea.gui.panels.settingsPanels" />
       <recent name="common.delauney" />
       <recent name="" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/lib" />
-      <recent name="$PROJECT_DIR$/src/main/java/common" />
-      <recent name="$PROJECT_DIR$/src/main" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -976,24 +963,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="tetracoveragearea [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="clean" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <method />
-    </configuration>
     <configuration default="false" name="tetracoveragearea [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -1006,6 +975,24 @@
         <option name="taskNames">
           <list>
             <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="false" name="tetracoveragearea [buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="buildDependents" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -1030,7 +1017,7 @@
       </ExternalSystemSettings>
       <method />
     </configuration>
-    <configuration default="false" name="tetracoveragearea [buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration default="false" name="tetracoveragearea [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -1041,7 +1028,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="buildDependents" />
+            <option value="jar" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -1442,23 +1429,23 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-      <item index="1" class="java.lang.String" itemvalue="Gradle.tetracoveragearea [clean]" />
-      <item index="2" class="java.lang.String" itemvalue="Gradle.tetracoveragearea [build]" />
+      <item index="1" class="java.lang.String" itemvalue="Gradle.tetracoveragearea [build]" />
+      <item index="2" class="java.lang.String" itemvalue="Gradle.tetracoveragearea [buildDependents]" />
       <item index="3" class="java.lang.String" itemvalue="Gradle.tetracoveragearea [buildNeeded]" />
-      <item index="4" class="java.lang.String" itemvalue="Gradle.tetracoveragearea [buildDependents]" />
+      <item index="4" class="java.lang.String" itemvalue="Gradle.tetracoveragearea [jar]" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-        <item index="1" class="java.lang.String" itemvalue="Gradle.tetracoveragearea [buildDependents]" />
-        <item index="2" class="java.lang.String" itemvalue="Gradle.tetracoveragearea [buildNeeded]" />
-        <item index="3" class="java.lang.String" itemvalue="Gradle.tetracoveragearea [build]" />
-        <item index="4" class="java.lang.String" itemvalue="Gradle.tetracoveragearea [clean]" />
+        <item index="0" class="java.lang.String" itemvalue="Gradle.tetracoveragearea [jar]" />
+        <item index="1" class="java.lang.String" itemvalue="Gradle.tetracoveragearea [buildNeeded]" />
+        <item index="2" class="java.lang.String" itemvalue="Gradle.tetracoveragearea [buildDependents]" />
+        <item index="3" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="4" class="java.lang.String" itemvalue="Gradle.tetracoveragearea [build]" />
       </list>
     </recent_temporary>
   </component>
   <component name="SbtLocalSettings">
-    <option name="lastUpdateTimestamp" value="1491887477493" />
+    <option name="lastUpdateTimestamp" value="1491895488009" />
     <option name="externalProjectsViewState">
       <projects_view />
     </option>
@@ -1545,7 +1532,7 @@
       <workItem from="1491806207113" duration="19042000" />
       <workItem from="1491879316878" duration="4872000" />
       <workItem from="1491886317513" duration="968000" />
-      <workItem from="1491887301457" duration="608000" />
+      <workItem from="1491887301457" duration="4715000" />
     </task>
     <task id="LOCAL-00001" summary="Добавлены методы для генерации точек распределенных в пространстве по закону Гаусса. Добавлен пользовательский ввод для генерации точек в базу">
       <created>1486553677316</created>
@@ -1631,7 +1618,14 @@
       <option name="project" value="LOCAL" />
       <updated>1491397752942</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Добавлено окно в область карты с информацией о ее состоянии">
+      <created>1491887984720</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1491887984720</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1667,7 +1661,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="671663000" />
+    <option name="totallyTimeSpent" value="675770000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1680,7 +1674,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1055" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32869378" sideWeight="0.49786323" order="6" side_tool="false" content_ui="tabs" />
@@ -1694,7 +1688,7 @@
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25160256" sideWeight="0.49122807" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3263889" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32852563" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32852563" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973932" sideWeight="0.49392098" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1757,7 +1751,8 @@
     <MESSAGE value="Добавлены инструменты работы с градиентом" />
     <MESSAGE value="Добавлена панель настройки таймеров и панель фильтра по местоположению. Реализована возможность синхронизации точек с БД" />
     <MESSAGE value="Доработана логика совместной работы фильтров, реализованы парсеры набора точек в KML и GeoJSON, реализовано сохранение и загрузка файлов через FileChooser" />
-    <option name="LAST_COMMIT_MESSAGE" value="Доработана логика совместной работы фильтров, реализованы парсеры набора точек в KML и GeoJSON, реализовано сохранение и загрузка файлов через FileChooser" />
+    <MESSAGE value="Добавлено окно в область карты с информацией о ее состоянии" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлено окно в область карты с информацией о ее состоянии" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2058,6 +2053,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1352">
           <caret line="65" column="51" lean-forward="false" selection-start-line="65" selection-start-column="51" selection-end-line="65" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#579#580#0" expanded="false" />
+            <element signature="e#611#612#0" expanded="false" />
+            <element signature="e#811#812#0" expanded="false" />
+            <element signature="e#838#839#0" expanded="false" />
+            <element signature="e#921#922#0" expanded="false" />
+            <element signature="e#949#950#0" expanded="false" />
+            <element signature="e#988#989#0" expanded="false" />
+            <element signature="e#1020#1021#0" expanded="false" />
+            <element signature="e#1741#1742#0" expanded="false" />
+            <element signature="e#1781#1782#0" expanded="false" />
+            <element signature="e#1817#1818#0" expanded="false" />
+            <element signature="e#1857#1858#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2126,6 +2136,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1586">
           <caret line="79" column="38" lean-forward="false" selection-start-line="79" selection-start-column="38" selection-end-line="79" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2261,8 +2274,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-275">
-          <caret line="17" column="9" lean-forward="true" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+        <state relative-caret-position="-107">
+          <caret line="55" column="48" lean-forward="false" selection-start-line="55" selection-start-column="48" selection-end-line="55" selection-end-column="48" />
           <folding />
         </state>
       </provider>
