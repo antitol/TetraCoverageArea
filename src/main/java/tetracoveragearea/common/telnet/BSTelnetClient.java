@@ -2,14 +2,13 @@ package tetracoveragearea.common.telnet;
 
 
 import org.apache.commons.net.telnet.TelnetClient;
+import org.apache.log4j.Logger;
 import tetracoveragearea.common.delaunay.Point;
 import tetracoveragearea.common.entities.centralPart.GeometryStore;
 import tetracoveragearea.common.telnet.bsFeatures.multiFeatures.MultiFeature;
 import tetracoveragearea.common.telnet.bsFeatures.multiFeatures.ShortData_Feature;
 import tetracoveragearea.common.telnet.bsMessages.BSMessageParseException;
 import tetracoveragearea.common.telnet.bsMessages.PSDS_Message;
-import tetracoveragearea.common.telnet.bsMessages.TNSDS_Message;
-import tetracoveragearea.common.telnet.bsMessages.VMX_SDS_Message;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,6 +23,8 @@ import java.util.TimerTask;
  * Created by anatoliy on 18.05.17.
  */
 public class BSTelnetClient extends TelnetClient {
+
+    public static final Logger log = Logger.getLogger(BSTelnetClient.class);
 
     public enum PortType {
         Monitior(5003),
@@ -76,13 +77,16 @@ public class BSTelnetClient extends TelnetClient {
                 char c = (char) getInputStream().read();
                 if (c == '>') {
 
+                    log.info("Клиент " + hostname + ":" + portType.getPort() + " успешно подключен");
                     return true;
                 }
             }
 
+            log.info("Истек таймаут подключения для " + hostname + ":" + portType.getPort());
             return false;
 
         } catch (IOException ex) {
+            log.info("Ошибка подключения к " + hostname + ":" + portType.getPort());
             return false;
         }
     }
@@ -90,7 +94,7 @@ public class BSTelnetClient extends TelnetClient {
     public void setMonitoring(boolean enable) {
         send("u s3\n");
         send("tfrm sap s " + (enable ? "1" : "0") + " sds\n");
-        System.out.println("monitoring " + (enable ? "enabled" : "disabled"));
+        log.info(hostname + ": мониторинг " + (enable ? "включен" : "выключен"));
     }
 
     public void send(String s) {
@@ -128,33 +132,30 @@ public class BSTelnetClient extends TelnetClient {
                             if (sentences.size() > 0) {
                                 switch (sentences.get(0).split("\\s")[1]) {
                                     case "VMX_SDS_P":
-                                        message = new VMX_SDS_Message(sentences);
                                         break;
                                     case "TNSDS_U":
-                                        message = new TNSDS_Message(sentences);
                                         break;
                                     case "PSDS_U":
 
                                         PSDS_Message psds_message = new PSDS_Message(sentences);
-                                        message = psds_message;
                                         ShortData_Feature shortData = psds_message.getShortData();
                                         double latitude = shortData.getLatitude();
                                         double longitude = shortData.getLongitude();
                                         double rssi = psds_message.getMac().getRssi().getFeature();
                                         int ssi = psds_message.getSSI();
                                         if (latitude > 0 && longitude > 0) {
-                                            System.out.println(psds_message.getSSI() + " " + latitude + " " + longitude);
+                                            log.info(hostname + ": " + " абонент " +
+                                                    psds_message.getSSI() + ": широта " + latitude + " долгота " + longitude + " rssi: " + rssi);
                                             GeometryStore.getInstance().addPoint(new Point(latitude, longitude, rssi, LocalDateTime.now(), ssi, sourceLA));
                                         }
-//                                        System.out.println(psds_message.getSSI() + ": rssi " + psds_message.getMac().getRssi().getFeature() + "  position " + shortData.getLatitude() + " " + shortData.getLongitude());
                                         break;
                                     default:
-                                        System.out.println("Not Found Message");
+                                        log.info(hostname + ": сообщение не распознано");
                                         continue;
                                 }
                             }
                         } catch (BSMessageParseException ex) {
-                            System.out.println("ParseError: " + ex.getMessage());
+                            log.info(hostname + " ошибка декодирования сообщения: " + ex.getMessage());
                             continue;
                         }
 
@@ -164,8 +165,6 @@ public class BSTelnetClient extends TelnetClient {
                         break;
                     }
                 }
-
-                System.out.println("MonitoringEnded");
             }
         };
 

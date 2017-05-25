@@ -1,10 +1,12 @@
 package tetracoveragearea.common.entities.centralPart;
 
+import org.apache.log4j.Logger;
 import tetracoveragearea.common.delaunay.DelaunayTriangulation;
 import tetracoveragearea.common.delaunay.Point;
 import tetracoveragearea.common.delaunay.Triangle;
 import tetracoveragearea.gui.applet.MapApplet;
 import tetracoveragearea.gui.panels.filterPanels.Filter;
+import tetracoveragearea.serialDao.SerialTestDao;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -16,6 +18,8 @@ import java.util.stream.Stream;
  * Created by anatoliy on 14.03.17.
  */
 public class GeometryStore implements GeometryObservable {
+
+    public static final Logger log = Logger.getLogger(SerialTestDao.class);
 
     private boolean filtering = false;
     private boolean mapDrawing = false;
@@ -196,16 +200,23 @@ public class GeometryStore implements GeometryObservable {
             filtering = true;
         }
 
+        if (Filter.getSsi().isPresent()) {
+            filteredStream = filteredStream.filter(
+                    point -> point.getSsi() == Filter.getSsi().getAsInt()
+            );
+            filtering = true;
+        }
+
         filterPoints = filteredStream.collect(Collectors.toList());
         filterDelaunayTriangulation = new DelaunayTriangulation(filterPoints);
 
         filterTriangles = filterDelaunayTriangulation.getTriangulation();
+
         MapApplet.getInstance().getMap().setPoints(filterPoints);
         MapApplet.getInstance().getMap().setTriangles(filterTriangles);
 
         if (filtering) {
             if (getGeometryListeners().contains(MapApplet.getInstance().getMap())) {
-                System.out.println("отключение рисования");
                 mapDrawing = true;
                 removeGeometryListener(MapApplet.getInstance().getMap());
             } else {
@@ -213,7 +224,6 @@ public class GeometryStore implements GeometryObservable {
             }
         } else {
             if (mapDrawing) {
-                System.out.println("включение рисования");
                 addGeometryListener(MapApplet.getInstance().getMap());
             }
         }
@@ -259,8 +269,8 @@ public class GeometryStore implements GeometryObservable {
 
                     interpolateTriangles = interpolateTriangulation.getTriangulation();
 
-                    System.out.println("Количество точек: " + interpolatePoints.size());
-                    System.out.println("Количество треугольников: " + interpolateTriangles.size());
+                    log.info("Количество точек: " + interpolatePoints.size());
+                    log.info("Количество треугольников: " + interpolateTriangles.size());
                 }
 
                 notifyOnSetPoints(interpolateTriangulation.getVertices());

@@ -5,6 +5,7 @@ import tetracoveragearea.common.telnet.BStation;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.OptionalDouble;
+import java.util.OptionalInt;
 
 /**
  * Библиотечный класс фильтр-данных
@@ -21,6 +22,7 @@ public class Filter {
     private static OptionalDouble maxLong = OptionalDouble.empty();
     private static OptionalDouble maxRssi = OptionalDouble.empty();
     private static Optional<BStation> bStation = Optional.empty();
+    private static OptionalInt ssi = OptionalInt.empty();
 
     public static Optional<LocalDateTime> getStartTime() {
         return startTime;
@@ -58,6 +60,10 @@ public class Filter {
         return bStation;
     }
 
+    public static OptionalInt getSsi() {
+        return ssi;
+    }
+
     public static void setStartTime(Optional<LocalDateTime> startTime) {
         Filter.startTime = startTime;
     }
@@ -91,4 +97,8 @@ public class Filter {
     }
 
     public static void setBStation(Optional<BStation> bStation) { Filter.bStation = bStation; }
+
+    public static void setSsi(OptionalInt ssi) {
+        Filter.ssi = ssi;
+    }
 }

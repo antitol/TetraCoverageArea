@@ -3,10 +3,7 @@ package tetracoveragearea.gui.panels;
 import net.miginfocom.swing.MigLayout;
 import tetracoveragearea.gui.panels.databasePanels.DatabasePanel;
 import tetracoveragearea.gui.panels.devicePanels.DevicesGuiPanel;
-import tetracoveragearea.gui.panels.filterPanels.BSFilterPanel;
-import tetracoveragearea.gui.panels.filterPanels.InterpolationPanel;
-import tetracoveragearea.gui.panels.filterPanels.LocationFilterPanel;
-import tetracoveragearea.gui.panels.filterPanels.TimeFilterPanel;
+import tetracoveragearea.gui.panels.filterPanels.*;
 import tetracoveragearea.gui.panels.loadPanels.LoadPanel;
 import tetracoveragearea.gui.panels.primitives.PrimaryPanel;
 import tetracoveragearea.gui.panels.primitives.TabbedPanel;
@@ -36,7 +33,12 @@ public class MainContentPanel extends JPanel {
     private DevicesGuiPanel devicesGuiPanel = new DevicesGuiPanel();
     private DatabasePanel databasePanel = new DatabasePanel();
     private LoadPanel loadPanel = new LoadPanel();
-    private TabbedPanel filterPanel = new TabbedPanel(Arrays.asList(new TimeFilterPanel(), new InterpolationPanel(), new LocationFilterPanel(), new BSFilterPanel()));
+    private TabbedPanel filterPanel = new TabbedPanel(Arrays.asList(
+            new TimeFilterPanel(),
+            new InterpolationPanel(),
+            new LocationFilterPanel(),
+            new BSFilterPanel(),
+            new SSIFilterPanel()));
     private TabbedPanel settingsPanel = new TabbedPanel(Arrays.asList(new GradientPanel(), new TimersPanel(), new ChangeTileProviderPanel()));
     private TestDataInputPanel testDataInputPanel = new TestDataInputPanel();
 

@@ -38,7 +38,6 @@ public class MapGuiPanel extends JPanel {
         enablePointsButton.setUI(GuiComponents.getToggleButtonGreenUI());
         enablePointsButton.addActionListener(
                 e -> {
-                    System.out.println(GeometryStore.getInstance().getGeometryListeners().size());
                     boolean selected = ((JToggleButton) e.getSource()).isSelected();
                     if (selected) {
                         if (!GeometryStore.getInstance().getGeometryListeners().contains(MapApplet.getInstance().getMap())) {
@@ -61,7 +60,6 @@ public class MapGuiPanel extends JPanel {
 
                 e -> {
                     {
-                        System.out.println(GeometryStore.getInstance().getGeometryListeners().size());
                         boolean selected = ((JToggleButton) e.getSource()).isSelected();
                         if (selected) {
                             if (!GeometryStore.getInstance().getGeometryListeners().contains(MapApplet.getInstance().getMap())) {

@@ -1,11 +1,15 @@
 package tetracoveragearea.common.telnet;
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 
 /**
  * Created by anatoliy on 18.05.17.
  */
 public class BSTelnetManager {
+
+    public static final Logger log = Logger.getLogger(BSTelnetManager.class);
 
     BSTelnetClient service;
     BSTelnetClient monitor;
@@ -21,18 +25,17 @@ public class BSTelnetManager {
 
     public boolean startMoniting() {
         if (service.connect()) {
-            System.out.println("ServiceConnect");
+            log.info(hostname + ": начало мониторинга");
             service.setMonitoring(true);
 
             try {
                 service.disconnect();
-                System.out.println("Service disconnect");
+                System.out.println(hostname + ": отключение от сервисного порта");
             } catch (IOException ex) {
-                System.out.println("Service disconnect");
+                System.out.println(hostname + ": отключение от сервисного порта");
             }
 
             if (monitor.connect()) {
-                System.out.println("Monitor connected");
                 monitor.monitoringStart();
                 return true;
             }
@@ -44,17 +47,15 @@ public class BSTelnetManager {
     public boolean stopMonitoring() {
         try {
             monitor.disconnect();
-            System.out.println("Monitor disconnect");
         } catch (IOException ex) {}
 
         if (service.connect()) {
-            System.out.println("ServiceConnect");
             service.setMonitoring(false);
 
             try {
                 service.disconnect();
             } catch (IOException ex) {
-                System.out.println("Service disconnect");
+                log.info(hostname + ": мониторинг остановлен");
                 return true;
             }
         }

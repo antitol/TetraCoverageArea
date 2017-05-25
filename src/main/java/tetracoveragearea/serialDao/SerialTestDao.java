@@ -279,7 +279,7 @@ public class SerialTestDao extends GeometryAdapter {
                     point.getY(),
                     point.getZ(),
                     getTimestamp(point.getDateTime()),
-                    point.getBStation().getId(),
+                        point.getBStation().getId(),
                     point.getSsi()
             );
 
