@@ -167,4 +167,27 @@ public class ChooseGradientTableModel extends AbstractTableModel {
     public File getGradientFile() {
         return gradientFile;
     }
+
+    public void saveGradientFile() {
+
+        try {
+
+            FileOutputStream fileOutputStream = new FileOutputStream(
+                    ChooseGradientTableModel.getInstance().getGradientFile()
+            );
+
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(ChooseGradientTableModel.getInstance().getGradientList());
+
+            objectOutputStream.close();
+            fileOutputStream.close();
+
+        } catch (FileNotFoundException ex) {
+
+            log.info("Файл для сохранения профилей градиента не найден");
+        } catch (IOException ex) {
+
+            log.info("Ошибка ввода-вывода");
+        }
+    }
 }

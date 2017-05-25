@@ -4,6 +4,7 @@ import de.fhpotsdam.unfolding.geo.Location;
 import de.fhpotsdam.unfolding.utils.ScreenPosition;
 import processing.core.PApplet;
 import processing.core.PFont;
+import tetracoveragearea.common.entities.centralPart.GeometryStore;
 import tetracoveragearea.common.entities.visualPart.TriangleMarkerRssi;
 import tetracoveragearea.gui.components.GuiComponents;
 
@@ -61,8 +62,8 @@ public class InformationDisplay {
         p.fill(textColor);
         p.text("Точки:", xText, getRowY(1));
         p.text("Полигоны:", xText, getRowY(2));
-        p.text(map.getPoints().size(), xValue, getRowY(1));
-        p.text(map.getDelauneyTriangles().size(), xValue, getRowY(2));
+        p.text(GeometryStore.getInstance().getPoints().size(), xValue, getRowY(1));
+        p.text(GeometryStore.getInstance().getTriangles().size(), xValue, getRowY(2));
 
         p.fill(map.getPointsManager().isDrawingEnabled() ? swithOnColor : swithOffColor);
         p.ellipse(xMarker, getMarkerRowY(1) , markWidth, markHeight);

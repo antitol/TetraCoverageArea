@@ -80,6 +80,7 @@ public class ColorEditor extends AbstractCellEditor
         if (EDIT.equals(e.getActionCommand())) {
             //The user has clicked the cell, so
             //bring up the dialog.
+
             button.setBackground(currentColor);
             colorChooser.setColor(currentColor);
             dialog.setVisible(true);

@@ -2,7 +2,6 @@ package tetracoveragearea.gui.panels;
 
 import net.miginfocom.swing.MigLayout;
 import tetracoveragearea.common.entities.centralPart.GeometryStore;
-import tetracoveragearea.common.parserTools.DocumentParser;
 import tetracoveragearea.common.parserTools.GeojsonParser;
 import tetracoveragearea.common.parserTools.KmlParser;
 import tetracoveragearea.gui.components.GuiComponents;
@@ -74,7 +73,7 @@ public class MenuPanel extends JPanel {
         fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(".kml", "kml"));
         fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(".geojson", "geojson"));
 
-        setLayout(new MigLayout("debug, insets 0, gapy 0, center"));
+        setLayout(new MigLayout("insets 0, gapy 0, center"));
 
         deviceButton = new JToggleButton();
         databaseButton = new JToggleButton();
@@ -125,6 +124,7 @@ public class MenuPanel extends JPanel {
 
         deviceButton.addActionListener(e -> MainContentPanel.getInstance().swtichDevicePanel());
         databaseButton.addActionListener(e -> MainContentPanel.getInstance().swtichDatabasePanel());
+        loadButton.addActionListener(e -> MainContentPanel.getInstance().switchLoadPanel());
         filterButton.addActionListener(e -> MainContentPanel.getInstance().swtichFilterPanel());
         testButton.addActionListener(e -> MainContentPanel.getInstance().swtichTestPanel());
         settingsButton.addActionListener(e -> MainContentPanel.getInstance().swtichSettingsPanel());
@@ -139,26 +139,6 @@ public class MenuPanel extends JPanel {
             buttonGroup.add(button);
             add(button, "wrap, w 100%");
         } );
-
-
-        loadButton.addActionListener(e -> {
-
-            if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-                File openFile = fileChooser.getSelectedFile();
-                String filename = openFile.getName();
-
-                switch (filename.substring(filename.lastIndexOf('.') + 1).toLowerCase()) {
-                    case "kml":
-                        writeFile(openFile, kmlParser);
-                        break;
-                    case "geojson":
-                        writeFile(openFile, geojsonParser);
-                        break;
-                    default:
-                        GuiComponents.showInformationPane(null, "Неизвестный формат файла");
-                }
-            }
-        });
 
         saveButton.addActionListener(e -> {
 
@@ -180,19 +160,6 @@ public class MenuPanel extends JPanel {
         });
     }
 
-    /**
-     * Запись массива точек из хранилища в файл с помощью парсера
-     * @param file - сохраняемый файл
-     * @param parser - парсер
-     */
-    public void writeFile(File file, DocumentParser parser) {
-        try {
-            GeometryStore.getInstance().setPoints(
-                    parser.parse(file)
-            );
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            GuiComponents.showInformationPane(null, "Ошибка чтения файла");
-        }
-    }
+
+
 }

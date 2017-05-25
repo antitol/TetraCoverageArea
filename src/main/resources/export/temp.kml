@@ -1,0 +1,977 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<kml xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0">
+    <Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>4</value>
+                </Data>
+                <Data id="ssi">
+                    <value>332</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:32.016</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.43731880187988,44.5835280418396,73.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>4</value>
+                </Data>
+                <Data id="ssi">
+                    <value>332</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:55:01.986</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.43757629394531,44.58409667015076,65.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>4</value>
+                </Data>
+                <Data id="ssi">
+                    <value>332</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:55:31.966</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.438005447387695,44.584128856658936,58.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>4</value>
+                </Data>
+                <Data id="ssi">
+                    <value>332</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:56:01.996</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.43862771987915,44.58423614501953,57.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>4</value>
+                </Data>
+                <Data id="ssi">
+                    <value>303</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:29.976</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.443756103515625,44.57785248756409,94.25</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>4</value>
+                </Data>
+                <Data id="ssi">
+                    <value>335</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:50.996</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.44385266304016,44.57779884338379,86.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>4</value>
+                </Data>
+                <Data id="ssi">
+                    <value>333</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:52.356</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.444786071777344,44.58152174949646,79.5</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>4</value>
+                </Data>
+                <Data id="ssi">
+                    <value>800</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:26.966</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.4478223323822,44.59027647972107,47.5</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>4</value>
+                </Data>
+                <Data id="ssi">
+                    <value>331</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:40.396</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.46152305603027,44.58629608154297,88.375</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>4</value>
+                </Data>
+                <Data id="ssi">
+                    <value>385</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:41.076</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.471232652664185,44.57636117935181,88.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>4</value>
+                </Data>
+                <Data id="ssi">
+                    <value>385</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:55:11.116</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.47467660903931,44.578120708465576,88.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>4</value>
+                </Data>
+                <Data id="ssi">
+                    <value>385</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:55:41.086</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.47788453102112,44.58177924156189,71.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>4</value>
+                </Data>
+                <Data id="ssi">
+                    <value>385</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:56:11.066</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.47812056541443,44.585362672805786,69.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>1</value>
+                </Data>
+                <Data id="ssi">
+                    <value>381</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:23.057</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.485963344573975,44.594610929489136,89.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>1</value>
+                </Data>
+                <Data id="ssi">
+                    <value>383</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:31.046</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.49349498748779,44.6015739440918,86.375</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>1</value>
+                </Data>
+                <Data id="ssi">
+                    <value>386</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:29.007</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.502399921417236,44.60057616233826,74.125</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>1</value>
+                </Data>
+                <Data id="ssi">
+                    <value>389</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:35.636</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.50250720977783,44.60067272186279,80.625</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>3</value>
+                </Data>
+                <Data id="ssi">
+                    <value>380</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:49.979</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.50263595581055,44.60078001022339,84.75</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>1</value>
+                </Data>
+                <Data id="ssi">
+                    <value>310</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:56:13.216</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.50277543067932,44.600361585617065,89.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>1</value>
+                </Data>
+                <Data id="ssi">
+                    <value>310</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:55:13.266</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.50277543067932,44.600393772125244,89.5</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>1</value>
+                </Data>
+                <Data id="ssi">
+                    <value>310</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:55:43.246</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.50279688835144,44.600361585617065,88.5</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>1</value>
+                </Data>
+                <Data id="ssi">
+                    <value>310</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:43.236</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.5028076171875,44.600372314453125,89.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>3</value>
+                </Data>
+                <Data id="ssi">
+                    <value>363</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:50.999</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.516883850097656,44.60171341896057,75.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>1</value>
+                </Data>
+                <Data id="ssi">
+                    <value>339</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:33.036</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.51770997047424,44.601584672927856,77.125</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>3</value>
+                </Data>
+                <Data id="ssi">
+                    <value>324</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:47.37</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.51980209350586,44.583656787872314,90.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>3</value>
+                </Data>
+                <Data id="ssi">
+                    <value>324</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:55:17.016</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.51996302604675,44.583388566970825,93.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>3</value>
+                </Data>
+                <Data id="ssi">
+                    <value>324</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:55:46.996</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.5203492641449,44.58306670188904,89.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>1</value>
+                </Data>
+                <Data id="ssi">
+                    <value>105</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:56:06.246</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.5213041305542,44.6090304851532,87.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>1</value>
+                </Data>
+                <Data id="ssi">
+                    <value>106</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:55:24.256</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.52150797843933,44.60878372192383,83.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>1</value>
+                </Data>
+                <Data id="ssi">
+                    <value>106</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:55:54.236</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.52154016494751,44.60874080657959,91.5</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>1</value>
+                </Data>
+                <Data id="ssi">
+                    <value>105</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:55:36.276</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.52157235145569,44.60873007774353,87.5</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>3</value>
+                </Data>
+                <Data id="ssi">
+                    <value>324</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:56:17.019</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.52160453796387,44.583678245544434,95.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>1</value>
+                </Data>
+                <Data id="ssi">
+                    <value>106</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:24.247</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.52161526679993,44.60865497589111,84.5</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>1</value>
+                </Data>
+                <Data id="ssi">
+                    <value>106</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:54.226</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.521679639816284,44.608644247055054,85.5</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>1</value>
+                </Data>
+                <Data id="ssi">
+                    <value>105</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:55:06.356</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.52176547050476,44.60878372192383,86.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>1</value>
+                </Data>
+                <Data id="ssi">
+                    <value>105</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:36.266</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.52178692817688,44.60869789123535,87.5</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>3</value>
+                </Data>
+                <Data id="ssi">
+                    <value>302</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:29.969</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.53174328804016,44.569655656814575,106.75</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>3</value>
+                </Data>
+                <Data id="ssi">
+                    <value>317</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:35.359</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.540637493133545,44.609845876693726,78.375</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>3</value>
+                </Data>
+                <Data id="ssi">
+                    <value>316</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:46.969</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.540658950805664,44.609577655792236,75.5</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>3</value>
+                </Data>
+                <Data id="ssi">
+                    <value>301</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:32.069</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.540852069854736,44.609631299972534,94.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>3</value>
+                </Data>
+                <Data id="ssi">
+                    <value>351</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:36.039</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.541849851608276,44.77296710014343,105.125</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>1</value>
+                </Data>
+                <Data id="ssi">
+                    <value>305</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:22.041</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.54203224182129,44.77335333824158,99.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>3</value>
+                </Data>
+                <Data id="ssi">
+                    <value>342</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:39.039</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.54753613471985,44.63670015335083,88.5</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>2</value>
+                </Data>
+                <Data id="ssi">
+                    <value>595</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:55:58.373</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.584336042404175,44.5220410823822,89.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>2</value>
+                </Data>
+                <Data id="ssi">
+                    <value>595</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:58.253</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.584357500076294,44.52201962471008,90.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>2</value>
+                </Data>
+                <Data id="ssi">
+                    <value>595</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:28.273</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.58436822891235,44.52203035354614,89.5</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>2</value>
+                </Data>
+                <Data id="ssi">
+                    <value>595</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:55:28.223</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.58436822891235,44.52205181121826,89.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>2</value>
+                </Data>
+                <Data id="ssi">
+                    <value>599</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:55:13.263</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.58452916145325,44.521987438201904,79.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>2</value>
+                </Data>
+                <Data id="ssi">
+                    <value>599</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:43.233</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.58453989028931,44.521976709365845,79.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>2</value>
+                </Data>
+                <Data id="ssi">
+                    <value>599</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:55:43.243</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.584550619125366,44.521976709365845,79.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>2</value>
+                </Data>
+                <Data id="ssi">
+                    <value>599</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:56:13.273</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.584604263305664,44.52200889587402,79.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>2</value>
+                </Data>
+                <Data id="ssi">
+                    <value>500</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:42.273</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.584861755371094,44.521729946136475,66.5</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>2</value>
+                </Data>
+                <Data id="ssi">
+                    <value>309</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:26.003</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.59875559806824,44.51406955718994,73.75</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+        <Document>
+            <ExtendedData>
+                <Data id="bs_id">
+                    <value>2</value>
+                </Data>
+                <Data id="ssi">
+                    <value>391</value>
+                </Data>
+            </ExtendedData>
+            <Placemark>
+                <TimeStamp>
+                    <when>2017-05-25T13:54:44.993</when>
+                </TimeStamp>
+                <Point>
+                    <coordinates>33.61497759819031,44.5125675201416,65.0</coordinates>
+                </Point>
+            </Placemark>
+        </Document>
+    </Document>
+</kml>

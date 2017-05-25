@@ -478,14 +478,6 @@ public class Triangle implements Serializable {
 		double bc = GeometryUtils.getDistance(getB(), getC());
 		double ac = GeometryUtils.getDistance(getA(), getC());
 
-		double cosA = (ac * ac + ab * ab - bc * bc) / (2 * ab * ac);
-		double cosB = (bc * bc + ab * ab - ac * ac) / (2 * bc * ab);
-		double cosC = (bc * bc + ac * ac - ab * ab) / (2 * bc * ac);
-
-		if (cosA > 0.999 || cosB > 0.999 || cosC > 0.999) {
-			return 0;
-		}
-
 		double p = ab + bc + ac;
 		double square = Math.sqrt(p*(p-ab)*(p-bc)*(p-ac));
 

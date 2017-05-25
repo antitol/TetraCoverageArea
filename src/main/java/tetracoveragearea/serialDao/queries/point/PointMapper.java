@@ -3,6 +3,7 @@ package tetracoveragearea.serialDao.queries.point;
 import tetracoveragearea.common.delaunay.Point;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
+import tetracoveragearea.common.telnet.BStation;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,6 +22,8 @@ public class PointMapper implements ResultSetMapper<Point> {
                 r.getDouble("st_y"),
                 r.getDouble("st_x"),
                 r.getDouble("st_z"),
-                r.getTimestamp("point_time").toLocalDateTime());
+                r.getTimestamp("p_time").toLocalDateTime(),
+                r.getInt("ssi"),
+                BStation.getById(r.getInt("bs_id")));
     }
 }

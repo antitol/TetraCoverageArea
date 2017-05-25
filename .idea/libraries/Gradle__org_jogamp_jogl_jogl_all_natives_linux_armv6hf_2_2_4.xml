@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jogamp.jogl:jogl-all:natives-linux-armv6hf:2.2.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jogamp.jogl/jogl-all/2.2.4/52091cfe868b940162ea787f4f705ea03307eb61/jogl-all-2.2.4-natives-linux-armv6hf.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jogamp.jogl/jogl-all/2.2.4/ea2eb258e9edfbc030a3c89b693fb5fd9d6a9f16/jogl-all-2.2.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

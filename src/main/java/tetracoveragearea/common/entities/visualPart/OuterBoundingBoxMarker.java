@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
+ * Класс маркера внешнего прямоугольника области зоны покрытия
  * Created by anatoliy on 03.04.17.
  */
 public class OuterBoundingBoxMarker extends OuterShapeMarker {

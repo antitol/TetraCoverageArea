@@ -30,7 +30,7 @@ public class GradientPanel extends SubPanel {
 
         setName("Градиент");
 
-        setLayout(new MigLayout("debug"));
+        setLayout(new MigLayout());
         setPreferredSize(new Dimension(300, 450));
 
         gradientTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

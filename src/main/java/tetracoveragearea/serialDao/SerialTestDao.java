@@ -261,6 +261,7 @@ public class SerialTestDao extends GeometryAdapter {
 
     @Override
     public void setPoint(int index, Point point) {
+
         addPoint(point);
     }
 
@@ -277,7 +278,9 @@ public class SerialTestDao extends GeometryAdapter {
                     point.getX(),
                     point.getY(),
                     point.getZ(),
-                    getTimestamp(point.getDateTime())
+                    getTimestamp(point.getDateTime()),
+                    point.getBStation().getId(),
+                    point.getSsi()
             );
 
             log.info(
@@ -286,6 +289,7 @@ public class SerialTestDao extends GeometryAdapter {
 
             return true;
         } catch (Exception ex) {
+            ex.printStackTrace();
             onDatabaseError();
             return false;
         }
@@ -313,4 +317,6 @@ public class SerialTestDao extends GeometryAdapter {
     public void onDatabaseError() {
         MainContentPanel.getInstance().getDatabasePanel().onDatabaseError();
     }
+
+
 }

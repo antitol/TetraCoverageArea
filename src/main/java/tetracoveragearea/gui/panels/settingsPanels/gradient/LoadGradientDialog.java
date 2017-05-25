@@ -39,7 +39,7 @@ public class LoadGradientDialog extends JDialog {
         setMinimumSize(new Dimension(500, 500));
         setPreferredSize(new Dimension(500, 500));
 
-        setLayout(new MigLayout("debug"));
+        setLayout(new MigLayout());
 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);

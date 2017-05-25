@@ -72,6 +72,7 @@ public class DatabasePanel extends PrimaryPanel {
         syncronizeWithDB.addActionListener(e -> {
             if (syncronizeWithDB.isSelected()) {
                 GeometryStore.getInstance().addGeometryListener(SerialTestDao.getInstance());
+                SerialTestDao.getInstance().setPoints(GeometryStore.getInstance().getPoints());
             } else {
                 GeometryStore.getInstance().removeGeometryListener(SerialTestDao.getInstance());
             }

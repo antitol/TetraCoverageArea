@@ -13,6 +13,7 @@ public interface GeometryObservable {
 
         void addGeometryListener(GeometryObserver o);
         void removeGeometryListener(GeometryObserver o);
+        List<GeometryObserver> getGeometryListeners();
 
         /**
          * Установить набор точек

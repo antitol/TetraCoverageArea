@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jogamp.gluegen:gluegen-rt:natives-linux-armv6:2.2.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jogamp.gluegen/gluegen-rt/2.2.4/61d5a11e6cb55d0185d51d7dc573765467f4f741/gluegen-rt-2.2.4-natives-linux-armv6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jogamp.gluegen/gluegen-rt/2.2.4/9ebd1e266abe567517ce757ed9a821d7e276376d/gluegen-rt-2.2.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

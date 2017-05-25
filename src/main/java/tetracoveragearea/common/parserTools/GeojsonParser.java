@@ -5,6 +5,7 @@ import org.geojson.Feature;
 import org.geojson.FeatureCollection;
 import org.geojson.LngLatAlt;
 import tetracoveragearea.common.delaunay.Point;
+import tetracoveragearea.common.telnet.BStation;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +30,8 @@ public class GeojsonParser implements DocumentParser {
             feature.setGeometry(new org.geojson.Point(point.getY(), point.getX(), point.getZ()));
             feature.setProperty("Time", point.getDateTime().format(DateTimeFormatter.ISO_DATE_TIME));
             feature.setProperty("rssi", point.getZ());
+            feature.setProperty("bs_id", point.getBStation().getId());
+            feature.setProperty("ssi", point.getSsi());
             features.add(feature);
         }
 
@@ -68,6 +71,8 @@ public class GeojsonParser implements DocumentParser {
                 try {
                     LocalDateTime pointDateTime = LocalDateTime.parse(feature.getProperty("Time"), DateTimeFormatter.ISO_DATE_TIME);
                     point.setDateTime(pointDateTime);
+                    point.setSsi(feature.getProperty("ssi"));
+                    point.setbStation(BStation.getById(feature.getProperty("bs_id")));
 
                 } catch (NullPointerException ex) {
                     point.setDateTime(LocalDateTime.now());

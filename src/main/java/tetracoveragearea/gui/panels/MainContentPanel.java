@@ -3,9 +3,11 @@ package tetracoveragearea.gui.panels;
 import net.miginfocom.swing.MigLayout;
 import tetracoveragearea.gui.panels.databasePanels.DatabasePanel;
 import tetracoveragearea.gui.panels.devicePanels.DevicesGuiPanel;
+import tetracoveragearea.gui.panels.filterPanels.BSFilterPanel;
 import tetracoveragearea.gui.panels.filterPanels.InterpolationPanel;
 import tetracoveragearea.gui.panels.filterPanels.LocationFilterPanel;
 import tetracoveragearea.gui.panels.filterPanels.TimeFilterPanel;
+import tetracoveragearea.gui.panels.loadPanels.LoadPanel;
 import tetracoveragearea.gui.panels.primitives.PrimaryPanel;
 import tetracoveragearea.gui.panels.primitives.TabbedPanel;
 import tetracoveragearea.gui.panels.settingsPanels.gradient.GradientPanel;
@@ -33,15 +35,16 @@ public class MainContentPanel extends JPanel {
 
     private DevicesGuiPanel devicesGuiPanel = new DevicesGuiPanel();
     private DatabasePanel databasePanel = new DatabasePanel();
-    private TabbedPanel filterPanel = new TabbedPanel(Arrays.asList(new TimeFilterPanel(), new InterpolationPanel(), new LocationFilterPanel()));
+    private LoadPanel loadPanel = new LoadPanel();
+    private TabbedPanel filterPanel = new TabbedPanel(Arrays.asList(new TimeFilterPanel(), new InterpolationPanel(), new LocationFilterPanel(), new BSFilterPanel()));
     private TabbedPanel settingsPanel = new TabbedPanel(Arrays.asList(new GradientPanel(), new TimersPanel(), new ChangeTileProviderPanel()));
     private TestDataInputPanel testDataInputPanel = new TestDataInputPanel();
 
     public MainContentPanel() {
 
-        setLayout(new MigLayout("debug, center"));
+        setLayout(new MigLayout("center"));
 
-        setPreferredSize(new Dimension(280, 450));
+        setPreferredSize(new Dimension(290, 450));
     }
 
     public void installPanel(PrimaryPanel primaryPanel) {
@@ -85,6 +88,10 @@ public class MainContentPanel extends JPanel {
         installPanel(filterPanel);
     }
 
+    public void switchLoadPanel() {
+        installPanel(loadPanel);
+    }
+
     public void swtichSettingsPanel() { installPanel(settingsPanel); }
 
     public DevicesGuiPanel getDevicesGuiPanel() {
@@ -100,6 +107,10 @@ public class MainContentPanel extends JPanel {
     }
 
     public TabbedPanel getSettingsPanel() {return settingsPanel;}
+
+    public LoadPanel getLoadPanel() {
+        return loadPanel;
+    }
 
     public TestDataInputPanel getTestDataInputPanel() {
         return testDataInputPanel;

@@ -2,12 +2,14 @@ package tetracoveragearea.gui.panels.mapPanels;
 
 import net.miginfocom.swing.MigLayout;
 import org.apache.log4j.Logger;
+import tetracoveragearea.common.delaunay.Point;
 import tetracoveragearea.common.entities.centralPart.GeometryStore;
 import tetracoveragearea.gui.applet.MapApplet;
 import tetracoveragearea.gui.components.GuiComponents;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,6 +25,7 @@ public class MapGuiPanel extends JPanel {
     private JToggleButton enablePointsButton;
     private JToggleButton enablePolygonsButton;
     private JToggleButton enableOuterShape;
+    private JButton selectPoints;
     private JButton flushBuffer;
 
     public MapGuiPanel() {
@@ -34,7 +37,21 @@ public class MapGuiPanel extends JPanel {
         enablePointsButton = new JToggleButton("Точки покрытия");
         enablePointsButton.setUI(GuiComponents.getToggleButtonGreenUI());
         enablePointsButton.addActionListener(
-                e -> MapApplet.getInstance().getMap().showPoints(((JToggleButton) e.getSource()).isSelected())
+                e -> {
+                    System.out.println(GeometryStore.getInstance().getGeometryListeners().size());
+                    boolean selected = ((JToggleButton) e.getSource()).isSelected();
+                    if (selected) {
+                        if (!GeometryStore.getInstance().getGeometryListeners().contains(MapApplet.getInstance().getMap())) {
+                            GeometryStore.getInstance().addGeometryListener(MapApplet.getInstance().getMap());
+                            MapApplet.getInstance().getMap().setPoints(GeometryStore.getInstance().getPoints());
+                        }
+                    } else {
+                        if (!enablePolygonsButton.isSelected()) {
+                            GeometryStore.getInstance().removeGeometryListener(MapApplet.getInstance().getMap());
+                        }
+                    }
+                    MapApplet.getInstance().getMap().showPoints(selected);
+                }
         );
 
         enablePolygonsButton = new JToggleButton("Карта покрытия");
@@ -43,7 +60,21 @@ public class MapGuiPanel extends JPanel {
         enablePolygonsButton.addActionListener(
 
                 e -> {
-                    MapApplet.getInstance().getMap().showDelaunayTriangles(((JToggleButton) e.getSource()).isSelected());
+                    {
+                        System.out.println(GeometryStore.getInstance().getGeometryListeners().size());
+                        boolean selected = ((JToggleButton) e.getSource()).isSelected();
+                        if (selected) {
+                            if (!GeometryStore.getInstance().getGeometryListeners().contains(MapApplet.getInstance().getMap())) {
+                                GeometryStore.getInstance().addGeometryListener(MapApplet.getInstance().getMap());
+                                MapApplet.getInstance().getMap().setTriangles(GeometryStore.getInstance().getTriangles());
+                            }
+                        } else {
+                            if (!enablePointsButton.isSelected()) {
+                                GeometryStore.getInstance().removeGeometryListener(MapApplet.getInstance().getMap());
+                            }
+                        }
+                        MapApplet.getInstance().getMap().showDelaunayTriangles(((JToggleButton) e.getSource()).isSelected());
+                    }
                 }
         );
 
@@ -57,12 +88,22 @@ public class MapGuiPanel extends JPanel {
             MapApplet.getInstance().getMap().showOuterShape(enableOuterShape.isSelected())
         );
 
+        selectPoints = new JButton("Выделить область");
+        selectPoints.addActionListener(e -> {
+
+            if (GeometryStore.getInstance().getFilterPoints().size() > 0) {
+                List<Point> points = new ArrayList<Point>(GeometryStore.getInstance().getPoints());
+                points.removeAll(GeometryStore.getInstance().getFilterPoints());
+                GeometryStore.getInstance().setPoints(points);
+            }
+        });
+
         flushBuffer = new JButton("Очистить буфер");
         flushBuffer.addActionListener(
                 e -> GeometryStore.getInstance().clear());
 
         List<JComponent> components = Arrays.asList(
-                enablePointsButton, enablePolygonsButton, enableOuterShape, flushBuffer
+                enablePointsButton, enablePolygonsButton, enableOuterShape, selectPoints, flushBuffer
         );
 
         components.forEach(c -> add(c, "w 100%, wrap"));

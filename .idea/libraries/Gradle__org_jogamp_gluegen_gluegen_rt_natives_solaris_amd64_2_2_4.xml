@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jogamp.gluegen:gluegen-rt:natives-solaris-amd64:2.2.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jogamp.gluegen/gluegen-rt/2.2.4/472ef728196cdfc4cfa3f391f9b40693198290b7/gluegen-rt-2.2.4-natives-solaris-amd64.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jogamp.gluegen/gluegen-rt/2.2.4/9ebd1e266abe567517ce757ed9a821d7e276376d/gluegen-rt-2.2.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

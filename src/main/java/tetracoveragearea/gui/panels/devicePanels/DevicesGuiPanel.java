@@ -1,5 +1,6 @@
 package tetracoveragearea.gui.panels.devicePanels;
 
+import tetracoveragearea.gui.panels.devicePanels.telnetGui.BaseStationPanel;
 import tetracoveragearea.gui.panels.primitives.PrimaryPanel;
 import tetracoveragearea.gui.panels.primitives.SubPanel;
 
@@ -18,6 +19,7 @@ public class DevicesGuiPanel extends PrimaryPanel {
 
 
     private SerialGuiPanel serialGuiPanel = new SerialGuiPanel();
+    private BaseStationPanel baseStationPanel = new BaseStationPanel();
     private JPanel contentPanel = new JPanel();
 
     private final JLabel deviceTypeLabel = new JLabel("Тип интерфейса");
@@ -27,6 +29,7 @@ public class DevicesGuiPanel extends PrimaryPanel {
 
         // Складываем панельки здесь
         panelMap.put("RS-232", serialGuiPanel);
+        panelMap.put("Telnet", baseStationPanel);
 
         // По умолчанию
         contentPanel.add(panelMap.get("RS-232"));
@@ -39,12 +42,16 @@ public class DevicesGuiPanel extends PrimaryPanel {
 
         deviceBox.addActionListener(e -> {
 
+            if (selectedPanel != null) {
+                selectedPanel.onRevoke();
+            }
             contentPanel.removeAll();
             selectedPanel = panelMap.get(deviceBox.getSelectedItem());
             contentPanel.add(selectedPanel);
             selectedPanel.onInvoke();
 
             revalidate();
+            repaint();
         });
 
         add(deviceTypeLabel, "wrap, w 100%");

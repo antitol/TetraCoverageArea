@@ -16,8 +16,8 @@ public class GeometryUtils {
      * @param lng2
      * @return
      */
-    public static double distFrom(double lat1, double lng1, double lat2, double lng2) {
-        double earthRadius = 6371.0; // miles (or 6371.0 kilometers)
+    public static double getDistance(double lat1, double lng1, double lat2, double lng2) {
+        double earthRadius = 6371.0088; // miles (or 6371.0088 kilometers)
         double dLat = Math.toRadians(lat2-lat1);
         double dLng = Math.toRadians(lng2-lng1);
         double sindLat = Math.sin(dLat / 2);
@@ -37,6 +37,6 @@ public class GeometryUtils {
      * @return
      */
     public static double getDistance(Point point1, Point point2) {
-        return distFrom(point1.getX(), point1.getY(), point2.getX(), point2.getY());
+        return getDistance(point1.getX(), point1.getY(), point2.getX(), point2.getY());
     }
 }

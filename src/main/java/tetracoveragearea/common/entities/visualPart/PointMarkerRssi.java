@@ -15,6 +15,7 @@ public class PointMarkerRssi extends SimplePointMarker {
 
     private Point point;
     private double rssi;
+    private int radius = 8;
 
     public PointMarkerRssi(float rssi) {
         this.rssi = rssi;
@@ -54,7 +55,7 @@ public class PointMarkerRssi extends SimplePointMarker {
             return;
 
         pg.pushStyle();
-        pg.strokeWeight(strokeWeight);
+        pg.noStroke();
 
         // Получаем диапазон значений rssi для расчета цвета
         int min = CoverageMap.getMinRssi();

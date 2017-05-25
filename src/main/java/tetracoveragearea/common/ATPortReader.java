@@ -244,8 +244,6 @@ public class ATPortReader extends SentenceAdapter implements SerialPortEventList
                                         )
                                 );
 
-
-
                                 log.info("Была отправлена точка в базу");
 
                                 gpsFailureCount = 0;

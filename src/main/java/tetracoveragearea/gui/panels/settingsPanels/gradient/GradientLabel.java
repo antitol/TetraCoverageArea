@@ -21,7 +21,7 @@ public class GradientLabel extends JLabel {
         setSize(200, 30);
         setPreferredSize(new Dimension(200, 30));
         setOpaque(true);
-        setLayout(new MigLayout("insets 0, gap 0, debug"));
+        setLayout(new MigLayout("insets 0, gap 0"));
         setMultilayerGradient(multilayerGradient);
     }
 

@@ -3,25 +3,22 @@ package tetracoveragearea.common.entities.centralPart;
 import tetracoveragearea.common.delaunay.DelaunayTriangulation;
 import tetracoveragearea.common.delaunay.Point;
 import tetracoveragearea.common.delaunay.Triangle;
+import tetracoveragearea.gui.applet.MapApplet;
 import tetracoveragearea.gui.panels.filterPanels.Filter;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
+ * Предоставляет методы для взаимодействия с хранилищем точек и полигонов
  * Created by anatoliy on 14.03.17.
  */
 public class GeometryStore implements GeometryObservable {
 
-    private boolean enableTimeFilter = false;
-    private boolean enableXFilter = false;
-    private boolean enableYFilter = false;
-    private boolean enableZFilter = false;
+    private boolean filtering = false;
+    private boolean mapDrawing = false;
 
     private List<Point> points = new ArrayList<>();
     private List<Triangle> triangles = new ArrayList<Triangle>();
@@ -48,6 +45,10 @@ public class GeometryStore implements GeometryObservable {
         return points;
     }
 
+    public List<Triangle> getTriangles() {
+        return triangles;
+    }
+
     /**
      * Обновляет триангуляцию
      */
@@ -61,7 +62,7 @@ public class GeometryStore implements GeometryObservable {
      * @param points
      */
     public void setPoints(List<Point> points) {
-        this.points = points;
+        this.points = new ArrayList<>(points);
         delaunayTriangulation = new DelaunayTriangulation(points);
         refreshTriangles();
         notifyOnSetPoints(points);
@@ -132,12 +133,15 @@ public class GeometryStore implements GeometryObservable {
 
     public void filter() {
 
+        filtering = false;
+
         Stream<Point> filteredStream = points.parallelStream();
 
         if (Filter.getStartTime().isPresent()) {
             filteredStream = filteredStream.filter(
                     point -> point.getDateTime().isAfter(Filter.getStartTime().get())
             );
+            filtering = true;
         }
 
         if (Filter.getEndTime().isPresent()) {
@@ -150,6 +154,7 @@ public class GeometryStore implements GeometryObservable {
             filteredStream = filteredStream.filter(
                     point -> point.getX() >= Filter.getMinLat().getAsDouble()
             );
+            filtering = true;
         }
 
         if (Filter.getMaxLat().isPresent()) {
@@ -162,6 +167,7 @@ public class GeometryStore implements GeometryObservable {
             filteredStream = filteredStream.filter(
                     point -> point.getY() >= Filter.getMinLong().getAsDouble()
             );
+            filtering = true;
         }
 
         if (Filter.getMaxLong().isPresent()) {
@@ -174,6 +180,7 @@ public class GeometryStore implements GeometryObservable {
             filteredStream = filteredStream.filter(
                     point -> point.getZ() >= Filter.getMinRssi().getAsDouble()
             );
+            filtering = true;
         }
 
         if (Filter.getMaxRssi().isPresent()) {
@@ -182,20 +189,42 @@ public class GeometryStore implements GeometryObservable {
             );
         }
 
+        if (Filter.getbStation().isPresent()) {
+            filteredStream = filteredStream.filter(
+                    point -> point.getBStation() == Filter.getbStation().get()
+            );
+            filtering = true;
+        }
+
         filterPoints = filteredStream.collect(Collectors.toList());
         filterDelaunayTriangulation = new DelaunayTriangulation(filterPoints);
 
         filterTriangles = filterDelaunayTriangulation.getTriangulation();
-        notifyOnSetPoints(filterPoints);
-        notifyOnSetTriangles(filterTriangles);
+        MapApplet.getInstance().getMap().setPoints(filterPoints);
+        MapApplet.getInstance().getMap().setTriangles(filterTriangles);
+
+        if (filtering) {
+            if (getGeometryListeners().contains(MapApplet.getInstance().getMap())) {
+                System.out.println("отключение рисования");
+                mapDrawing = true;
+                removeGeometryListener(MapApplet.getInstance().getMap());
+            } else {
+                mapDrawing = false;
+            }
+        } else {
+            if (mapDrawing) {
+                System.out.println("включение рисования");
+                addGeometryListener(MapApplet.getInstance().getMap());
+            }
+        }
     }
 
     /**
      * Интерполирует триангуляцию до определенного максимального размера треугольника
      * Фильтры складываются по логическому &
-     * @param area - максимальная площадь треугольника в квадратных километрах
+     * @param length - максимальная площадь треугольника в квадратных километрах
      */
-    public void interpolateFilter(double area) {
+    public void interpolateFilter(double length) {
 
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -215,12 +244,16 @@ public class GeometryStore implements GeometryObservable {
 
                     for (Triangle triangle : interpolateTriangles) {
 
-                        if (triangle.getArea() > area) {
+                        List<Point> points = Arrays.asList(triangle.getA(), triangle.getB(), triangle.getC());
 
-                            Point insertPoint = triangle.getCentroid();
-                            interpolateTriangulation.insertPoint(insertPoint);
-                            interpolatePoints.add(insertPoint);
-                            inserts++;
+                        for (int i = 0; i < points.size(); i++) {
+
+                            Point insert = points.get(i).plus(points.get((i + 1) % points.size())).div(2);
+                            if (points.get(i).distance(insert) > length) {
+                                interpolateTriangulation.insertPoint(insert);
+                                inserts++;
+                            }
+
                         }
                     }
 
@@ -230,7 +263,7 @@ public class GeometryStore implements GeometryObservable {
                     System.out.println("Количество треугольников: " + interpolateTriangles.size());
                 }
 
-                notifyOnSetPoints(interpolatePoints);
+                notifyOnSetPoints(interpolateTriangulation.getVertices());
                 notifyOnSetTriangles(interpolateTriangles);
             }
         });
@@ -283,6 +316,11 @@ public class GeometryStore implements GeometryObservable {
     }
 
     @Override
+    public List<GeometryObserver> getGeometryListeners() {
+        return geometryObservers;
+    }
+
+    @Override
     public void notifyOnSetPoints(List<Point> points) {
         geometryObservers.forEach(o -> o.setPoints(points));
     }
@@ -299,12 +337,16 @@ public class GeometryStore implements GeometryObservable {
 
     @Override
     public void notifyOnAddPoints(List<Point> points) {
-        geometryObservers.forEach(o -> o.addPoints(points));
+        if (!(filterPoints.size() > 0)) {
+            geometryObservers.forEach(o -> o.addPoints(points));
+        }
     }
 
     @Override
     public void notifyOnAddTriangles(List<Triangle> triangles) {
-        geometryObservers.forEach(o -> o.addTriangles(triangles));
+        if (!(filterPoints.size() > 0)) {
+            geometryObservers.forEach(o -> o.addTriangles(triangles));
+        }
     }
 
     @Override
@@ -324,5 +366,9 @@ public class GeometryStore implements GeometryObservable {
 
     public List<Point> getFilterPoints() {
         return filterPoints;
+    }
+
+    public void setFilterPoints(List<Point> filterPoints) {
+        this.filterPoints = filterPoints;
     }
 }

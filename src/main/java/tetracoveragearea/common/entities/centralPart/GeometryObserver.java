@@ -6,7 +6,7 @@ import tetracoveragearea.common.delaunay.Triangle;
 import java.util.List;
 
 /**
- * Наблюдатель за изменением набора геометрий в хранилище
+ * Наблюдатель за изменением набора геометрий хранилища
  * Created by anatoliy on 22.03.17.
  */
 public interface GeometryObserver {

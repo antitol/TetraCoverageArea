@@ -1,5 +1,7 @@
 package tetracoveragearea.gui.panels.filterPanels;
 
+import tetracoveragearea.common.telnet.BStation;
+
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.OptionalDouble;
@@ -18,6 +20,7 @@ public class Filter {
     private static OptionalDouble maxLat = OptionalDouble.empty();
     private static OptionalDouble maxLong = OptionalDouble.empty();
     private static OptionalDouble maxRssi = OptionalDouble.empty();
+    private static Optional<BStation> bStation = Optional.empty();
 
     public static Optional<LocalDateTime> getStartTime() {
         return startTime;
@@ -51,6 +54,10 @@ public class Filter {
         return maxRssi;
     }
 
+    public static Optional<BStation> getbStation() {
+        return bStation;
+    }
+
     public static void setStartTime(Optional<LocalDateTime> startTime) {
         Filter.startTime = startTime;
     }
@@ -82,4 +89,6 @@ public class Filter {
     public static void setMaxRssi(OptionalDouble maxRssi) {
         Filter.maxRssi = maxRssi;
     }
+
+    public static void setBStation(Optional<BStation> bStation) { Filter.bStation = bStation; }
 }

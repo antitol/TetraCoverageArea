@@ -3,12 +3,16 @@ package tetracoveragearea.common.parserTools;
 import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
 import de.micromata.opengis.kml.v_2_2_0.*;
 import tetracoveragearea.common.delaunay.Point;
+import tetracoveragearea.common.telnet.BStation;
 
-import javax.xml.bind.*;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -24,12 +28,18 @@ public class KmlParser implements DocumentParser {
         Document document = kml.createAndSetDocument();
 
         for (Point writePoint : points) {
-            document.createAndAddPlacemark()
+            Document pointDoc = document.createAndAddDocument();
+            pointDoc.createAndAddPlacemark()
                     .withTimePrimitive(
                             new TimeStamp().withWhen(writePoint.getDateTime().format(DateTimeFormatter.ISO_DATE_TIME))
                     )
                     .createAndSetPoint()
                     .addToCoordinates(writePoint.getY(), writePoint.getX(), writePoint.getZ());
+
+            pointDoc.withExtendedData(KmlFactory.createExtendedData().withData(Arrays.asList(
+                    KmlFactory.createData(String.valueOf(writePoint.getBStation().getId())).withId("bs_id"),
+                    KmlFactory.createData(String.valueOf(writePoint.getSsi())).withId("ssi"))
+            ));
         }
 
         try {
@@ -61,24 +71,43 @@ public class KmlParser implements DocumentParser {
     @Override
     public List<Point> parse(File file) throws Exception {
 
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
         List<Point> points = new ArrayList<>();
-
         Kml parseKml = Kml.unmarshal(file);
 
         Document document = (Document) parseKml.getFeature();
         for (Feature feature : document.getFeature()) {
-            de.micromata.opengis.kml.v_2_2_0.Point parsePoint = (de.micromata.opengis.kml.v_2_2_0.Point) ((Placemark) feature).getGeometry();
-            Coordinate coordinate = parsePoint.getCoordinates().get(0);
+            Coordinate coordinate = new Coordinate(0, 0, 0);
+            TimeStamp pointTimestamp = new TimeStamp();
+            int ssi = 0;
+            int bs_id = 0;
 
-            TimeStamp pointTimestamp = (TimeStamp) feature.getTimePrimitive();
-            DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+            for (Feature subfeature : ((Document) feature).getFeature()) {
+                de.micromata.opengis.kml.v_2_2_0.Point parsePoint = (de.micromata.opengis.kml.v_2_2_0.Point) ((Placemark) subfeature).getGeometry();
+                coordinate = parsePoint.getCoordinates().get(0);
+                pointTimestamp = (TimeStamp) subfeature.getTimePrimitive();
 
-            points.add(new Point(
-                    coordinate.getLatitude(),
-                    coordinate.getLongitude(),
-                    coordinate.getAltitude(),
-                    LocalDateTime.parse(pointTimestamp.getWhen(), formatter)
-            ));
+            }
+
+            for (Data data : feature.getExtendedData().getData()) {
+                if (data.getId().equals("ssi")) {
+                    ssi = Integer.parseInt(data.getValue());
+                } else if (data.getId().equals("bs_id")) {
+                    bs_id = Integer.parseInt(data.getValue());
+                }
+            }
+
+            try {
+                points.add(new Point(
+                        coordinate.getLatitude(),
+                        coordinate.getLongitude(),
+                        coordinate.getAltitude(),
+                        LocalDateTime.parse(pointTimestamp.getWhen(), formatter),
+                        ssi, BStation.getById(bs_id)
+                ));
+            } catch (NullPointerException ex) {
+
+            }
         }
 
         return points;

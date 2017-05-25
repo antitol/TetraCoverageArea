@@ -39,7 +39,7 @@ public class MapApplet extends PApplet {
 
     public void setup() {
 
-        size(800, 600, P2D);
+        size(800, 600, P3D);
 
         map = new CoverageMap(this, new OpenStreetMap.OpenStreetMapProvider());
         informationDisplay = new InformationDisplay(this, map);

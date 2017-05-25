@@ -2,6 +2,8 @@ package tetracoveragearea.gui;
 
 import net.miginfocom.swing.MigLayout;
 import org.apache.log4j.Logger;
+import tetracoveragearea.common.entities.centralPart.GeometryStore;
+import tetracoveragearea.common.parserTools.KmlParser;
 import tetracoveragearea.gui.applet.MapApplet;
 import tetracoveragearea.gui.components.GuiComponents;
 import tetracoveragearea.gui.panels.MainContentPanel;
@@ -13,10 +15,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.File;
 import java.util.List;
 import java.util.Locale;
 
@@ -25,14 +24,14 @@ import java.util.Locale;
  */
 public class MainFrame extends JFrame {
 
-
+    public final File tempFile = new File("src/main/resources/export/temp.kml");
 
     public static final Logger log = Logger.getLogger(MainFrame.class);
 
     private final MapApplet mapApplet;
 
     // Панели главного окна
-    private MenuPanel menuPanel = new MenuPanel();
+    private final MenuPanel menuPanel = new MenuPanel();
     private MapGuiPanel mapGuiPanel = new MapGuiPanel();
 
     GuiComponents guiComponents = new GuiComponents();
@@ -47,11 +46,11 @@ public class MainFrame extends JFrame {
 
         mapApplet = MapApplet.getInstance();
 
-        setLayout(new MigLayout("debug"));
+        setLayout(new MigLayout());
         setSize(1200, 700);
         setResizable(false);
 
-        JPanel appletPanel = new JPanel(new MigLayout("debug"));
+        JPanel appletPanel = new JPanel(new MigLayout());
         appletPanel.setPreferredSize(new Dimension(840, 620));
 
         mapApplet.frame = this;
@@ -75,25 +74,11 @@ public class MainFrame extends JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
 
-                try {
+                ChooseGradientTableModel.getInstance().saveGradientFile();
 
-                    FileOutputStream fileOutputStream = new FileOutputStream(
-                            ChooseGradientTableModel.getInstance().getGradientFile()
-                    );
+                KmlParser parser = new KmlParser();
+                parser.write(tempFile, GeometryStore.getInstance().getPoints());
 
-                    ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-                    objectOutputStream.writeObject(ChooseGradientTableModel.getInstance().getGradientList());
-
-                    objectOutputStream.close();
-                    fileOutputStream.close();
-
-                } catch (FileNotFoundException ex) {
-
-                    log.info("Файл для сохранения профилей градиента не найден");
-                } catch (IOException ex) {
-
-                    log.info("Ошибка ввода-вывода");
-                }
             }
         });
 

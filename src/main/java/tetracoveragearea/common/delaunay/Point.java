@@ -1,5 +1,7 @@
 package tetracoveragearea.common.delaunay;
 
+import tetracoveragearea.common.telnet.BStation;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -13,6 +15,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class Point implements Comparable<Point>, Serializable {
 	private double x, y, z;
+	private int ssi;
+	private BStation bStation;
 
 	private LocalDateTime dateTime;
 
@@ -37,6 +41,15 @@ public class Point implements Comparable<Point>, Serializable {
 		this.x = x;
 		this.y = y;
 		this.z = z;
+		this.dateTime = dateTime;
+	}
+
+	public Point(double x, double y, double z, LocalDateTime dateTime, int ssi, BStation bStation) {
+		this.x = x;
+		this.y = y;
+		this.z = z;
+		this.ssi = ssi;
+		this.bStation = bStation;
 		this.dateTime = dateTime;
 	}
 
@@ -86,6 +99,14 @@ public class Point implements Comparable<Point>, Serializable {
 	public double getZ() {
 		return z;
 	};
+
+	public int getSsi() {
+		return ssi;
+	}
+
+	public BStation getBStation() {
+		return bStation;
+	}
 
 	/**
 	 * Sets the z coordinate.
@@ -276,10 +297,36 @@ public class Point implements Comparable<Point>, Serializable {
 				", y=" + y +
 				", z=" + z +
 				", DateTime=" + dateTime.format(DateTimeFormatter.ISO_DATE_TIME) +
+				", bs_ip=" + bStation.getAddress() +
+				", ssi=" + ssi +
 				'}';
 	}
 
 	public LocalDateTime getDateTime() {
 		return dateTime;
+	}
+
+	public Point plus(Point point) {
+		return new Point(this.x + point.getX(), this.y + point.getY(), this.z + point.getZ(), this.dateTime);
+	}
+
+	public Point sub(Point point) {
+		return new Point(this.x - point.getX(), this.y - point.getY(), this.z - point.getZ(), this.dateTime);
+	}
+
+	public Point div(double d) {
+		return new Point(x / d, y / d, z / d, dateTime);
+	}
+
+	public Point mult(double d) {
+		return new Point(x*d, y*d, z*d, dateTime);
+	}
+
+	public void setSsi(int ssi) {
+		this.ssi = ssi;
+	}
+
+	public void setbStation(BStation bStation) {
+		this.bStation = bStation;
 	}
 }

@@ -10,6 +10,7 @@ import tetracoveragearea.gui.panels.primitives.SubPanel;
 import javax.swing.*;
 import java.awt.*;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.OptionalDouble;
 import java.util.function.BiConsumer;
@@ -119,6 +120,7 @@ public class LocationFilterPanel extends SubPanel {
     public void onRevoke() {
 
         MapApplet.getInstance().getMap().showBoundingBox(false);
+        GeometryStore.getInstance().setFilterPoints(new ArrayList<>());
     }
 
     private class DimensionalPanel extends JPanel  {
@@ -128,7 +130,7 @@ public class LocationFilterPanel extends SubPanel {
         private double from = 0;
         private double to = 0;
 
-        private JPanel activatingPanel = new JPanel(new MigLayout("debug, insets 0, w 260"));
+        private JPanel activatingPanel = new JPanel(new MigLayout("insets 0, w 260"));
 
         private JTextField fromValueField = new JTextField();
         private JTextField toValueField = new JTextField();

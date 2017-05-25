@@ -13,7 +13,6 @@ import processing.core.PApplet;
 import tetracoveragearea.common.delaunay.Point;
 import tetracoveragearea.common.delaunay.Triangle;
 import tetracoveragearea.common.entities.centralPart.GeometryObserver;
-import tetracoveragearea.common.entities.centralPart.GeometryStore;
 import tetracoveragearea.common.entities.visualPart.OuterBoundingBoxMarker;
 import tetracoveragearea.common.entities.visualPart.OuterShapeMarker;
 import tetracoveragearea.common.entities.visualPart.PointMarkerRssi;
@@ -60,7 +59,7 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
 
 //        mapDisplay = new OpenGLMapDisplay(p, provider, PConstants.P2D, 0, 0, p.width, p.height);
         zoom(535f);
-        panTo(new Location(55.0, 73.6));
+        panTo(new Location(44.5, 33.6));
 
         showMarkers(false, pointsManager);
         showMarkers(false, delauneyTrianglesManager);
@@ -76,8 +75,6 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
         boundingBoxManager.addMarker(boundingBoxMarker);
 
         setMouseClickedMarkerAt(getCenter());
-
-        GeometryStore.getInstance().addGeometryListener(this);
     }
 
     /**
@@ -441,7 +438,7 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
                 while (markerIterator.hasNext()) {
                     markerIterator.next().draw(map);
                 }
-            } catch (ConcurrentModificationException ex) {}
+            } catch (Exception ex) {}
         }
 
         @Override
@@ -450,16 +447,18 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
             E foundMarker = null;
             // NB: Markers should be ordered, e.g. by size ascending, i.e. big, medium, small
 
-            Iterator iterator = markers.iterator();
-            while (iterator.hasNext()) {
+            try {
+                Iterator iterator = markers.iterator();
+                while (iterator.hasNext()) {
 
-                E nextMarker = (E) iterator.next();
+                    E nextMarker = (E) iterator.next();
 
-                if (nextMarker.isInside(map, v, v1)) {
-                    foundMarker = nextMarker;
-                    break;
+                    if (nextMarker.isInside(map, v, v1)) {
+                        foundMarker = nextMarker;
+                        break;
+                    }
                 }
-            }
+            } catch (ConcurrentModificationException ex) {}
 
             return foundMarker;
         }

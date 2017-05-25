@@ -6,10 +6,9 @@ import processing.core.PConstants;
 import processing.core.PGraphics;
 import tetracoveragearea.common.delaunay.Point;
 import tetracoveragearea.common.delaunay.Triangle;
-import tetracoveragearea.gui.applet.map.CoverageMap;
 import tetracoveragearea.gui.panels.settingsPanels.gradient.GradientTableModel;
 
-import java.util.Collections;
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -39,32 +38,6 @@ public class TriangleMarkerRssi extends PolygonMarkerRssi {
         return getRssiValues().stream().distinct().mapToDouble(Double::doubleValue).average().getAsDouble();
     }
 
-    /**
-     * Возвращает массив из 3х треугольников, разделенных в геометрическом центре данного треугольника
-     * @return
-     */
-    public List<TriangleMarkerRssi> centropolate() {
-
-        float sumLat = 0;
-        float sumLong = 0;
-        int size = getLocations().size() - 1;
-
-        for (int i = 0; i < size; i++) {
-            sumLat += getLocation(i).getLat();
-            sumLong += getLocation(i).getLon();
-        }
-
-        float centLat = sumLat / size;
-        float centLong = sumLong / size;
-
-        Location centerLocation = new Location(centLat, centLong);
-
-        Double centerRssi = getAvgRssi();
-
-        return Collections.emptyList();
-
-    }
-
     public Triangle getTriangle() {
         return triangle;
     }
@@ -72,13 +45,55 @@ public class TriangleMarkerRssi extends PolygonMarkerRssi {
     @Override
     public void draw(PGraphics pg, List<MapPosition> mapPositions) {
 
-        MapPosition lastPosition = new MapPosition();
-        double lastRssi = 0;
-        int min = CoverageMap.getMinRssi();
-        int max = CoverageMap.getMaxRssi();
-
         if (mapPositions.isEmpty() || isHidden())
             return;
+
+        openGLDraw(pg, mapPositions);
+
+    }
+
+    public void awtDraw(PGraphics pg, List<MapPosition> mapPositions) {
+
+        int[] xArray = mapPositions.stream().mapToInt(mapPosition -> (int) mapPosition.x).limit(3).toArray();
+        int[] yArray = mapPositions.stream().mapToInt(mapPosition -> (int) mapPosition.y).limit(3).toArray();
+
+        Polygon polygon = new Polygon(xArray, yArray, 3);
+
+        Rectangle r = polygon.getBounds();
+
+        for (int i = 0; i <= r.width; i++) {
+            for (int j = 0; j <= r.height; j++) {
+
+                int ix = r.x + i;
+                int iy = r.y + j;
+                if (polygon.contains(ix, iy)) {
+
+                    double[] lengths = new double[3];
+                    double sum = 0;
+                    for (int k = 0; k < 3; k++) {
+                        lengths[k] = Math.sqrt(Math.pow(ix - xArray[k], 2) + Math.pow(iy - yArray[k], 2));
+                        sum += lengths[k];
+                    }
+
+                    int rssiInPoint = (int) (rssiValues.get(0) * lengths[0]/sum +
+                            rssiValues.get(1) * lengths[1]/sum +
+                            rssiValues.get(2) * lengths[2]/sum);
+
+                    pg.set(ix, iy,
+                            GradientTableModel.getInstance().getMultilayerGradient().getColor(rssiInPoint).getRGB());
+                }
+            }
+        }
+
+        pg.pushStyle();
+        pg.colorMode(PConstants.RGB, 1);
+
+
+    }
+
+    public void openGLDraw(PGraphics pg, List<MapPosition> mapPositions) {
+
+        double lastRssi = 0;
 
         pg.pushStyle();
         pg.colorMode(PConstants.RGB, 1);
@@ -114,5 +129,9 @@ public class TriangleMarkerRssi extends PolygonMarkerRssi {
 
         pg.endShape(PConstants.CLOSE);
         pg.popStyle();
+    }
+
+    public int areaTriangle(int x1, int y1, int x2, int y2, int x3, int y3) {
+        return (int)(0.5*Math.abs((x1-x3)*(y2-y1)-(x1-x2)*(y3-y1)));
     }
 }
