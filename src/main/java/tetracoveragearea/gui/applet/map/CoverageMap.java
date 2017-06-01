@@ -458,7 +458,7 @@ public class CoverageMap extends UnfoldingMap implements MapEventListener, Geome
                         break;
                     }
                 }
-            } catch (ConcurrentModificationException ex) {}
+            } catch (ConcurrentModificationException | NullPointerException ex) {}
 
             return foundMarker;
         }

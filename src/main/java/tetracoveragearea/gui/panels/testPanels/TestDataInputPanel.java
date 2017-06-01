@@ -6,6 +6,7 @@ import net.miginfocom.swing.MigLayout;
 import org.apache.commons.math3.distribution.NormalDistribution;
 import tetracoveragearea.common.delaunay.Point;
 import tetracoveragearea.common.entities.centralPart.GeometryStore;
+import tetracoveragearea.common.telnet.BStation;
 import tetracoveragearea.gui.applet.MapApplet;
 import tetracoveragearea.gui.panels.primitives.PrimaryPanel;
 import tetracoveragearea.testValues.RandomPointGenerator;
@@ -155,7 +156,9 @@ public class TestDataInputPanel extends PrimaryPanel {
                         location.getLat(),
                         location.getLon(),
                         rssiValue,
-                        LocalDateTime.now()
+                        LocalDateTime.now(),
+                        0,
+                        BStation.NULL
                 )
         );
     }

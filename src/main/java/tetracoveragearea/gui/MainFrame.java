@@ -47,17 +47,17 @@ public class MainFrame extends JFrame {
         mapApplet = MapApplet.getInstance();
 
         setLayout(new MigLayout());
-        setSize(1200, 700);
+        setSize(1900, 1050);
         setResizable(false);
 
         JPanel appletPanel = new JPanel(new MigLayout());
-        appletPanel.setPreferredSize(new Dimension(840, 620));
+        appletPanel.setPreferredSize(new Dimension(1400, 1030));
 
         mapApplet.frame = this;
         mapApplet.init();
-        mapApplet.resize(new Dimension(800,600));
+        mapApplet.resize(new Dimension(1400, 1030));
 
-        mapApplet.setPreferredSize(new Dimension(800, 600));
+        mapApplet.setPreferredSize(new Dimension(1400, 1030));
         log.info("Инициализация applet'a");
 
         appletPanel.add(mapApplet);

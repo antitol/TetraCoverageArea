@@ -44,6 +44,7 @@ public class BSFilterPanel extends SubPanel {
 
     @Override
     public void onInvoke() {
+
         Set<BStation> integerSet = GeometryStore.getInstance().getPoints().parallelStream().collect(Collectors.groupingBy(Point::getBStation)).keySet();
 
         bsComboBox.removeAllItems();

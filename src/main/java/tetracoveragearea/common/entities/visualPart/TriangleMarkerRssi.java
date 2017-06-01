@@ -100,6 +100,8 @@ public class TriangleMarkerRssi extends PolygonMarkerRssi {
 
         // Без рамки
         pg.noStroke();
+        /*pg.stroke(0x000000);
+        pg.strokeWeight(1);*/
 //        pg.stroke(0,0,0, 127);
         pg.beginShape();
 
@@ -107,7 +109,7 @@ public class TriangleMarkerRssi extends PolygonMarkerRssi {
 
             // Определяем вес точки по уровню сигнала
 
-            if (i > 0) {
+            /*if (i > 0) {
                 Double halfRssi = (getRssiValues().get(i) + lastRssi) / 2f;
                 mapPositions.get(i - 1).add(mapPositions.get(i));
                 mapPositions.get(i - 1).div(2);
@@ -115,7 +117,7 @@ public class TriangleMarkerRssi extends PolygonMarkerRssi {
                 pg.fill(GradientTableModel.getInstance().getMultilayerGradient().getColor(halfRssi).getRGB(), 0.5f);
                 pg.vertex(mapPositions.get(i - 1).x, mapPositions.get(i - 1).y);
 
-            }
+            }*/
 
             // Заполняем цветом
             pg.fill(GradientTableModel.getInstance().getMultilayerGradient().getColor(getRssiValues().get(i)).getRGB(), 0.5f);

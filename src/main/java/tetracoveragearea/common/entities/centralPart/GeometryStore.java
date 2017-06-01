@@ -1,9 +1,11 @@
 package tetracoveragearea.common.entities.centralPart;
 
 import org.apache.log4j.Logger;
+import tetracoveragearea.common.delaunay.BoundingBox;
 import tetracoveragearea.common.delaunay.DelaunayTriangulation;
 import tetracoveragearea.common.delaunay.Point;
 import tetracoveragearea.common.delaunay.Triangle;
+import tetracoveragearea.common.telnet.BStation;
 import tetracoveragearea.gui.applet.MapApplet;
 import tetracoveragearea.gui.panels.filterPanels.Filter;
 import tetracoveragearea.serialDao.SerialTestDao;
@@ -232,56 +234,164 @@ public class GeometryStore implements GeometryObservable {
     /**
      * Интерполирует триангуляцию до определенного максимального размера треугольника
      * Фильтры складываются по логическому &
-     * @param length - максимальная площадь треугольника в квадратных километрах
+     * @param xCells - количество ячеек, на которые разбивается карта
      */
-    public void interpolateFilter(double length) {
+    public void interpolateFilter(int xCells, int cellDistance) {
 
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
+        long start = System.currentTimeMillis();
+        filterTriangles.clear();
+        BoundingBox bbx = (filterPoints.size() > 0) ? filterDelaunayTriangulation.getBoundingBox() : delaunayTriangulation.getBoundingBox();
 
-                List<Point> interpolatePoints = new ArrayList<>(points.size() > filterPoints.size() ? points : filterPoints);
+        double rowCellSize = (bbx.maxX() - bbx.minX()) / xCells;
+        double colCellSize = rowCellSize * Math.sqrt(3) / 2;
+        int yCells = (int) Math.ceil((bbx.maxY() - bbx.minY()) / colCellSize);
 
-                DelaunayTriangulation interpolateTriangulation = new DelaunayTriangulation(interpolatePoints);
+        List<Point> tempPoints = new ArrayList<>((filterPoints.size() > 0) ? filterPoints : points);
+        List<Point> interpolationPoints = new ArrayList<>();
+        List<Triangle> interpolationTriangles = new ArrayList<>();
 
-                List<Triangle> interpolateTriangles = (filterTriangles.isEmpty() ? triangles : filterTriangles);
+        double radius = rowCellSize * cellDistance;
+        Map<BStation, List<Point>> bsPointsMap = tempPoints.parallelStream().collect(Collectors.groupingBy(Point::getBStation));
 
-                int inserts = interpolateTriangles.size();
+        for (List<Point> bsPoints : bsPointsMap.values()) {
 
-                while (inserts > 0) {
+            for (int i = 0; i < xCells * yCells; i++) {
+                Point pcell = new Point(
+                        bbx.minX() + ((i % xCells) + ((i / xCells) % 2 == 1 ? 0.5 : 0)) * rowCellSize,
+                        bbx.minY() + ((i / xCells)) * colCellSize,
+                        200
+                );
 
-                    inserts = 0;
+                List<Point> included = tempPoints.parallelStream()
+                        .filter(point -> Math.abs(pcell.getX() - point.getX()) < radius)
+                        .filter(point -> Math.abs(pcell.getY() - point.getY()) < radius)
+                        .filter(point -> pcell.distance(point) < radius)
+                        .collect(Collectors.toList());
 
-                    for (Triangle triangle : interpolateTriangles) {
+                int idx;
+                if ((idx = Collections.binarySearch(included, pcell, Point::compareTo)) >= 0) {
+                    pcell.setZ(tempPoints.get(idx).getZ());
+                } else {
 
-                        List<Point> points = Arrays.asList(triangle.getA(), triangle.getB(), triangle.getC());
-
-                        for (int i = 0; i < points.size(); i++) {
-
-                            Point insert = points.get(i).plus(points.get((i + 1) % points.size())).div(2);
-                            if (points.get(i).distance(insert) > length) {
-                                interpolateTriangulation.insertPoint(insert);
-                                inserts++;
-                            }
-
-                        }
+                    double weight = 0;
+                    double sumzw = 0;
+                    double sumw = 0;
+                    for (int j = 0; j < included.size() && j < 10; j++) {
+                        double d = pcell.distance(included.get(j));
+                        weight = Math.pow((rowCellSize - d) / (rowCellSize * d), 2);
+                        sumw += weight;
+                        sumzw += included.get(j).getZ() * weight;
                     }
 
-                    interpolateTriangles = interpolateTriangulation.getTriangulation();
-
-                    log.info("Количество точек: " + interpolatePoints.size());
-                    log.info("Количество треугольников: " + interpolateTriangles.size());
+                    if (sumw > 0) {
+                        pcell.setZ(sumzw / sumw);
+                    }
                 }
 
-                notifyOnSetPoints(interpolateTriangulation.getVertices());
-                notifyOnSetTriangles(interpolateTriangles);
+                if (interpolationPoints.size() == xCells * yCells) {
+                    if (pcell.getZ() != 0 && interpolationPoints.get(i).getZ() != 0) {
+                        interpolationPoints.get(i).setZ(Math.min(pcell.getZ(), interpolationPoints.get(i).getZ()));
+                    } else {
+                        interpolationPoints.get(i).setZ(Math.max(pcell.getZ(), interpolationPoints.get(i).getZ()));
+                    }
+
+                } else {
+                    interpolationPoints.add(pcell);
+                }
             }
-        });
+        }
 
-        thread.start();
+        for (int i = 0; i < xCells * yCells; i++) {
+            int xPoint = i % xCells;
+            int yPoint = i / xCells;
 
-//        notifyOnSetPoints(filterPoints);
-//        notifyOnSetTriangles(filterTriangles);
+            int parity = yPoint % 2 == 1 ? 1 : 0;
+
+            if (xPoint < xCells - 1) {
+                if (yPoint > 0) {
+                    interpolationTriangles.add(
+                            new Triangle(
+                                    interpolationPoints.get(i),
+                                    interpolationPoints.get(i - xCells + parity),
+                                    interpolationPoints.get(i + 1), false
+                            )
+                    );
+                }
+
+                if (yPoint < yCells - 1) {
+                    interpolationTriangles.add(
+                            new Triangle(
+                                    interpolationPoints.get(i),
+                                    interpolationPoints.get(i + xCells + parity),
+                                    interpolationPoints.get(i + 1), false
+                            )
+                    );
+                }
+            }
+        }
+
+        System.out.println((System.currentTimeMillis() - start) + " millis");
+//        MapApplet.getInstance().getMap().setPoints(interpolationPoints);
+        MapApplet.getInstance().getMap().setTriangles(interpolationTriangles);
+
+//        TreeMap<Integer, List<Point>> idwCellMap = new TreeMap<>();
+        /*IntStream.range(0, xCells * yCells).forEach(i -> idwCellMap.put(i, new ArrayList<Point>()));
+
+        for (Point point : points) {
+            int xCell = (int) ((point.getX() - bbx.minX()) / rowCellSize);
+            int yCell = (int) ((point.getY() - bbx.minY()) / rowCellSize);
+
+            idwCellMap.get(yCell * xCells + xCell).add(point);
+        }
+
+        for (int i : idwCellMap.keySet()) {
+            if (idwCellMap.get(i).size() == 0) {
+                Point pcell = new Point(
+                        bbx.minX() + ((i % xCells)) * rowCellSize,
+                        bbx.minY() + ((i / xCells)) * rowCellSize,
+                200);
+
+                filterPoints.add(pcell);
+                continue;
+            }
+
+            for (int j = 0; j < cellDiv; j++) {
+
+                for (int k = 0; k < cellDiv; k++) {
+                    Point pcell = new Point(
+                            bbx.minX() + ((i % xCells) + j / (double) cellDiv) * rowCellSize,
+                            bbx.minY() + ((i / xCells) + k / (double) cellDiv) * rowCellSize);
+
+                    List<Point> idwCellPoints = idwCellMap.get(i);
+
+                    Collections.sort(idwCellPoints, new Comparator<Point>() {
+                        @Override
+                        public int compare(Point o1, Point o2) {
+                            return Double.compare(o1.distance(pcell), o2.distance(pcell));
+                        }
+                    });
+
+                    int idx;
+                    if ((idx = Collections.binarySearch(idwCellPoints, pcell, Point::compareTo)) >= 0) {
+                        pcell.setZ(idwCellPoints.get(idx).getZ());
+                    } else {
+                        double weight = 0;
+                        double sumzw = 0;
+                        double sumw = 0;
+                        for (int l = 0; l <= Math.min(idwCellPoints.size() - 1, 10); l++) {
+                            double d = pcell.distance(idwCellPoints.get(l));
+                            weight = Math.pow((rowCellSize - d) / (rowCellSize * d), 2);
+                            sumw += weight;
+                            sumzw += idwCellPoints.get(l).getZ() * weight;
+                        }
+
+
+                        pcell.setZ(sumzw / sumw);
+                    }
+
+                    filterPoints.add(pcell);
+                }
+            }*/
     }
 
     public LocalDateTime getDateTimeOfEarliestPoint() {
@@ -381,4 +491,30 @@ public class GeometryStore implements GeometryObservable {
     public void setFilterPoints(List<Point> filterPoints) {
         this.filterPoints = filterPoints;
     }
+
+    private class CellKey implements Comparable<CellKey> {
+        public int xCell;
+        public int yCell;
+
+        public CellKey(int xCell, int yCell) {
+            this.xCell = xCell;
+            this.yCell = yCell;
+        }
+
+        @Override
+        public int compareTo(CellKey o) {
+            if (xCell > o.xCell)
+                return 1;
+            if (xCell < o.xCell)
+                return -1;
+            // x1 == x2
+            if (yCell > o.yCell)
+                return 1;
+            if (yCell < o.yCell)
+                return -1;
+            // y1==y2
+            return 0;
+        }
+    }
 }
+

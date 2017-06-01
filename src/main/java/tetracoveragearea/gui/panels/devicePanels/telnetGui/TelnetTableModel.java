@@ -18,7 +18,9 @@ public class TelnetTableModel extends AbstractTableModel {
 
     public TelnetTableModel() {
         for (BStation bs : BStation.values()) {
-            ipAddresses.add(bs.getAddress());
+            if (bs != BStation.NULL) {
+                ipAddresses.add(bs.getAddress());
+            }
         }
 
         connections.addAll(Arrays.asList(false, false, false, false, false));

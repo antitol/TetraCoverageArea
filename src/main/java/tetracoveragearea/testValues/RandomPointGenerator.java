@@ -3,6 +3,7 @@ package tetracoveragearea.testValues;
 import org.apache.commons.math3.distribution.AbstractRealDistribution;
 import org.apache.commons.math3.distribution.NormalDistribution;
 import tetracoveragearea.common.delaunay.Point;
+import tetracoveragearea.common.telnet.BStation;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -50,7 +51,9 @@ public class RandomPointGenerator {
                     lat,
                     lon,
                     maxRssi - wieght*(maxRssi - minRssi),
-                    LocalDateTime.now()
+                    LocalDateTime.now(),
+                    0,
+                    BStation.NULL
             );
 
             points.add(i, point);

@@ -14,9 +14,11 @@ import java.util.List;
 public class InterpolationPanel extends SubPanel {
 
 
-    private final JLabel areaLabel = new JLabel("Площадь в кв.км");
+    private final JLabel areaLabel = new JLabel("Число ячеек");
+    private final JLabel cellSizeLabel = new JLabel("Размер ячейки");
 
     private JSpinner areaSpinner;
+    private JSpinner cellSizeSpinner;
     private JButton confirmButton;
     private JButton resetButton;
 
@@ -26,14 +28,18 @@ public class InterpolationPanel extends SubPanel {
 
         setName("Интерполяция");
 
-        SpinnerNumberModel areaSpinnerModel = new SpinnerNumberModel(1, 0.1, Math.pow(10, 10), 0.1);
+        SpinnerNumberModel areaSpinnerModel = new SpinnerNumberModel(64, 1, 1000000, 1);
+        SpinnerNumberModel cellSizeModel = new SpinnerNumberModel(1, 1, 100, 1);
         areaSpinner = new JSpinner(areaSpinnerModel);
+        cellSizeSpinner = new JSpinner(cellSizeModel);
 
         confirmButton = new JButton("Применить");
         confirmButton.addActionListener(e -> {
 
+
             GeometryStore.getInstance().interpolateFilter(
-                    (double) areaSpinner.getValue()
+                    (int) areaSpinner.getValue(),
+                    (int) cellSizeSpinner.getValue()
             );
 
             userSetted = true;
@@ -49,7 +55,7 @@ public class InterpolationPanel extends SubPanel {
         });
 
         List<JComponent> components = Arrays.asList(
-                areaLabel, areaSpinner
+                areaLabel, areaSpinner, cellSizeLabel, cellSizeSpinner
         );
 
         components.forEach(c -> add(c, "span 2, w 100%, wrap"));

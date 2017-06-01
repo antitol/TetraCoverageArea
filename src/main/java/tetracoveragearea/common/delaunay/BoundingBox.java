@@ -161,6 +161,13 @@ public class BoundingBox implements Serializable {
 				&& other.maxY <= maxY;
 	}
 
+	public boolean contains(Point point) {
+		double px = point.getX();
+		double py = point.getY();
+
+		return  px >= minX && px <= maxX && py >= minY && py <= maxY;
+	}
+
 	/**
 	 * Unify the BoundingBoxes of this and the other BoundingBox
 	 * 

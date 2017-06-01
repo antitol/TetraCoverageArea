@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ec8cf0d4-4d4d-4cca-ba58-667df663fe24" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/SSIFilterPanel.java" />
+    <list default="true" id="ec8cf0d4-4d4d-4cca-ba58-667df663fe24" name="Default" comment="Добавлена фильтрация по SSI">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/gradientProfiles" afterPath="$PROJECT_DIR$/src/main/resources/assets/gradientProfiles" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/BoundingBox.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/BoundingBox.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/Circle.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/Circle.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/Point.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/Point.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/Triangle.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/Triangle.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/telnet/BSTelnetClient.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/telnet/BSTelnetClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/telnet/BSTelnetManager.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/telnet/BSTelnetManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/MainContentPanel.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/MainContentPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/Filter.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/Filter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/mapPanels/MapGuiPanel.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/mapPanels/MapGuiPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/serialDao/SerialTestDao.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/serialDao/SerialTestDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/visualPart/TriangleMarkerRssi.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/visualPart/TriangleMarkerRssi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/telnet/BStation.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/telnet/BStation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/MainFrame.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/MainFrame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/MapApplet.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/MapApplet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/map/CoverageMap.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/map/CoverageMap.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/devicePanels/telnetGui/TelnetTableModel.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/devicePanels/telnetGui/TelnetTableModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/BSFilterPanel.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/BSFilterPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/InterpolationPanel.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/InterpolationPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/testPanels/TestDataInputPanel.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/testPanels/TestDataInputPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tetracoveragearea/testValues/RandomPointGenerator.java" afterPath="$PROJECT_DIR$/src/main/java/tetracoveragearea/testValues/RandomPointGenerator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/export/temp.kml" afterPath="$PROJECT_DIR$/src/main/resources/export/temp.kml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -215,123 +223,117 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="KmlParser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/parserTools/KmlParser.java">
+      <file leaf-file-name="InterpolationPanel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/InterpolationPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-152">
-              <caret line="91" column="67" lean-forward="false" selection-start-line="91" selection-start-column="67" selection-end-line="91" selection-end-column="67" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BSFilterPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/BSFilterPanel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="39" column="8" lean-forward="false" selection-start-line="39" selection-start-column="8" selection-end-line="41" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainContentPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/MainContentPanel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="38" column="38" lean-forward="true" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
+            <state relative-caret-position="212">
+              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Filter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/Filter.java">
+      <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/MainFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="62" column="40" lean-forward="false" selection-start-line="62" selection-start-column="40" selection-end-line="62" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1804#1805#0" expanded="true" />
-                <element signature="e#2777#2778#0" expanded="true" />
-                <element signature="e#2809#2810#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="274">
+              <caret line="57" column="50" lean-forward="false" selection-start-line="57" selection-start-column="50" selection-end-line="57" selection-end-column="50" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SSIFilterPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/SSIFilterPanel.java">
+      <file leaf-file-name="MapApplet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/MapApplet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="40" column="13" lean-forward="true" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="156">
+              <caret line="24" column="17" lean-forward="true" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BSTelnetClient.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/telnet/BSTelnetClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="166" column="17" lean-forward="false" selection-start-line="166" selection-start-column="17" selection-end-line="166" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BSTelnetManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/telnet/BSTelnetManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="858">
-              <caret line="33" column="38" lean-forward="true" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GeometryStore.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GeometryStore.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1372">
-              <caret line="287" column="94" lean-forward="false" selection-start-line="287" selection-start-column="94" selection-end-line="287" selection-end-column="94" />
+            <state relative-caret-position="498">
+              <caret line="253" column="59" lean-forward="false" selection-start-line="253" selection-start-column="59" selection-end-line="253" selection-end-column="59" />
               <folding>
-                <element signature="e#966#976#0" expanded="true" />
-                <element signature="e#1369#1376#0" expanded="true" />
+                <element signature="e#1472#1479#0" expanded="true" />
+                <element signature="e#17330#17331#0" expanded="true" />
+                <element signature="e#17365#17366#0" expanded="true" />
+                <element signature="e#17426#17427#0" expanded="true" />
+                <element signature="e#17474#17475#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SerialTestDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/serialDao/SerialTestDao.java">
+      <file leaf-file-name="BoundingBox.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/BoundingBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="35" column="4" lean-forward="false" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="75" />
+            <state relative-caret-position="1350">
+              <caret line="249" column="5" lean-forward="false" selection-start-line="249" selection-start-column="5" selection-end-line="249" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MapGuiPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/mapPanels/MapGuiPanel.java">
+      <file leaf-file-name="Point.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/Point.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="61" column="21" lean-forward="false" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
+            <state relative-caret-position="224">
+              <caret line="296" column="27" lean-forward="false" selection-start-line="296" selection-start-column="27" selection-end-line="296" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Circle.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/Circle.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="454">
+              <caret line="108" column="5" lean-forward="false" selection-start-line="108" selection-start-column="5" selection-end-line="108" selection-end-column="5" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3855#3862#0" expanded="true" />
+                <element signature="e#2051#2052#0" expanded="true" />
+                <element signature="e#2097#2098#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TriangleMarkerRssi.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/visualPart/TriangleMarkerRssi.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2314">
+              <caret line="102" column="8" lean-forward="false" selection-start-line="102" selection-start-column="8" selection-end-line="102" selection-end-column="8" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#695#696#0" expanded="false" />
+                <element signature="e#739#740#0" expanded="false" />
+                <element signature="e#1251#1252#0" expanded="false" />
+                <element signature="e#1282#1283#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OpenStreetMap.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/lib/unfolding.0.9.6.jar!/de/fhpotsdam/unfolding/providers/OpenStreetMap.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="104">
+              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CoverageMap.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/map/CoverageMap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="394">
+              <caret line="60" column="14" lean-forward="true" selection-start-line="60" selection-start-column="14" selection-end-line="60" selection-end-column="14" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -349,13 +351,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>isGL</find>
-      <find>renderer</find>
-      <find>jogl</find>
-      <find>2.3.1</find>
-      <find>2.2.4</find>
-      <find>2.3.0</find>
-      <find>debug</find>
       <find>.div</find>
       <find>getReso</find>
       <find>JComboBox</find>
@@ -376,9 +371,16 @@
       <find>remove</find>
       <find>CREA</find>
       <find>отключение рисования</find>
-      <find>system</find>
       <find>sys</find>
       <find>MonitoringE</find>
+      <find>tree</find>
+      <find>addPoint</find>
+      <find>system</find>
+      <find>points</find>
+      <find>i</find>
+      <find>asList</find>
+      <find>stream</find>
+      <find>in</find>
     </findStrings>
     <replaceStrings>
       <replace>gpspoint</replace>
@@ -414,6 +416,7 @@
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
+      <dir>$PROJECT_DIR$/src/main/java/tetracoveragearea/common/telnet/bsMessages</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -802,14 +805,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/devicePanels/DevicesGuiPanel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/devicePanels/ConnectEditor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/devicePanels/ConnectButtonEditor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/devicePanels/ButtonColumn.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/devicePanels/ConnectButtonRenderer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/devicePanels/TelnetTableModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/devicePanels/ConnectButtonColumn.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/devicePanels/BaseStationPanel.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/telnet/bsFeatures/multiFeatures/MAC_Feature.java" />
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/telnet/bsFeatures/multiFeatures/UserDefinedData_Feature.java" />
@@ -826,22 +821,15 @@
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/telnet/bsFeatures/lineFeatures/DigitalWithHex_Feature.java" />
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/TimeFilterPanel.java" />
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/LocationFilterPanel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/map/InformationDisplay.java" />
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/parserTools/DocumentParser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/MainFrame.java" />
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryObservable.java" />
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/databasePanels/DatabasePanel.java" />
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/components/GuiComponents.java" />
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/MenuPanel.java" />
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/loadPanels/LoadPanel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/map/CoverageMap.java" />
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/visualPart/PointMarkerRssi.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/ac4aed1f-e5d7-4132-b422-482c65ffb924/console.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/devicePanels/telnetGui/TelnetTableModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/Point.java" />
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/parserTools/GeojsonParser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/BSFilterPanel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/telnet/BStation.java" />
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/serialDao/queries/point/PointQuery.java" />
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/serialDao/queries/point/PointMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/parserTools/KmlParser.java" />
@@ -849,10 +837,25 @@
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/MainContentPanel.java" />
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/SSIFilterPanel.java" />
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/serialDao/SerialTestDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java" />
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/mapPanels/MapGuiPanel.java" />
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/telnet/BSTelnetManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/telnet/BSTelnetClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/map/InformationDisplay.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/map/CoverageMap.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/BSFilterPanel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/testValues/RandomPointGenerator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/testPanels/TestDataInputPanel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/telnet/BStation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/devicePanels/telnetGui/TelnetTableModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/Triangle.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/visualPart/TriangleMarkerRssi.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/MapApplet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/MainFrame.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/Circle.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/BoundingBox.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/Point.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/InterpolationPanel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java" />
       </list>
     </option>
   </component>
@@ -864,7 +867,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="width" value="1920" />
+    <option name="x" value="-1" />
+    <option name="width" value="1922" />
     <option name="height" value="1055" />
   </component>
   <component name="ProjectView">
@@ -945,62 +949,6 @@
               <option name="myItemId" value="processing" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="opengl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle: org.processing:core:2.2.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core-2.2.1.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="processing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle: org.processing:core:2.2.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core-2.2.1.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="processing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -1066,15 +1014,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle: net.sf.marineapi:marineapi:0.9.0" />
+              <option name="myItemId" value="&lt; 1.8 &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tetracoveragearea" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; 1.8 &gt;" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="marineapi-0.9.0.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="marineapi" />
+              <option name="myItemId" value="rt.jar" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1088,19 +1046,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle: net.sf.marineapi:marineapi:0.9.0" />
+              <option name="myItemId" value="&lt; 1.8 &gt;" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="marineapi-0.9.0.jar" />
+              <option name="myItemId" value="rt.jar" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="marineapi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nmea" />
+              <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1114,140 +1068,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle: net.sf.marineapi:marineapi:0.9.0" />
+              <option name="myItemId" value="&lt; 1.8 &gt;" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="marineapi-0.9.0.jar" />
+              <option name="myItemId" value="rt.jar" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle: de.micromata.jak:JavaAPIforKml:2.2.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JavaAPIforKml-2.2.1.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle: de.micromata.jak:JavaAPIforKml:2.2.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JavaAPIforKml-2.2.1.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="exampledata" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle: de.micromata.jak:JavaAPIforKml:2.2.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JavaAPIforKml-2.2.1.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v_2_2_0" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="awt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tetracoveragearea" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="tetracoveragearea" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1263,314 +1105,14 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="panels" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="panels" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mapPanels" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="panels" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="loadPanels" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="panels" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="filterPanels" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="panels" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="databasePanels" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tetracoveragearea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="telnet" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1583,7 +1125,7 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="SearchEverywhereHistoryKey" value="BSt&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/telnet/BSTelnetManager.java&#10;Ser&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/serialDao/SerialTestDao.java&#10;Ge&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java&#10;BSC&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/telnet/BSTelnetClient.java&#10;KmlP&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/parserTools/KmlParser.java&#10;Point&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/serialDao/queries/point/PointQuery.java&#10;BS&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/filterPanels/BSFilterPanel.java&#10;GeoJSo&#9;PSI&#9;JAVA://tetracoveragearea.common.parserTools.GeojsonParser&#10;Extende&#9;FILE&#9;jar:///home/anatoliy/.gradle/caches/modules-2/files-2.1/de.micromata.jak/JavaAPIforKml/2.2.1/a72f7348892282f7b2afba63260f11a323b8c4a1/JavaAPIforKml-2.2.1-sources.jar!/de/micromata/opengis/kml/v_2_2_0/ExtendedData.java&#10;Metada&#9;FILE&#9;jar:///home/anatoliy/.gradle/caches/modules-2/files-2.1/de.micromata.jak/JavaAPIforKml/2.2.1/a72f7348892282f7b2afba63260f11a323b8c4a1/JavaAPIforKml-2.2.1-sources.jar!/de/micromata/opengis/kml/v_2_2_0/Metadata.java&#10;SerialT&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/serialDao/SerialTestDao.java&#10;Loca&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/filterPanels/LocationFilterPanel.java&#10;Poin&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/delaunay/Point.java&#10;Telne&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/devicePanels/telnetGui/TelnetTableModel.java&#10;FilterPanel&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/filterPanels/TimeFilterPanel.java&#10;Telnet&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/devicePanels/telnetGui/TelnetTableModel.java&#10;PSDS&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/telnet/bsMessages/PSDS_Message.java&#10;MapGuiP&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/mapPanels/MapGuiPanel.java&#10;MapAp&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/applet/MapApplet.java&#10;PointMa&#9;PSI&#9;JAVA://tetracoveragearea.common.entities.visualPart.PointMarkerRssi&#10;Cove&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/applet/map/CoverageMap.java&#10;Men&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/MenuPanel.java&#10;Panel&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/MainContentPanel.java&#10;MainF&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/MainFrame.java&#10;MainCo&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/MainContentPanel.java&#10;Geom&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java&#10;Info&#9;PSI&#9;JAVA://tetracoveragearea.gui.applet.map.InformationDisplay&#10;BSTe&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/telnet/BSTelnetClient.java&#10;MainC&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/MainContentPanel.java&#10;Filter&#9;PSI&#9;JAVA://tetracoveragearea.gui.panels.filterPanels.LocationFilterPanel&#10;FilterPa&#9;PSI&#9;JAVA://tetracoveragearea.gui.panels.MainContentPanel#filterPanel&#10;Пущьу&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java&#10;Data&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/databasePanels/DatabasePanel.java&#10;VM&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/telnet/bsMessages/VMX_SDS_Message.java&#10;IndexOf&#9;PSI&#9;JAVA://java.lang.IndexOutOfBoundsException&#10;TNS&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/telnet/bsMessages/TNSDS_Message.java&#10;PS&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/telnet/bsMessages/PSDS_Message.java&#10;DefaultCellR&#9;PSI&#9;JAVA://javax.swing.DefaultListCellRenderer&#10;DefaultCe&#9;PSI&#9;JAVA://javax.swing.DefaultCellEditor&#10;ColorRe&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/settingsPanels/gradient/ColorRenderer.java&#10;Gradie&#9;PSI&#9;JAVA://tetracoveragearea.gui.panels.settingsPanels.gradient.GradientPanel&#10;Devi&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/devicePanels/DevicesGuiPanel.java&#10;Port&#9;PSI&#9;JAVA://tetracoveragearea.common.ATPortReader&#10;Serial&#9;PSI&#9;JAVA://tetracoveragearea.gui.panels.devicePanels.SerialGuiPanel&#10;Trian&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/entities/visualPart/TriangleMarkerRssi.java&#10;PVect&#9;FILE&#9;jar:///home/anatoliy/.gradle/caches/modules-2/files-2.1/org.processing/core/2.2.1/cdbc7751136c56f7ec642e8326cf4c0e646621ca/core-2.2.1-sources.jar!/processing/core/PVector.java&#10;PVe&#9;FILE&#9;jar:///home/anatoliy/.gradle/caches/modules-2/files-2.1/org.processing/core/2.2.1/cdbc7751136c56f7ec642e8326cf4c0e646621ca/core-2.2.1-sources.jar!/processing/core/PVector.java&#10;Екшф&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/delaunay/Triangle.java&#10;Triangle&#9;PSI&#9;JAVA://tetracoveragearea.common.delaunay.Triangle&#10;Geome&#9;PSI&#9;JAVA://tetracoveragearea.common.entities.centralPart.GeometryStore" />
+    <property name="SearchEverywhereHistoryKey" value="Point&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/delaunay/Point.java&#10;Boun&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/delaunay/BoundingBox.java&#10;Circ&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/delaunay/Circle.java&#10;MainFr&#9;PSI&#9;JAVA://tetracoveragearea.gui.MainFrame&#10;Openst&#9;PSI&#9;JAVA://de.fhpotsdam.unfolding.providers.OpenStreetMap&#10;TriangleM&#9;PSI&#9;JAVA://tetracoveragearea.common.entities.visualPart.TriangleMarkerRssi&#10;Co&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/applet/map/CoverageMap.java&#10;Telne&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/devicePanels/telnetGui/TelnetTableModel.java&#10;PointMa&#9;PSI&#9;JAVA://tetracoveragearea.common.entities.visualPart.PointMarkerRssi&#10;Geomet&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java&#10;ЕуыеВфеф&#9;PSI&#9;JAVA://tetracoveragearea.gui.panels.testPanels.TestDataInputPanel&#10;BS&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/telnet/BStation.java&#10;Delau&#9;PSI&#9;JAVA://tetracoveragearea.common.delaunay.DelaunayTriangulation&#10;Circle&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/delaunay/Circle.java&#10;ПущьуекнЫ&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java&#10;Kml&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/parserTools/KmlParser.java&#10;BSt&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/telnet/BSTelnetManager.java&#10;Ser&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/serialDao/SerialTestDao.java&#10;Ge&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java&#10;BSC&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/telnet/BSTelnetClient.java&#10;KmlP&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/parserTools/KmlParser.java&#10;GeoJSo&#9;PSI&#9;JAVA://tetracoveragearea.common.parserTools.GeojsonParser&#10;Extende&#9;FILE&#9;jar:///home/anatoliy/.gradle/caches/modules-2/files-2.1/de.micromata.jak/JavaAPIforKml/2.2.1/a72f7348892282f7b2afba63260f11a323b8c4a1/JavaAPIforKml-2.2.1-sources.jar!/de/micromata/opengis/kml/v_2_2_0/ExtendedData.java&#10;Metada&#9;FILE&#9;jar:///home/anatoliy/.gradle/caches/modules-2/files-2.1/de.micromata.jak/JavaAPIforKml/2.2.1/a72f7348892282f7b2afba63260f11a323b8c4a1/JavaAPIforKml-2.2.1-sources.jar!/de/micromata/opengis/kml/v_2_2_0/Metadata.java&#10;SerialT&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/serialDao/SerialTestDao.java&#10;Loca&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/filterPanels/LocationFilterPanel.java&#10;Poin&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/delaunay/Point.java&#10;FilterPanel&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/filterPanels/TimeFilterPanel.java&#10;Telnet&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/devicePanels/telnetGui/TelnetTableModel.java&#10;PSDS&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/telnet/bsMessages/PSDS_Message.java&#10;MapGuiP&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/mapPanels/MapGuiPanel.java&#10;MapAp&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/applet/MapApplet.java&#10;Cove&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/applet/map/CoverageMap.java&#10;Men&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/MenuPanel.java&#10;Panel&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/MainContentPanel.java&#10;MainF&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/MainFrame.java&#10;MainCo&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/MainContentPanel.java&#10;Geom&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java&#10;Info&#9;PSI&#9;JAVA://tetracoveragearea.gui.applet.map.InformationDisplay&#10;BSTe&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/telnet/BSTelnetClient.java&#10;MainC&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/MainContentPanel.java&#10;Filter&#9;PSI&#9;JAVA://tetracoveragearea.gui.panels.filterPanels.LocationFilterPanel&#10;FilterPa&#9;PSI&#9;JAVA://tetracoveragearea.gui.panels.MainContentPanel#filterPanel&#10;Пущьу&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java&#10;Data&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/gui/panels/databasePanels/DatabasePanel.java&#10;VM&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/telnet/bsMessages/VMX_SDS_Message.java&#10;IndexOf&#9;PSI&#9;JAVA://java.lang.IndexOutOfBoundsException&#10;TNS&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/telnet/bsMessages/TNSDS_Message.java&#10;PS&#9;FILE&#9;file:///home/anatoliy/tetracoveragearea/src/main/java/tetracoveragearea/common/telnet/bsMessages/PSDS_Message.java&#10;DefaultCellR&#9;PSI&#9;JAVA://javax.swing.DefaultListCellRenderer" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -2224,7 +1766,8 @@
       <workItem from="1494568217780" duration="3917000" />
       <workItem from="1495183427790" duration="788000" />
       <workItem from="1495269826459" duration="2582000" />
-      <workItem from="1495431342879" duration="52579000" />
+      <workItem from="1495431342879" duration="75982000" />
+      <workItem from="1496303596226" duration="9584000" />
     </task>
     <task id="LOCAL-00001" summary="Добавлены методы для генерации точек распределенных в пространстве по закону Гаусса. Добавлен пользовательский ввод для генерации точек в базу">
       <created>1486553677316</created>
@@ -2331,7 +1874,14 @@
       <option name="project" value="LOCAL" />
       <updated>1495701411829</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Добавлена фильтрация по SSI">
+      <created>1495703912755</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1495703912755</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2367,7 +1917,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="785247000" />
+    <option name="totallyTimeSpent" value="818234000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2379,37 +1929,37 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1055" extended-state="0" />
-    <editor active="false" />
+    <frame x="-1" y="0" width="1922" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32869378" sideWeight="0.49786323" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35653105" sideWeight="0.47435898" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35653105" sideWeight="0.47225186" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.248394" sideWeight="0.59455127" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="100" y="100" width="987" height="539" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.248394" sideWeight="0.60618997" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32869378" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.248394" sideWeight="0.4054487" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.248394" sideWeight="0.39381003" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29978585" sideWeight="0.4642094" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3482906" sideWeight="0.49122807" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35218784" sideWeight="0.49122807" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3263889" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3351178" sideWeight="0.48931623" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3351178" sideWeight="0.48719317" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32852563" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973932" sideWeight="0.49392098" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3082265" sideWeight="0.50877196" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31156316" sideWeight="0.44497862" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31156316" sideWeight="0.43649948" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="100" y="100" width="987" height="539" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29978585" sideWeight="0.4642094" order="10" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -2459,7 +2009,8 @@
     <MESSAGE value="Доработана логика совместной работы фильтров, реализованы парсеры набора точек в KML и GeoJSON, реализовано сохранение и загрузка файлов через FileChooser" />
     <MESSAGE value="Добавлено окно в область карты с информацией о ее состоянии" />
     <MESSAGE value="Добавлено сопряжение с базовыми станциями через telnet. парсинг сообщений telnet в точки, добавлены характеристики точек - базовая станция и ssi, проведено тестирование на Севастопольской системе" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлено сопряжение с базовыми станциями через telnet. парсинг сообщений telnet в точки, добавлены характеристики точек - базовая станция и ssi, проведено тестирование на Севастопольской системе" />
+    <MESSAGE value="Добавлена фильтрация по SSI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлена фильтрация по SSI" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2526,7 +2077,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/Point.java</url>
-          <line>176</line>
+          <line>175</line>
           <properties />
           <option name="timeStamp" value="106" />
         </line-breakpoint>
@@ -2538,7 +2089,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/Triangle.java</url>
-          <line>476</line>
+          <line>482</line>
           <properties />
           <option name="timeStamp" value="110" />
         </line-breakpoint>
@@ -2568,7 +2119,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java</url>
-          <line>94</line>
+          <line>96</line>
           <properties />
           <option name="timeStamp" value="135" />
         </line-breakpoint>
@@ -2580,13 +2131,13 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java</url>
-          <line>80</line>
+          <line>82</line>
           <properties />
           <option name="timeStamp" value="140" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/testPanels/TestDataInputPanel.java</url>
-          <line>164</line>
+          <line>167</line>
           <properties />
           <option name="timeStamp" value="141" />
         </line-breakpoint>
@@ -2598,7 +2149,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java</url>
-          <line>156</line>
+          <line>158</line>
           <properties />
           <option name="timeStamp" value="145" />
         </line-breakpoint>
@@ -2613,12 +2164,6 @@
           <line>225</line>
           <properties />
           <option name="timeStamp" value="147" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java</url>
-          <line>242</line>
-          <properties />
-          <option name="timeStamp" value="148" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/parserTools/GeojsonParser.java</url>
@@ -2644,17 +2189,29 @@
           <properties />
           <option name="timeStamp" value="177" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/parserTools/KmlParser.java</url>
           <line>91</line>
           <properties />
           <option name="timeStamp" value="186" />
         </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java</url>
+          <line>360</line>
+          <properties />
+          <option name="timeStamp" value="190" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java</url>
+          <line>258</line>
+          <properties />
+          <option name="timeStamp" value="192" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="187" />
+      <option name="time" value="193" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2663,195 +2220,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/InformationGUIPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryObservable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="5" column="22" lean-forward="true" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jdbi/jdbi/2.78/66327c2942900da8d6dbf9ea79f212a634ae809c/jdbi-2.78-sources.jar!/org/skife/jdbi/v2/sqlobject/customizers/RegisterMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="40" column="42" lean-forward="false" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/databasePanels/DatabasePanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-286">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/components/GuiComponents.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="93" column="55" lean-forward="false" selection-start-line="93" selection-start-column="55" selection-end-line="93" selection-end-column="55" />
-          <folding>
-            <element signature="e#3190#3191#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/primitives/PrimaryPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/unfolding.0.9.6.jar!/de/fhpotsdam/unfolding/marker/AbstractMarker.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/unfolding.0.9.6.jar!/de/fhpotsdam/unfolding/marker/SimplePointMarker.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="7" column="20" lean-forward="false" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/MapApplet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="43" column="24" lean-forward="false" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/visualPart/PointMarkerRssi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/awt/Point.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="37" column="13" lean-forward="false" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/telnet/bsMessages/PSDS_Message.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="566">
-          <caret line="28" column="58" lean-forward="false" selection-start-line="28" selection-start-column="58" selection-end-line="28" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/ac4aed1f-e5d7-4132-b422-482c65ffb924/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="381" column="2" lean-forward="false" selection-start-line="381" selection-start-column="2" selection-end-line="381" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/primitives/SubPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/awt/Container.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="415" column="21" lean-forward="false" selection-start-line="415" selection-start-column="21" selection-end-line="415" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/InterpolationPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/devicePanels/telnetGui/TelnetTableModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="742">
-          <caret line="114" column="24" lean-forward="false" selection-start-line="114" selection-start-column="24" selection-end-line="114" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/LocationFilterPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="99" column="8" lean-forward="false" selection-start-line="99" selection-start-column="8" selection-end-line="100" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/TimeFilterPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="45" column="11" lean-forward="false" selection-start-line="45" selection-start-column="11" selection-end-line="45" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/MainFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/map/CoverageMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="424" column="0" lean-forward="false" selection-start-line="424" selection-start-column="0" selection-end-line="424" selection-end-column="0" />
-          <folding>
-            <element signature="e#12200#12201#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/de.micromata.jak/JavaAPIforKml/2.2.1/a72f7348892282f7b2afba63260f11a323b8c4a1/JavaAPIforKml-2.2.1-sources.jar!/de/micromata/opengis/kml/v_2_2_0/Placemark.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="665" column="47" lean-forward="false" selection-start-line="665" selection-start-column="47" selection-end-line="665" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/de.micromata.jak/JavaAPIforKml/2.2.1/337fff414a9fa7392f7bb66632cc1772943571a8/JavaAPIforKml-2.2.1.jar!/exampledata/mobile_phone.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2859,7 +2231,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2867,7 +2238,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1014">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2883,7 +2253,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
           <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2891,7 +2260,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="68" column="17" lean-forward="true" selection-start-line="68" selection-start-column="17" selection-end-line="68" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2899,7 +2267,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2002">
           <caret line="96" column="22" lean-forward="false" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2907,7 +2274,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2080">
           <caret line="94" column="14" lean-forward="false" selection-start-line="94" selection-start-column="14" selection-end-line="94" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2915,7 +2281,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
           <caret line="133" column="17" lean-forward="false" selection-start-line="133" selection-start-column="17" selection-end-line="133" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2923,7 +2288,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2931,23 +2295,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1404">
           <caret line="62" column="13" lean-forward="false" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/531ca986/ac4aed1f-e5d7-4132-b422-482c65ffb924/postgis.public.gpspoint">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
           <column-attributes>
             <column name="ctid" enabled="false" />
           </column-attributes>
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -2969,19 +2331,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/Point.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="324" column="33" lean-forward="false" selection-start-line="324" selection-start-column="33" selection-end-line="324" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#7181#7182#0" expanded="true" />
-            <element signature="e#7228#7229#0" expanded="true" />
-            <element signature="e#7259#7260#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/parserTools/GeojsonParser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="341">
@@ -2990,22 +2339,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/telnet/BStation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="59" column="27" lean-forward="false" selection-start-line="59" selection-start-column="27" selection-end-line="59" selection-end-column="27" />
-          <folding>
-            <element signature="e#1475#1476#0" expanded="true" />
-            <element signature="e#1509#1510#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/serialDao/queries/point/PointQuery.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
           <caret line="15" column="20" lean-forward="false" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3013,17 +2350,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="458">
           <caret line="26" column="48" lean-forward="false" selection-start-line="26" selection-start-column="48" selection-end-line="26" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/parserTools/KmlParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-152">
-          <caret line="91" column="67" lean-forward="false" selection-start-line="91" selection-start-column="67" selection-end-line="91" selection-end-column="67" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3032,10 +2358,10 @@
         <state relative-caret-position="468">
           <caret line="62" column="40" lean-forward="false" selection-start-line="62" selection-start-column="40" selection-end-line="62" selection-end-column="40" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1804#1805#0" expanded="true" />
-            <element signature="e#2777#2778#0" expanded="true" />
-            <element signature="e#2809#2810#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1804#1805#0" expanded="false" />
+            <element signature="e#2777#2778#0" expanded="false" />
+            <element signature="e#2809#2810#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3048,34 +2374,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/BSFilterPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="39" column="8" lean-forward="false" selection-start-line="39" selection-start-column="8" selection-end-line="41" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/SSIFilterPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="338">
           <caret line="40" column="13" lean-forward="true" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1372">
-          <caret line="287" column="94" lean-forward="false" selection-start-line="287" selection-start-column="94" selection-end-line="287" selection-end-column="94" />
-          <folding>
-            <element signature="e#966#976#0" expanded="true" />
-            <element signature="e#1369#1376#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3092,8 +2394,8 @@
         <state relative-caret-position="98">
           <caret line="61" column="21" lean-forward="false" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3855#3862#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#3855#3862#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3102,18 +2404,337 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="858">
           <caret line="33" column="38" lean-forward="true" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/telnet/BSTelnetClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="166" column="17" lean-forward="false" selection-start-line="166" selection-start-column="17" selection-end-line="166" selection-end-column="17" />
+        <state relative-caret-position="497">
+          <caret line="149" column="41" lean-forward="true" selection-start-line="149" selection-start-column="41" selection-end-line="149" selection-end-column="41" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/parserTools/KmlParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="91" column="67" lean-forward="false" selection-start-line="91" selection-start-column="67" selection-end-line="91" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/map/InformationDisplay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1304">
+          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/awt/Point.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1352">
+          <caret line="25" column="15" lean-forward="false" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/awt/Rectangle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-100">
+          <caret line="752" column="19" lean-forward="false" selection-start-line="752" selection-start-column="19" selection-end-line="752" selection-end-column="19" />
+          <folding>
+            <element signature="e#23886#23887#0" expanded="false" />
+            <element signature="e#23921#23922#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/util/TreeSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="122" column="11" lean-forward="false" selection-start-line="122" selection-start-column="11" selection-end-line="122" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/DelaunayTriangulation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="54" column="30" lean-forward="false" selection-start-line="54" selection-start-column="30" selection-end-line="54" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/util/Collections.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="314" column="26" lean-forward="false" selection-start-line="314" selection-start-column="26" selection-end-line="314" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/primitives/TabbedPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/testValues/RandomPointGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="55" column="33" lean-forward="false" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/testPanels/TestDataInputPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="160" column="37" lean-forward="false" selection-start-line="160" selection-start-column="37" selection-end-line="160" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/telnet/BStation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="11" column="8" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+          <folding>
+            <element signature="e#1509#1510#0" expanded="false" />
+            <element signature="e#1543#1544#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/BSFilterPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1144">
+          <caret line="52" column="9" lean-forward="true" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/visualPart/PointMarkerRssi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="65" column="73" lean-forward="false" selection-start-line="65" selection-start-column="73" selection-end-line="65" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/tools/MultilayerGradient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="29" column="23" lean-forward="false" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#971#972#0" expanded="false" />
+            <element signature="e#1018#1019#0" expanded="false" />
+            <element signature="e#3476#3477#0" expanded="false" />
+            <element signature="e#3516#3517#0" expanded="false" />
+            <element signature="e#3800#3801#0" expanded="false" />
+            <element signature="e#3829#3830#0" expanded="false" />
+            <element signature="e#4307#4308#0" expanded="false" />
+            <element signature="e#4337#4338#0" expanded="false" />
+            <element signature="e#4371#4372#0" expanded="false" />
+            <element signature="e#4401#4402#0" expanded="false" />
+            <element signature="e#4432#4433#0" expanded="false" />
+            <element signature="e#4459#4460#0" expanded="false" />
+            <element signature="e#4499#4500#0" expanded="false" />
+            <element signature="e#4531#4532#0" expanded="false" />
+            <element signature="e#5435#5436#0" expanded="false" />
+            <element signature="e#5471#5472#0" expanded="false" />
+            <element signature="e#5505#5506#0" expanded="false" />
+            <element signature="e#5540#5541#0" expanded="false" />
+            <element signature="e#5585#5586#0" expanded="false" />
+            <element signature="e#5627#5628#0" expanded="false" />
+            <element signature="e#5670#5671#0" expanded="false" />
+            <element signature="e#5710#5711#0" expanded="false" />
+            <element signature="e#5927#5928#0" expanded="false" />
+            <element signature="e#5989#5990#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/settingsPanels/gradient/ChooseGradientTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1924">
+          <caret line="87" column="25" lean-forward="false" selection-start-line="87" selection-start-column="25" selection-end-line="87" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1900#1901#0" expanded="false" />
+            <element signature="e#1931#1932#0" expanded="false" />
+            <element signature="e#1977#1978#0" expanded="false" />
+            <element signature="e#2019#2020#0" expanded="false" />
+            <element signature="e#2068#2069#0" expanded="false" />
+            <element signature="e#2092#2093#0" expanded="false" />
+            <element signature="e#3359#3360#0" expanded="false" />
+            <element signature="e#3398#3399#0" expanded="false" />
+            <element signature="e#3455#3456#0" expanded="false" />
+            <element signature="e#3490#3491#0" expanded="false" />
+            <element signature="e#4712#4713#0" expanded="false" />
+            <element signature="e#4747#4748#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/devicePanels/telnetGui/TelnetTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding>
+            <element signature="e#995#996#0" expanded="false" />
+            <element signature="e#1036#1037#0" expanded="false" />
+            <element signature="e#1085#1086#0" expanded="false" />
+            <element signature="e#1109#1110#0" expanded="false" />
+            <element signature="e#2573#2574#0" expanded="false" />
+            <element signature="e#2600#2601#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/Triangle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1118">
+          <caret line="45" column="14" lean-forward="false" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#9110#9111#0" expanded="false" />
+            <element signature="e#9147#9148#0" expanded="false" />
+            <element signature="e#9545#9546#0" expanded="false" />
+            <element signature="e#9563#9564#0" expanded="false" />
+            <element signature="e#9601#9602#0" expanded="false" />
+            <element signature="e#9624#9625#0" expanded="false" />
+            <element signature="e#9729#9730#0" expanded="false" />
+            <element signature="e#9745#9746#0" expanded="false" />
+            <element signature="e#9849#9850#0" expanded="false" />
+            <element signature="e#9877#9878#0" expanded="false" />
+            <element signature="e#9925#9926#0" expanded="false" />
+            <element signature="e#9958#9959#0" expanded="false" />
+            <element signature="e#9988#9989#0" expanded="false" />
+            <element signature="e#10007#10008#0" expanded="false" />
+            <element signature="e#10127#10128#0" expanded="false" />
+            <element signature="e#10151#10152#0" expanded="false" />
+            <element signature="e#10202#10203#0" expanded="false" />
+            <element signature="e#10237#10238#0" expanded="false" />
+            <element signature="e#10357#10358#0" expanded="false" />
+            <element signature="e#10381#10382#0" expanded="false" />
+            <element signature="e#10432#10433#0" expanded="false" />
+            <element signature="e#10467#10468#0" expanded="false" />
+            <element signature="e#10587#10588#0" expanded="false" />
+            <element signature="e#10611#10612#0" expanded="false" />
+            <element signature="e#10658#10659#0" expanded="false" />
+            <element signature="e#10689#10690#0" expanded="false" />
+            <element signature="e#10770#10771#0" expanded="false" />
+            <element signature="e#10785#10786#0" expanded="false" />
+            <element signature="e#10815#10816#0" expanded="false" />
+            <element signature="e#10832#10833#0" expanded="false" />
+            <element signature="e#10914#10915#0" expanded="false" />
+            <element signature="e#10929#10930#0" expanded="false" />
+            <element signature="e#10959#10960#0" expanded="false" />
+            <element signature="e#10976#10977#0" expanded="false" />
+            <element signature="e#11055#11056#0" expanded="false" />
+            <element signature="e#11070#11071#0" expanded="false" />
+            <element signature="e#11100#11101#0" expanded="false" />
+            <element signature="e#11117#11118#0" expanded="false" />
+            <element signature="e#11156#11157#0" expanded="false" />
+            <element signature="e#11192#11193#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/visualPart/TriangleMarkerRssi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2314">
+          <caret line="102" column="8" lean-forward="false" selection-start-line="102" selection-start-column="8" selection-end-line="102" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#695#696#0" expanded="false" />
+            <element signature="e#739#740#0" expanded="false" />
+            <element signature="e#1251#1252#0" expanded="false" />
+            <element signature="e#1282#1283#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/unfolding.0.9.6.jar!/de/fhpotsdam/unfolding/providers/OpenStreetMap.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/Circle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="454">
+          <caret line="108" column="5" lean-forward="false" selection-start-line="108" selection-start-column="5" selection-end-line="108" selection-end-column="5" />
+          <folding>
+            <element signature="e#2051#2052#0" expanded="true" />
+            <element signature="e#2097#2098#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/Point.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="296" column="27" lean-forward="false" selection-start-line="296" selection-start-column="27" selection-end-line="296" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/panels/filterPanels/InterpolationPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/delaunay/BoundingBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="249" column="5" lean-forward="false" selection-start-line="249" selection-start-column="5" selection-end-line="249" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/MainFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="57" column="50" lean-forward="false" selection-start-line="57" selection-start-column="50" selection-end-line="57" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/MapApplet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="24" column="17" lean-forward="true" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/gui/applet/map/CoverageMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="60" column="14" lean-forward="true" selection-start-line="60" selection-start-column="14" selection-end-line="60" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tetracoveragearea/common/entities/centralPart/GeometryStore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="253" column="59" lean-forward="false" selection-start-line="253" selection-start-column="59" selection-end-line="253" selection-end-column="59" />
+          <folding>
+            <element signature="e#1472#1479#0" expanded="true" />
+            <element signature="e#17330#17331#0" expanded="true" />
+            <element signature="e#17365#17366#0" expanded="true" />
+            <element signature="e#17426#17427#0" expanded="true" />
+            <element signature="e#17474#17475#0" expanded="true" />
           </folding>
         </state>
       </provider>

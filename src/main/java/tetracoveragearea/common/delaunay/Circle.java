@@ -95,4 +95,16 @@ public class Circle implements Serializable {
 		return true;
 	}
 
+	public boolean contains(Point point) {
+		return center.distance2(point) < radius;
+	}
+
+	public boolean isInside(BoundingBox bbx) {
+		return
+				(center.getX() + radius < bbx.maxX()) &&
+						(center.getX() - radius > bbx.minX()) &&
+						(center.getY() + radius < bbx.maxY()) &&
+						(center.getY() - radius > bbx.maxY());
+
+	}
 }

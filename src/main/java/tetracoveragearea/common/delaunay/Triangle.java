@@ -40,6 +40,12 @@ public class Triangle implements Serializable {
 		circumcircle();
 	}
 
+	public Triangle(Point A, Point B, Point C, boolean init) {
+		a = A;
+		b = B;
+		c = C;
+	}
+
 	/**
 	 * creates a half plane using the segment (A,B).
 	 * 
